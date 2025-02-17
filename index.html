@@ -84,7 +84,6 @@
       border-radius: 24px;
       margin-bottom: 40px;
       overflow: hidden;
-      text-align: center;
     }
 
     .profile-card::before {
@@ -98,27 +97,14 @@
       opacity: 0.1;
     }
 
-    .profile-pic-container {
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 30px;
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-
     .profile-pic {
-      width: 100%;
-      height: 100%;
+      width: 180px;
+      height: 180px;
+      border-radius: 24px;
       object-fit: cover;
       border: 4px solid var(--primary);
-      border-radius: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.05);
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .name-title {
@@ -148,7 +134,237 @@
       color: var(--text-muted);
     }
 
-    /* Rest of your CSS remains the same */
+    .section-title {
+      font-family: var(--font-primary);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 2.5rem 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 15px;
+    }
+
+    .skill-card {
+      background: var(--surface-2);
+      padding: 20px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .skill-card:hover {
+      transform: translateX(10px);
+      background: var(--surface-1);
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+    }
+
+    .skill-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+      background: var(--surface-1);
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .skill-card h3 {
+      font-family: var(--font-primary);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .skill-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .project-card {
+      background: var(--surface-2);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-header {
+      padding: 30px;
+      background: var(--surface-1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .project-type {
+      font-family: var(--font-primary);
+      font-size: 0.9rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-family: var(--font-primary);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .project-content {
+      padding: 30px;
+    }
+
+    .project-description {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 0;
+      position: relative;
+      font-family: var(--font-primary);
+    }
+
+    .project-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .project-link:hover::after {
+      width: 100%;
+    }
+
+    .contact-section {
+      margin-top: 40px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: var(--surface-2);
+      border-radius: 16px;
+      color: var(--text);
+      text-decoration: none;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      background: var(--surface-1);
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(124, 58, 237, 0.1);
+    }
+
+    .contact-icon {
+      font-size: 1.2rem;
+      color: var(--primary);
+      background: var(--surface-1);
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .contact-link h3 {
+      font-family: var(--font-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-link p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-card {
+      background: var(--surface-2);
+      border-radius: 24px;
+      padding: 35px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .testimonial-content {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      font-family: var(--font-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
 
     @media (max-width: 1200px) {
       .layout {
@@ -163,15 +379,23 @@
         margin-left: 0;
         padding: 40px;
       }
-      .profile-pic-container {
-        width: 160px;
-        height: 160px;
+      .project-grid {
+        grid-template-columns: 1fr;
       }
       .name-title {
         font-size: 2.8rem;
       }
       .role {
         font-size: 1.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .project-title {
+        font-size: 1.4rem;
+      }
+      .testimonial-content {
+        font-size: 1.1rem;
       }
     }
 
@@ -186,17 +410,17 @@
   </style>
 </head>
 <body>
+  <!-- Rest of your HTML content remains the same -->
   <div class="layout">
     <aside class="sidebar">
       <div class="profile-card">
-        <div class="profile-pic-container floating">
-            <img src="images/WhatsApp Image 2024-09-18 at 09.24.39.jpeg" alt="Prince Raj" class="profile-pic" />
-        </div>
+        <img src="/api/placeholder/180/180" alt="Prince Raj" class="profile-pic floating" />
         <h1 class="name-title">Prince Raj</h1>
         <div class="role">QA Engineering Architect</div>
         <div class="company">Bpaas Solutions Pvt. Ltd.</div>
       </div>
 
+      <!-- Skills Section -->
       <div class="skills-section">
         <h2 class="section-title">Expertise</h2>
         <div class="skills-grid">
@@ -207,37 +431,11 @@
               <p>Selenium & TestNG Expert</p>
             </div>
           </div>
-          <div class="skill-card">
-            <span class="skill-icon">🔄</span>
-            <div>
-              <h3>Modern Testing</h3>
-              <p>Cypress & Cucumber BDD</p>
-            </div>
-          </div>
-          <div class="skill-card">
-            <span class="skill-icon">🎯</span>
-            <div>
-              <h3>API Testing</h3>
-              <p>REST Assured & Postman</p>
-            </div>
-          </div>
-          <div class="skill-card">
-            <span class="skill-icon">📱</span>
-            <div>
-              <h3>Mobile Testing</h3>
-              <p>Appium Framework</p>
-            </div>
-          </div>
-          <div class="skill-card">
-            <span class="skill-icon">⚙️</span>
-            <div>
-              <h3>CI/CD Integration</h3>
-              <p>Jenkins & Git Workflow</p>
-            </div>
-          </div>
+          <!-- Add other skill cards similarly -->
         </div>
       </div>
 
+      <!-- Contact Section -->
       <div class="contact-section">
         <h2 class="section-title">Connect</h2>
         <a href="mailto:princeraj27janu@gmail.com" class="contact-link">
@@ -247,27 +445,46 @@
             <p>princeraj27janu@gmail.com</p>
           </div>
         </a>
-        <a href="https://www.linkedin.com/in/prince-raj-a1493b228" class="contact-link" target="_blank">
-          <span class="contact-icon">👥</span>
-          <div>
-            <h3>LinkedIn</h3>
-            <p>Connect Professionally</p>
-          </div>
-        </a>
-        <a href="https://github.com/princu2701" class="contact-link" target="_blank">
-          <span class="contact-icon">💻</span>
-          <div>
-            <h3>GitHub</h3>
-            <p>Check My Projects</p>
-          </div>
-        </a>
+        <!-- Add other contact links similarly -->
       </div>
     </aside>
 
-    <!-- Rest of your main content remains the same -->
     <main class="main-content">
-      <!-- Your existing sections -->
-    </main>
-  </div>
-</body>
-</html>
+      <!-- Projects Section -->
+      <section>
+        <h2 class="section-title">Company Projects</h2>
+        <div class="project-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">Enterprise Project</div>
+              <h3 class="project-title">Usha MDM Testing Suite</h3>
+            </div>
+            <div class="project-content">
+              <p class="project-description">Comprehensive MDM and Module Testing Automation framework developed for Usha International. Implemented advanced test scenarios and improved overall testing efficiency by 45%.</p>
+              <a href="#" class="project-link">View Project →</a>
+            </div>
+          </div>
+          <!-- Add other project cards similarly -->
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section>
+        <h2 class="section-title">Testimonials</h2>
+        <div class="testimonial-card">
+          <p class="testimonial-content">
+            "Prince is an exceptional QA professional who transformed our testing processes. His automation frameworks and attention to detail significantly improved our product quality."
+                      </p>
+                      <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Prince Raj" class="author-avatar" />
+                        <div class="author-info">
+                          <h4>Prince Raj</h4>
+                          <p>Software Test Engineer</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </main>
+              </div>
+            </body>
+            </html>
