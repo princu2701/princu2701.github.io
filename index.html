@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prince Raj | QA Engineering Craftsman</title>
+  <title>Prince Raj | QA Engineering Architect</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --background: #0F172A;
-      --surface: #1E293B;
-      --primary: #38BDF8;
-      --secondary: #818CF8;
+      --bg-gradient: linear-gradient(135deg, #13151a 0%, #1E1E2E 100%);
+      --primary: #7C3AED;
+      --primary-hover: #8B5CF6;
+      --secondary: #EC4899;
+      --accent: #0EA5E9;
       --text: #E2E8F0;
       --text-muted: #94A3B8;
+      --surface-1: rgba(255, 255, 255, 0.03);
+      --surface-2: rgba(255, 255, 255, 0.05);
+      --glow: rgba(124, 58, 237, 0.5);
     }
 
     * {
@@ -23,8 +27,8 @@
     }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--background);
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-gradient);
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
@@ -32,161 +36,247 @@
 
     .layout {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 400px 1fr;
       min-height: 100vh;
+      max-width: 1800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .layout::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 100% 0%, var(--glow) 0%, transparent 50%);
+      opacity: 0.1;
+      pointer-events: none;
     }
 
     .sidebar {
-      background: var(--surface);
+      background: var(--surface-1);
       padding: 40px;
       position: fixed;
-      width: 380px;
+      width: 400px;
       height: 100vh;
       overflow-y: auto;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .main-content {
-      margin-left: 380px;
-      padding: 40px;
+      margin-left: 400px;
+      padding: 60px;
     }
 
-    .profile-section {
-      text-align: center;
+    .profile-card {
+      position: relative;
+      padding: 30px;
+      background: var(--surface-2);
+      border-radius: 20px;
       margin-bottom: 40px;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      opacity: 0.1;
     }
 
     .profile-pic {
-      width: 180px;
-      height: 180px;
-      border-radius: 15px;
+      width: 160px;
+      height: 160px;
+      border-radius: 20px;
       object-fit: cover;
       border: 3px solid var(--primary);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
-    h1 {
-      font-size: 2.5rem;
+    .name-title {
+      font-size: 2.8rem;
       font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 10px;
-      letter-spacing: -1px;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      color: var(--secondary);
-      margin: 30px 0 20px;
-      letter-spacing: -0.5px;
-    }
-
-    h3 {
-      font-size: 1.2rem;
-      color: var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
     }
 
-    .section {
-      margin-bottom: 40px;
-      background: var(--surface);
-      padding: 30px;
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .skills-list {
-      list-style: none;
-    }
-
-    .skills-list li {
-      margin: 15px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .skill-icon {
-      color: var(--primary);
+    .role {
+      color: var(--accent);
       font-size: 1.2rem;
-    }
-
-    .project-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 25px;
-      border-radius: 12px;
-      margin: 20px 0;
-      border-left: 4px solid var(--secondary);
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: translateX(10px);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
-    }
-
-    .stat-card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary);
+      font-weight: 500;
       margin-bottom: 5px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      background: var(--primary);
-      color: var(--background);
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      border: 2px solid var(--primary);
-    }
-
-    .btn:hover {
-      background: transparent;
-      color: var(--primary);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 20px;
-      justify-content: center;
-    }
-
-    .social-links a {
+    .company {
       color: var(--text-muted);
-      text-decoration: none;
-      transition: color 0.3s ease;
+      font-size: 1rem;
     }
 
-    .social-links a:hover {
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--text);
+      margin: 40px 0 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 40px;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 15px;
+    }
+
+    .skill-card {
+      background: var(--surface-2);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .skill-card:hover {
+      transform: translateX(10px);
+      background: var(--surface-1);
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.1);
+    }
+
+    .skill-icon {
+      font-size: 1.5rem;
       color: var(--primary);
+      background: var(--surface-1);
+      padding: 10px;
+      border-radius: 10px;
     }
 
-    .gradient-text {
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
     }
 
-    @media (max-width: 1024px) {
+    .project-card {
+      background: var(--surface-2);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-header {
+      padding: 25px;
+      background: var(--surface-1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .project-type {
+      font-size: 0.85rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      color: var(--text);
+      margin-bottom: 15px;
+    }
+
+    .project-content {
+      padding: 25px;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .project-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .project-link:hover::after {
+      width: 100%;
+    }
+
+    .contact-section {
+      margin-top: 40px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      background: var(--surface-2);
+      border-radius: 12px;
+      color: var(--text);
+      text-decoration: none;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      background: var(--surface-1);
+      transform: translateX(10px);
+      box-shadow: 0 5px 20px rgba(124, 58, 237, 0.1);
+    }
+
+    .contact-icon {
+      font-size: 1.2rem;
+      color: var(--primary);
+      background: var(--surface-1);
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 1200px) {
       .layout {
         grid-template-columns: 1fr;
       }
@@ -197,84 +287,154 @@
       }
       .main-content {
         margin-left: 0;
+        padding: 40px;
       }
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
   <div class="layout">
     <aside class="sidebar">
-      <div class="profile-section">
-        <img src="WhatsApp Image 2024-09-18 at 09.24.39.jpeg" alt="Prince Raj" class="profile-pic" />
-        <h1>Prince Raj</h1>
-        <p class="gradient-text">QA Engineering - Craftsman</p>
+      <div class="profile-card">
+        <img src="profile.jpg" alt="Prince Raj" class="profile-pic floating" />
+        <h1 class="name-title">Prince Raj</h1>
+        <div class="role">QA Engineering Architect</div>
+        <div class="company">Bpaas Solutions Pvt. Ltd.</div>
       </div>
 
-      <div class="skills-list">
-        <h2>Technical Arsenal</h2>
-        <ul>
-          <li><span class="skill-icon">⚡</span> Selenium & TestNG Expert</li>
-          <li><span class="skill-icon">🔄</span> Cypress Automation</li>
-          <li><span class="skill-icon">🎯</span> API Testing (Postman, Rest Assured)</li>
-          <li><span class="skill-icon">📱</span> Mobile Testing (Appium)</li>
-          <li><span class="skill-icon">⚙️</span> CI/CD with Jenkins</li>
-          <li><span class="skill-icon">🔍</span> Test Management & JIRA</li>
-        </ul>
+      <div class="skills-section">
+        <h2 class="section-title">Expertise</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <span class="skill-icon">⚡</span>
+            <div>
+              <h3>Test Automation</h3>
+              <p>Selenium & TestNG Expert</p>
+            </div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🔄</span>
+            <div>
+              <h3>Modern Testing</h3>
+              <p>Cypress & Cucumber BDD</p>
+            </div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">🎯</span>
+            <div>
+              <h3>API Testing</h3>
+              <p>REST Assured & Postman</p>
+            </div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">📱</span>
+            <div>
+              <h3>Mobile Testing</h3>
+              <p>Appium Framework</p>
+            </div>
+          </div>
+          <div class="skill-card">
+            <span class="skill-icon">⚙️</span>
+            <div>
+              <h3>CI/CD Integration</h3>
+              <p>Jenkins & Git Workflow</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="contact-section">
-        <h2>Connect</h2>
-        <a href="mailto:princeraj27janu@gmail.com" class="btn">Contact Me</a>
-        <div class="social-links">
-          <a href="https://github.com/princu2701">GitHub</a>
-          <a href="www.linkedin.com/in/prince-raj-a1493b228">LinkedIn</a>
-        </div>
+        <h2 class="section-title">Connect</h2>
+        <a href="mailto:princeraj27janu@gmail.com" class="contact-link">
+          <span class="contact-icon">📧</span>
+          <div>
+            <h3>Email</h3>
+            <p>princeraj27janu@gmail.com</p>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/prince-raj-a1493b228" class="contact-link">
+          <span class="contact-icon">👥</span>
+          <div>
+            <h3>LinkedIn</h3>
+            <p>Connect Professionally</p>
+          </div>
+        </a>
       </div>
     </aside>
 
     <main class="main-content">
-      <section class="section">
-        <h2>About Me</h2>
-        <p>Dedicated QA engineer with a passion for crafting robust testing frameworks and ensuring exceptional software quality. Currently enhancing product reliability at Bpaas Solutions Pvt. Ltd.</p>
-      </section>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-number">1000+</div>
-          <p>Test Cases Written</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">15+</div>
-          <p>Projects Delivered</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">99%</div>
-          <p>Bug Detection Rate</p>
-        </div>
-      </div>
-
-      <section class="section">
-        <h2>Featured Projects</h2>
-        <div class="project-card">
-          <h3>E-Commerce Testing Framework</h3>
-          <p>Comprehensive Selenium framework reducing testing time by 60% while increasing coverage by 40%.</p>
-        </div>
-        <div class="project-card">
-          <h3>API Testing Suite</h3>
-          <p>Automated testing solution handling 500+ test cases across 50 endpoints with Rest Assured.</p>
-        </div>
-        <div class="project-card">
-          <h3>Mobile App Testing</h3>
-          <p>Developed Appium framework for cross-platform mobile application testing.</p>
+      <section>
+        <h2 class="section-title">Company Projects</h2>
+        <div class="project-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">Enterprise Project</div>
+              <h3 class="project-title">Usha MDM Testing Suite</h3>
+            </div>
+            <div class="project-content">
+              <p class="project-description">Comprehensive MDM and Module Testing Automation framework developed for Usha International. Implemented advanced test scenarios and improved overall testing efficiency.</p>
+              <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation.github" class="project-link">View Project →</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">Manual Testing</div>
+              <h3 class="project-title">GDL Project Documentation</h3>
+            </div>
+            <div class="project-content">
+              <p class="project-description">Comprehensive manual testing project for GDL platform, including detailed test cases, documentation, and quality assurance procedures.</p>
+              <a href="https://github.com/princu2701/Manual_GDL_Project.git" class="project-link">View Project →</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section">
-        <h2>Testimonial</h2>
-        <p>"Prince's innovative testing approaches and attention to detail have significantly improved our product quality. His automation frameworks are both robust and maintainable."</p>
-        <p style="color: var(--text-muted); margin-top: 10px;">- Engineering Manager, Bpaas Solution</p>
-      </section>
-    </main>
-  </div>
-</body>
-</html>
+      <section>
+        <h2 class="section-title">Personal Projects</h2>
+        <div class="project-grid">
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">API Testing</div>
+              <h3 class="project-title">REST Assured Framework</h3>
+            </div>
+            <div class="project-content">
+              <p class="project-description">Advanced API testing framework utilizing REST Assured with comprehensive test coverage and automated validation.</p>
+              <a href="https://github.com/princu2701/Rest_Assured_Project.git" class="project-link">View Project →</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">BDD Framework</div>
+              <h3 class="project-title">Selenium Cucumber Suite</h3>
+            </div>
+            <div class="project-content">
+              <p class="project-description">Behavior-driven development framework combining Selenium with Cucumber for enhanced test readability and maintenance.</p>
+              <a href="https://github.com/princu2701/Selenium_Cucumber_Project.git" class="project-link">View Project →</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">Modern Testing</div>
+              <h3 class="project-title">Cypress POM Framework</h3>
+            </div>
+            <div class="project-content">
+              <p class="project-description">Next-generation web testing framework using Cypress with Page Object Model pattern for optimal code organization.</p>
+              <a href="https://github.com/princu2701/CYPRESS_POM.git" class="project-link">View Project →</a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-type">Mobile Testing</div>
+              <h3 class="project-title">Appium Mobile Framework</h3>
