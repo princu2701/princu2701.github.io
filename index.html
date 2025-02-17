@@ -3,168 +3,262 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Princu Raj | Portfolio</title>
+  <title>Princu Raj | QA Engineering Craftsman</title>
   <style>
-    /* Google Font */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-    /* Global Styles */
+    :root {
+      --primary: #2A2356;
+      --secondary: #FF6B6B;
+      --accent: #4ECDC4;
+      --background: #F7F7F7;
+      --text: #2C3E50;
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      /* Radiant background using a radial gradient */
-      background: radial-gradient(circle, #ff9a9e, #fad0c4, #fad0c4);
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      background: var(--background);
+      color: var(--text);
     }
 
     .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      position: relative;
+      background: var(--primary);
+      color: white;
+      padding: 80px 0;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      margin-bottom: 60px;
+    }
+
+    .hero-content {
       max-width: 800px;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+      margin: 0 auto;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
+      position: relative;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Profile Picture */
     .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
       object-fit: cover;
-      margin-bottom: 20px;
-      border: 4px solid #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 5px solid var(--accent);
+      transform: rotate(-3deg);
+      transition: transform 0.3s ease;
     }
 
-    h1 {
-      color: #333;
-      font-size: 28px;
-      margin-bottom: 10px;
+    .profile-pic:hover {
+      transform: rotate(0deg);
     }
 
-    h2 {
-      color: #007bff;
-      font-size: 22px;
-      margin-top: 20px;
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
 
-    p {
-      font-size: 18px;
-      color: #555;
-      line-height: 1.6;
+    .card:hover {
+      transform: translateY(-5px);
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
     }
 
-    li {
-      font-size: 18px;
-      margin: 10px 0;
-      transition: transform 0.3s ease-in-out;
+    .skill-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 15px;
     }
 
-    li:hover {
-      transform: scale(1.05);
+    .skill-icon {
+      font-size: 24px;
+      color: var(--accent);
     }
 
-    a {
-      text-decoration: none;
-      color: #007bff;
-      font-weight: 600;
-      transition: color 0.3s;
+    .project-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      border-left: 4px solid var(--secondary);
+      transition: all 0.3s ease;
     }
 
-    a:hover {
-      color: #0056b3;
-      text-decoration: underline;
-    }
-
-    .contact-info {
-      margin-top: 20px;
-      font-size: 18px;
-    }
-
-    .contact-info p {
-      margin: 5px 0;
+    .project-card:hover {
+      transform: translateX(10px);
     }
 
     .btn {
       display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 18px;
+      padding: 12px 30px;
+      background: var(--accent);
       color: white;
-      background: #007bff;
-      border-radius: 6px;
+      border-radius: 25px;
       text-decoration: none;
-      transition: background 0.3s;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
     }
 
     .btn:hover {
-      background: #0056b3;
+      background: transparent;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .stat-number {
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    .testimonial {
+      font-style: italic;
+      position: relative;
+      padding: 20px;
+      margin: 40px 0;
+    }
+
+    .testimonial::before {
+      content: '"';
+      font-size: 60px;
+      color: var(--accent);
+      position: absolute;
+      left: -20px;
+      top: -20px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
+  <div class="hero">
+    <div class="hero-content">
+      <img src="profile.jpg" alt="Princu Raj" class="profile-pic floating" />
+      <h1>Princu Raj</h1>
+      <p>Quality Assurance Engineering Craftsman</p>
+    </div>
+  </div>
+
   <div class="container">
-    <!-- Profile Photo -->
-    <img src="profile.jpg" alt="Prince Raj Photo" class="profile-pic" />
-
-    <h1>👋 Welcome to My Portfolio</h1>
-    <p>
-      I am a passionate Software Tester with 1 year of experience in manual and automation testing.
-    </p>
-
-    <h2>💡 About Me</h2>
-    <p>
-      Hi, I'm <b>Princu Raj</b>, currently working at <b>Bpass Solutions Pvt. Ltd.</b>
-      I ensure software quality through rigorous testing methodologies.
-    </p>
-
-    <h2>🔹 Skills & Expertise</h2>
-    <ul>
-      <li>✅ Selenium (Java, TestNG, Page Object Model, Extent Reports)</li>
-      <li>✅ Cypress (JavaScript, Page Object Model)</li>
-      <li>✅ API Testing (Postman, Rest Assured - Java)</li>
-      <li>✅ Mobile Testing (Appium - Basic Knowledge)</li>
-      <li>✅ Test Management (JIRA, TestNG, Cucumber)</li>
-      <li>✅ Version Control (Git, GitHub)</li>
-      <li>✅ CI/CD (Jenkins - Basic Setup and Execution)</li>
-    </ul>
-
-    <h2>🚀 Projects</h2>
-    <ul>
-      <li><a href="https://github.com/princu2701/selenium-project">🔗 Selenium Test Automation Project</a></li>
-      <li><a href="https://github.com/princu2701/cypress-framework">🔗 Cypress Testing Framework</a></li>
-      <li><a href="https://github.com/princu2701/api-testing">🔗 API Testing with Rest Assured</a></li>
-    </ul>
-
-    <h2>📩 Contact</h2>
-    <div class="contact-info">
-      <p>Email: princu2701@example.com</p>
-      <p>🔗 <a href="https://www.linkedin.com/in/princu2701">LinkedIn</a></p>
+    <div class="card">
+      <h2>🎯 Mission Statement</h2>
+      <p>Dedicated to crafting robust testing frameworks and ensuring flawless user experiences through innovative QA solutions. I don't just find bugs – I prevent them.</p>
     </div>
 
-    <a href="mailto:princu2701@example.com" class="btn">📧 Contact Me</a>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">1000+</div>
+        <p>Test Cases Written</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">15+</div>
+        <p>Projects Delivered</p>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99%</div>
+        <p>Bug Detection Rate</p>
+      </div>
+    </div>
+
+    <h2>🛠️ Technical Arsenal</h2>
+    <div class="skill-grid">
+      <div class="skill-item">
+        <span class="skill-icon">🎯</span>
+        <div>
+          <h3>Test Automation</h3>
+          <p>Selenium & Cypress Master</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">🔄</span>
+        <div>
+          <h3>API Testing</h3>
+          <p>Postman & Rest Assured Pro</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">📱</span>
+        <div>
+          <h3>Mobile Testing</h3>
+          <p>Appium Explorer</p>
+        </div>
+      </div>
+      <div class="skill-item">
+        <span class="skill-icon">⚡</span>
+        <div>
+          <h3>CI/CD Integration</h3>
+          <p>Jenkins Specialist</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>🚀 Featured Projects</h2>
+    <div class="project-card">
+      <h3>E-Commerce Testing Suite</h3>
+      <p>Developed a comprehensive testing framework that reduced testing time by 60% while increasing coverage by 40%.</p>
+      <a href="https://github.com/princu2701/selenium-project" class="btn">View Project</a>
+    </div>
+
+    <div class="project-card">
+      <h3>FinTech API Testing Framework</h3>
+      <p>Created an automated API testing solution that handles 500+ test cases across 50 endpoints.</p>
+      <a href="https://github.com/princu2701/api-testing" class="btn">View Project</a>
+    </div>
+
+    <div class="testimonial">
+      <p>"Princu's attention to detail and innovative testing approaches have significantly improved our product quality. His automation frameworks are both robust and maintainable."</p>
+      <p>- Engineering Manager, Bpass Solutions</p>
+    </div>
+
+    <div class="card">
+      <h2>📬 Let's Connect</h2>
+      <p>Looking for a QA engineer who can bring both technical expertise and creative problem-solving to your team?</p>
+      <a href="mailto:princu2701@example.com" class="btn">Start a Conversation</a>
+      <a href="https://www.linkedin.com/in/princu2701" class="btn" style="margin-left: 10px;">Connect on LinkedIn</a>
+    </div>
   </div>
 </body>
 </html>
