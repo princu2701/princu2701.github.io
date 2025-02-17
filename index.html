@@ -5,25 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Princu Raj | Portfolio</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; background-color: #f4f4f4; }
-        h1, h2 { color: #333; }
-        p { font-size: 18px; color: #555; }
-        ul { list-style: none; padding: 0; }
-        li { font-size: 18px; margin: 10px 0; }
-        a { text-decoration: none; color: #007bff; font-weight: bold; }
-        a:hover { color: #0056b3; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+        }
+
+        h2 {
+            color: #007bff;
+            font-size: 22px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin: 10px 0;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background: #007bff;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to My Portfolio</h1>
+        <h1>👋 Welcome to My Portfolio</h1>
         <p>I am a passionate Software Tester with 1 year of experience in manual and automation testing.</p>
 
-        <h2>About Me</h2>
-        <p>Hello! I'm <b>Princu Raj</b>, currently working at <b>Bpass Solutions Pvt. Ltd.</b> I specialize in ensuring software quality through rigorous testing methodologies.</p>
+        <h2>💡 About Me</h2>
+        <p>Hi, I'm <b>Princu Raj</b>, currently working at <b>Bpass Solutions Pvt. Ltd.</b> I ensure software quality through rigorous testing methodologies.</p>
 
-        <h2>Skills & Expertise</h2>
+        <h2>🔹 Skills & Expertise</h2>
         <ul>
             <li>✅ Selenium (Java, TestNG, Page Object Model, Extent Reports)</li>
             <li>✅ Cypress (JavaScript, Page Object Model)</li>
@@ -34,16 +124,20 @@
             <li>✅ CI/CD (Jenkins - Basic Setup and Execution)</li>
         </ul>
 
-        <h2>Projects</h2>
+        <h2>🚀 Projects</h2>
         <ul>
-            <li><a href="https://github.com/princu2701/selenium-project">Selenium Test Automation Project</a></li>
-            <li><a href="https://github.com/princu2701/cypress-framework">Cypress Testing Framework</a></li>
-            <li><a href="https://github.com/princu2701/api-testing">API Testing with Rest Assured</a></li>
+            <li><a href="https://github.com/princu2701/selenium-project">🔗 Selenium Test Automation Project</a></li>
+            <li><a href="https://github.com/princu2701/cypress-framework">🔗 Cypress Testing Framework</a></li>
+            <li><a href="https://github.com/princu2701/api-testing">🔗 API Testing with Rest Assured</a></li>
         </ul>
 
-        <h2>Contact</h2>
-        <p>📩 Email: princu2701@example.com</p>
-        <p>🔗 <a href="https://www.linkedin.com/in/princu2701">LinkedIn</a></p>
+        <h2>📩 Contact</h2>
+        <div class="contact-info">
+            <p>Email: princu2701@example.com</p>
+            <p>🔗 <a href="https://www.linkedin.com/in/princu2701">LinkedIn</a></p>
+        </div>
+
+        <a href="mailto:princu2701@example.com" class="btn">📧 Contact Me</a>
     </div>
 </body>
 </html>
