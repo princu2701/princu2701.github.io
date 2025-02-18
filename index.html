@@ -6,22 +6,18 @@
   <title>Prince Raj | QA Engineering Architect</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap');
 
     :root {
-      --font-primary: 'Plus Jakarta Sans', sans-serif;
-      --font-secondary: 'Space Grotesk', sans-serif;
-      --bg-gradient: linear-gradient(135deg, #0F172A 0%, #1E1E2E 100%);
-      --primary: #6366F1;
-      --primary-hover: #818CF8;
-      --secondary: #F472B6;
-      --accent: #22D3EE;
-      --text: #F8FAFC;
-      --text-muted: #94A3B8;
-      --surface-1: rgba(255, 255, 255, 0.04);
-      --surface-2: rgba(255, 255, 255, 0.06);
-      --glow: rgba(99, 102, 241, 0.5);
+      --font-display: 'Clash Display', sans-serif;
+      --font-body: 'General Sans', sans-serif;
+      --color-bg: #030014;
+      --color-primary: #7000FF;
+      --color-secondary: #FF3D81;
+      --color-accent: #00FFD1;
+      --color-text: #FFFFFF;
+      --color-text-muted: #94A3B8;
     }
 
     * {
@@ -31,386 +27,413 @@
     }
 
     body {
-      font-family: var(--font-primary);
-      background: var(--bg-gradient);
-      color: var(--text);
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
       line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 450px 1fr;
-      max-width: 1800px;
-      margin: 0 auto;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .layout::before {
-      content: '';
+    .noise {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(244, 114, 182, 0.15) 0%, transparent 50%);
+      background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
+      opacity: 0.05;
       pointer-events: none;
     }
 
-    .sidebar {
-      background: var(--surface-1);
-      padding: 40px;
+    .gradient-sphere {
       position: fixed;
-      width: 450px;
-      height: 100vh;
-      overflow-y: auto;
-      backdrop-filter: blur(20px);
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.2;
+      pointer-events: none;
     }
 
-    .main-content {
-      margin-left: 450px;
-      padding: 60px;
+    .sphere-1 {
+      background: var(--color-primary);
+      top: -200px;
+      right: -200px;
     }
 
-    .profile-card {
+    .sphere-2 {
+      background: var(--color-secondary);
+      bottom: -200px;
+      left: -200px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
       position: relative;
-      padding: 40px;
-      background: var(--surface-2);
-      border-radius: 30px;
-      margin-bottom: 40px;
-      overflow: hidden;
+      padding: 100px 0;
     }
 
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 100%;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      opacity: 0.1;
-      transition: opacity 0.3s ease;
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
 
-    .profile-card:hover::before {
-      opacity: 0.15;
-    }
-
-    .profile-pic {
-      width: 200px;
-      height: 200px;
-      border-radius: 30px;
-      object-fit: cover;
-      border: 4px solid var(--primary);
-      margin-bottom: 30px;
-      transition: all 0.5s ease;
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.02) rotate(-2deg);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .name-title {
-      font-family: var(--font-secondary);
-      font-size: 3.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
+    .hero-text {
       position: relative;
-      display: inline-block;
     }
 
-    .name-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), transparent);
-      border-radius: 2px;
-    }
-
-    .role {
-      font-family: var(--font-secondary);
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 0.25rem;
-      letter-spacing: -0.01em;
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--color-accent);
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .role::before {
-      content: '⚡';
-      font-size: 1.2rem;
+    .hero-subtitle::before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--color-accent);
     }
 
-    .company {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .profile-frame {
+      position: relative;
+      width: 400px;
+      height: 500px;
+      background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+      border-radius: 30px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-frame:hover {
+      transform: translateY(-10px);
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      mix-blend-mode: luminosity;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 100px;
     }
 
     .skill-card {
-      background: var(--surface-2);
-      padding: 25px;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      margin-bottom: 15px;
+      border-radius: 20px;
+      padding: 30px;
+      transition: all 0.3s ease;
     }
 
     .skill-card:hover {
-      transform: translateX(10px);
-      background: var(--surface-1);
-      border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      transform: translateY(-5px);
     }
 
     .skill-icon {
-      font-size: 1.8rem;
-      color: var(--primary);
-      background: var(--surface-1);
-      padding: 15px;
-      border-radius: 16px;
-      transition: all 0.3s ease;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--color-text);
+      margin-bottom: 20px;
     }
 
-    .skill-card:hover .skill-icon {
-      transform: scale(1.1);
-      background: var(--primary);
-      color: white;
+    .skill-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .skill-description {
+      color: var(--color-text-muted);
+    }
+
+    .projects {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
     }
 
     .project-card {
-      background: var(--surface-2);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 30px;
       overflow: hidden;
-      transition: all 0.4s ease;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
     }
 
     .project-card:hover {
       transform: translateY(-10px);
-      border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border-color: var(--color-primary);
     }
 
-    .project-header {
-      padding: 35px;
-      background: var(--surface-1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .project-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
       position: relative;
       overflow: hidden;
     }
 
-    .project-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
+    .project-image img {
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, var(--primary), var(--secondary));
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      object-fit: cover;
+      opacity: 0.7;
+      mix-blend-mode: luminosity;
     }
 
-    .project-card:hover .project-header::before {
-      opacity: 0.1;
+    .project-content {
+      padding: 30px;
     }
 
-    .project-type {
-      font-family: var(--font-secondary);
+    .project-tag {
       font-size: 0.9rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: flex;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+    }
+
+    .project-description {
+      color: var(--color-text-muted);
+      margin-bottom: 20px;
+    }
+
+    .cta-button {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .project-type::before {
-      content: '';
-      width: 20px;
-      height: 2px;
-      background: var(--primary);
-    }
-
-    .testimonial-card {
-      background: var(--surface-2);
-      border-radius: 30px;
-      padding: 40px;
-      margin-bottom: 30px;
-      position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      gap: 10px;
+      background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+      color: var(--color-text);
+      text-decoration: none;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-weight: 500;
       transition: all 0.3s ease;
     }
 
-    .testimonial-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(112, 0, 255, 0.2);
     }
 
-    .testimonial-content {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      font-style: italic;
-      color: var(--text);
-      margin-bottom: 30px;
-      position: relative;
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        justify-content: center;
+      }
+
+      .hero-description {
+        margin: 0 auto 40px;
+      }
+
+      .profile-frame {
+        margin: 0 auto;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+      }
     }
 
-    .testimonial-content::before {
-      content: '"';
-      font-size: 4rem;
-      color: var(--primary);
-      position: absolute;
-      top: -20px;
-      left: -10px;
-      opacity: 0.2;
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .profile-frame {
+        width: 100%;
+        height: 400px;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @keyframes float {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      50% { transform: translateY(-20px); }
     }
 
     .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @media (max-width: 1200px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-      }
-      .main-content {
-        margin-left: 0;
-        padding: 40px;
-      }
+      animation: float 6s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="profile-card">
-        <img src="/api/placeholder/200/200" alt="Prince Raj" class="profile-pic floating" />
-        <h1 class="name-title">Prince Raj</h1>
-        <div class="role">QA Engineering Architect</div>
-        <div class="company">
-          <i class="fas fa-building"></i>
-          Bpaas Solutions Pvt. Ltd.
-        </div>
-      </div>
+  <div class="noise"></div>
+  <div class="gradient-sphere sphere-1"></div>
+  <div class="gradient-sphere sphere-2"></div>
 
-      <div class="skills-section">
-        <h2 class="section-title">Expertise</h2>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-subtitle">QA Engineering Architect</div>
+            <h1 class="hero-title">Prince Raj</h1>
+            <p class="hero-description">
+              Crafting robust testing frameworks and driving quality excellence through innovative automation solutions.
+            </p>
+            <a href="#contact" class="cta-button">
+              Get in Touch
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="hero-image">
+            <div class="profile-frame floating">
+              <img src="/api/placeholder/400/500" alt="Prince Raj" />
+            </div>
+          </div>
+        </div>
+
         <div class="skills-grid">
           <div class="skill-card">
-            <span class="skill-icon"><i class="fas fa-robot"></i></span>
-            <div>
-              <h3>Test Automation</h3>
-              <p>Selenium & TestNG Expert</p>
+            <div class="skill-icon">
+              <i class="fas fa-robot"></i>
             </div>
+            <h3 class="skill-title">Test Automation</h3>
+            <p class="skill-description">
+              Expert in Selenium, TestNG, and creating scalable automation frameworks.
+            </p>
           </div>
+
           <div class="skill-card">
-            <span class="skill-icon"><i class="fas fa-code"></i></span>
-            <div>
-              <h3>Framework Design</h3>
-              <p>Custom Testing Solutions</p>
+            <div class="skill-icon">
+              <i class="fas fa-code"></i>
             </div>
+            <h3 class="skill-title">Framework Design</h3>
+            <p class="skill-description">
+              Building robust, maintainable testing architectures for enterprise applications.
+            </p>
           </div>
+
           <div class="skill-card">
-            <span class="skill-icon"><i class="fas fa-chart-line"></i></span>
-            <div>
-              <h3>Performance Testing</h3>
-              <p>JMeter & LoadRunner</p>
+            <div class="skill-icon">
+              <i class="fas fa-tachometer-alt"></i>
             </div>
+            <h3 class="skill-title">Performance Testing</h3>
+            <p class="skill-description">
+              Comprehensive performance analysis using JMeter and LoadRunner.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="contact-section">
-        <h2 class="section-title">Connect</h2>
-        <a href="mailto:princeraj27janu@gmail.com" class="contact-link">
-          <span class="contact-icon"><i class="fas fa-envelope"></i></span>
-          <div>
-            <h3>Email</h3>
-            <p>princeraj27janu@gmail.com</p>
-          </div>
-        </a>
-      </div>
-    </aside>
-
-    <main class="main-content">
-      <section>
+    <section class="projects">
+      <div class="container">
         <h2 class="section-title">Featured Projects</h2>
         <div class="project-grid">
-          <div class="project-card">
-            <div class="project-header">
-              <div class="project-type">Enterprise Solution</div>
-              <h3 class="project-title">Usha MDM Testing Suite</h3>
+          <article class="project-card">
+            <div class="project-image">
+              <img src="/api/placeholder/600/400" alt="Project thumbnail" />
             </div>
             <div class="project-content">
+              <div class="project-tag">Enterprise Solution</div>
+              <h3 class="project-title">Usha MDM Testing Suite</h3>
               <p class="project-description">
-                Comprehensive MDM and Module Testing Automation framework developed for Usha International. 
-                Implemented advanced test scenarios and improved overall testing efficiency by 45%.
+                Comprehensive MDM and Module Testing Automation framework that improved testing efficiency by 45%.
               </p>
-              <a href="#" class="project-link">View Details →</a>
+              <a href="#" class="cta-button">
+                View Project
+                <i class="fas fa-arrow-right"></i>
+              </a>
             </div>
-          </div>
-        </div>
-      </section>
+          </article>
 
-      <section>
-        <h2 class="section-title">Testimonials</h2>
-        <div class="testimonial-card">
-          <p class="testimonial-content">
-            "Prince is an exceptional QA professional who transformed our testing processes. 
-            His automation frameworks and attention to detail significantly improved our product quality."
-          </p>
-          <div class="testimonial-author">
-            <img src="/api/placeholder/50/50" alt="John Doe" class="author-avatar" />
-            <div class="author-info">
-              <h4>John Doe</h4>
-              <p>Technical Director</p>
+          <article class="project-card">
+            <div class="project-image">
+              <img src="/api/placeholder/600/400" alt="Project thumbnail" />
             </div>
-          </div>
+            <div class="project-content">
+              <div class="project-tag">Performance Testing</div>
+              <h3 class="project-title">E-commerce Load Testing</h3>
+              <p class="project-description">
+                Developed comprehensive performance testing strategy for high-traffic e-commerce platform.
+              </p>
+              <a href="#" class="cta-button">
+                View Project
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
