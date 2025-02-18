@@ -200,6 +200,10 @@
       padding: 100px 0;
     }
 
+    .about {
+      padding: 100px 0;
+    }
+
     .section-title {
       font-family: var(--font-display);
       font-size: 2.5rem;
@@ -279,6 +283,51 @@
     .cta-button:hover {
       transform: translateY(-2px);
       box-shadow: 0 10px 20px rgba(112, 0, 255, 0.2);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 30px;
+      padding: 40px;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+    }
+
+    .about-content ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: var(--color-accent);
+    }
+
+    .section-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--color-accent);
     }
 
     @media (max-width: 1024px) {
@@ -394,21 +443,74 @@
       </div>
     </section>
 
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p>
+            I am a dedicated Software Tester with hands-on experience in Automation, Manual, API, and Mobile Testing. With a keen eye for detail and a passion for ensuring software quality, I specialize in Selenium, Cypress, Appium, and Rest Assured, implementing robust test frameworks like TestNG, Cucumber, and POM to drive efficiency and reliability.
+          </p>
+          <p>
+            Currently working at Bpass Solutions Pvt. Ltd., I have gained practical exposure to designing and executing test cases, writing automation scripts, and integrating CI/CD pipelines to streamline testing processes. My approach focuses on delivering bug-free, high-performance applications while adapting to evolving project requirements.
+          </p>
+          
+          <h3 class="section-subtitle">Technical Skills:</h3>
+          <ul>
+            <li>✅ Automation Testing: Selenium WebDriver, Cypress, Appium</li>
+            <li>✅ Manual Testing: Functional, Regression, UI, Cross-Browser</li>
+            <li>✅ API Testing: Postman, Rest Assured</li>
+            <li>✅ Test Frameworks: TestNG, Cucumber, Page Object Model (POM)</li>
+            <li>✅ Version Control: Git, GitHub</li>
+            <li>✅ CI/CD & Reporting: Jenkins, Extent Reports</li>
+            <li>✅ Programming: Java, JavaScript (Basic)</li>
+          </ul>
+          
+          <h3 class="section-subtitle">Why Work With Me?</h3>
+          <ul>
+            <li>🔹 Strong analytical and problem-solving skills</li>
+            <li>🔹 Experience working in agile environments with tight deadlines</li>
+            <li>🔹 Passionate about optimizing testing strategies for better efficiency</li>
+            <li>🔹 Ability to create scalable and maintainable automation frameworks</li>
+            <li>🔹 More than 4 months experience in Selenium and Manual Testing</li>
+            <li>🔹 Skills in Cypress, API Postman, Appium, Rest Assured, WebIO</li>
+          </ul>
+          
+          <p>
+            I am always eager to learn new technologies and improve my expertise in Software Testing & Quality Assurance. Looking forward to exploring opportunities where I can contribute and grow professionally.
+          </p>
+          <p>
+            Let's connect and make technology better, one test at a time! 🚀
+          </p>
+          
+          <div class="contact-info" id="contact">
+            <a href="mailto:princeraj27janu@gmail.com" class="contact-link">
+              <i class="fas fa-envelope"></i>
+              princeraj27janu@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/prince-raj-a1493b228" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <i class="fab fa-linkedin"></i>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="projects">
       <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">My Projects</h2>
         <div class="project-grid">
           <article class="project-card">
             <div class="project-image">
-              <img src="/api/placeholder/600/400" alt="Project thumbnail" />
+              <img src="/api/placeholder/600/400" alt="Selenium POM" />
             </div>
             <div class="project-content">
-              <div class="project-tag">Enterprise Solution</div>
-              <h3 class="project-title">Usha MDM Testing Suite</h3>
+              <div class="project-tag">Automation Framework</div>
+              <h3 class="project-title">Selenium POM Framework</h3>
               <p class="project-description">
-                Comprehensive MDM and Module Testing Automation framework that improved testing efficiency by 45%.
+                A robust Page Object Model framework for Selenium automation testing with reusable components and clear structure.
               </p>
-              <a href="#" class="cta-button">
+              <a href="https://github.com/princu2701/Selenium-Page-Object-Model.git" target="_blank" rel="noopener noreferrer" class="cta-button">
                 View Project
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -417,15 +519,90 @@
 
           <article class="project-card">
             <div class="project-image">
-              <img src="/api/placeholder/600/400" alt="Project thumbnail" />
+              <img src="/api/placeholder/600/400" alt="Selenium Cucumber" />
             </div>
             <div class="project-content">
-              <div class="project-tag">Performance Testing</div>
-              <h3 class="project-title">E-commerce Load Testing</h3>
+              <div class="project-tag">BDD Testing</div>
+              <h3 class="project-title">Selenium Cucumber Integration</h3>
               <p class="project-description">
-                Developed comprehensive performance testing strategy for high-traffic e-commerce platform.
+                Behavior-Driven Development framework combining Selenium with Cucumber for human-readable test specifications.
               </p>
-              <a href="#" class="cta-button">
+              <a href="https://github.com/princu2701/Selenium_Cucumber_Project.git" target="_blank" rel="noopener noreferrer" class="cta-button">
+                View Project
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="/api/placeholder/600/400" alt="Cypress POM" />
+            </div>
+            <div class="project-content">
+              <div class="project-tag">Modern Testing</div>
+              <h3 class="project-title">Cypress POM Architecture</h3>
+              <p class="project-description">
+                Next-generation testing with Cypress implementation of the Page Object Model for faster, more reliable tests.
+              </p>
+              <a href="https://github.com/princu2701/CYPRESS_POM.git" target="_blank" rel="noopener noreferrer" class="cta-button">
+                View Project
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects">
+      <div class="container">
+        <h2 class="section-title">Company Projects</h2>
+        <div class="project-grid">
+          <article class="project-card">
+            <div class="project-image">
+              <img src="/api/placeholder/600/400" alt="Usha Project" />
+            </div>
+            <div class="project-content">
+              <div class="project-tag">Enterprise Solution</div>
+              <h3 class="project-title">Usha MDM Testing Suite</h3>
+              <p class="project-description">
+                Comprehensive MDM and Module Testing Automation framework that improved testing efficiency by 45%.
+              </p>
+              <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation.git" target="_blank" rel="noopener noreferrer" class="cta-button">
+                View Project
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="/api/placeholder/600/400" alt="GDL Project" />
+            </div>
+            <div class="project-content">
+              <div class="project-tag">Manual Testing</div>
+              <h3 class="project-title">GDL Test Case Repository</h3>
+              <p class="project-description">
+                Comprehensive manual test case repository for the GDL project with detailed test scenarios and validation steps.
+              </p>
+              <a href="https://github.com/princu2701/Manual_GDL_Project.git" target="_blank" rel="noopener noreferrer" class="cta-button">
+                View Project
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-image">
+              <img src="/api/placeholder/600/400" alt="L3 Harris Project" />
+            </div>
+            <div class="project-content">
+              <div class="project-tag">In Progress</div>
+              <h3 class="project-title">L3 Harris Project</h3>
+              <p class="project-description">
+                Ongoing development of testing infrastructure for L3 Harris systems with focus on reliability and security.
+              </p>
+              <a href="https://github.com/princu2701/Project-1-L3-Harris-.git" target="_blank" rel="noopener noreferrer" class="cta-button">
                 View Project
                 <i class="fas fa-arrow-right"></i>
               </a>
