@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prince Raj | QA Engineering Architect</title>
-    <meta name="description" content="Professional portfolio of Prince Raj, QA Engineering Architect specializing in test automation and quality assurance">
+    <title>Prince Raj | Senior QA Automation Engineer</title>
+    <meta name="description" content="Professional portfolio of Prince Raj, Senior QA Automation Engineer specializing in test automation frameworks and quality assurance">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,18 +15,19 @@
         :root {
             --font-display: 'Clash Display', sans-serif;
             --font-body: 'General Sans', sans-serif;
-            --color-bg: #030014;
-            --color-bg-light: #0f0c29;
-            --color-primary: #7000FF;
-            --color-primary-light: #8a33ff;
-            --color-secondary: #FF3D81;
-            --color-secondary-light: #ff5d96;
-            --color-accent: #00FFD1;
-            --color-accent-light: #5dffdf;
-            --color-text: #FFFFFF;
-            --color-text-light: rgba(255, 255, 255, 0.9);
-            --color-text-muted: #94A3B8;
-            --color-text-muted-light: #b8c6db;
+            --color-bg: #f8f9fa;
+            --color-bg-light: #ffffff;
+            --color-bg-dark: #e9ecef;
+            --color-primary: #4361ee;
+            --color-primary-light: #4895ef;
+            --color-secondary: #f72585;
+            --color-secondary-light: #b5179e;
+            --color-accent: #4cc9f0;
+            --color-accent-light: #4895ef;
+            --color-text: #212529;
+            --color-text-light: #495057;
+            --color-text-muted: #6c757d;
+            --color-text-muted-light: #adb5bd;
             --section-spacing: 120px;
             --card-radius: 24px;
             --transition-base: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -59,7 +60,7 @@
             width: 100%;
             height: 100%;
             background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
-            opacity: 0.05;
+            opacity: 0.03;
             pointer-events: none;
             z-index: 1;
         }
@@ -70,7 +71,7 @@
             height: 600px;
             border-radius: 50%;
             filter: blur(120px);
-            opacity: 0.2;
+            opacity: 0.15;
             pointer-events: none;
             z-index: 0;
         }
@@ -96,7 +97,7 @@
             width: 400px;
             height: 400px;
             animation: float 12s ease-in-out infinite 1s;
-            opacity: 0.15;
+            opacity: 0.1;
         }
 
         /* Container and Layout */
@@ -121,6 +122,8 @@
             position: relative;
             padding: 120px 0 60px;
             overflow: hidden;
+            background-color: var(--color-bg-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
 
         .hero-content {
@@ -137,19 +140,20 @@
         .hero-subtitle {
             font-family: var(--font-display);
             font-size: 1.2rem;
-            color: var(--color-accent);
+            color: var(--color-primary);
             margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 16px;
             letter-spacing: 1px;
+            font-weight: 600;
         }
 
         .hero-subtitle::before {
             content: '';
             width: 48px;
             height: 2px;
-            background: var(--color-accent);
+            background: var(--color-primary);
             display: inline-block;
         }
 
@@ -159,7 +163,7 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 32px;
-            background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
+            background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
@@ -178,7 +182,7 @@
 
         .hero-description {
             font-size: 1.2rem;
-            color: var(--color-text-muted);
+            color: var(--color-text-light);
             margin-bottom: 48px;
             max-width: 500px;
             font-weight: 400;
@@ -187,23 +191,26 @@
         .hero-image {
             position: relative;
             perspective: 1000px;
+            display: flex;
+            justify-content: center;
         }
 
         .profile-frame {
             position: relative;
-            width: 400px;
-            height: 500px;
-            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            border-radius: var(--card-radius);
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
             overflow: hidden;
             transition: var(--transition-base);
             transform-style: preserve-3d;
-            box-shadow: 0 30px 50px rgba(112, 0, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.2);
+            border: 8px solid var(--color-bg-light);
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
         }
 
         .profile-frame:hover {
             transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 40px 60px rgba(112, 0, 255, 0.3);
+            box-shadow: 0 30px 50px rgba(67, 97, 238, 0.3);
         }
 
         .profile-frame::before {
@@ -211,8 +218,8 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(45deg, 
-                rgba(112, 0, 255, 0.4) 0%, 
-                rgba(255, 61, 129, 0.2) 100%);
+                rgba(67, 97, 238, 0.3) 0%, 
+                rgba(247, 37, 133, 0.15) 100%);
             z-index: 1;
         }
 
@@ -220,15 +227,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.9;
-            mix-blend-mode: luminosity;
+            opacity: 0.95;
             transition: var(--transition-base);
         }
 
         .profile-frame:hover img {
             opacity: 1;
-            mix-blend-mode: normal;
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         /* Skills Grid */
@@ -240,12 +245,12 @@
         }
 
         .skill-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--color-bg-light);
+            border: 1px solid var(--color-bg-dark);
             border-radius: var(--card-radius);
             padding: 40px 32px;
             transition: var(--transition-base);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
         }
@@ -258,18 +263,18 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, 
-                rgba(112, 0, 255, 0.1) 0%, 
-                rgba(255, 61, 129, 0.05) 100%);
+                rgba(67, 97, 238, 0.05) 0%, 
+                rgba(247, 37, 133, 0.03) 100%);
             z-index: -1;
             opacity: 0;
             transition: var(--transition-base);
         }
 
         .skill-card:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--color-bg-light);
             transform: translateY(-8px);
-            border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-color: var(--color-primary-light);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.1);
         }
 
         .skill-card:hover::before {
@@ -285,14 +290,14 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: var(--color-text);
+            color: white;
             margin-bottom: 24px;
             transition: var(--transition-base);
         }
 
         .skill-card:hover .skill-icon {
             transform: rotate(10deg) scale(1.1);
-            box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
 
         .skill-title {
@@ -300,13 +305,11 @@
             font-size: 1.5rem;
             margin-bottom: 16px;
             font-weight: 600;
-            background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--color-primary);
         }
 
         .skill-description {
-            color: var(--color-text-muted);
+            color: var(--color-text-light);
             font-size: 1.05rem;
             line-height: 1.6;
         }
@@ -315,6 +318,7 @@
         .projects, .about {
             padding: var(--section-spacing) 0;
             position: relative;
+            background-color: var(--color-bg-light);
         }
 
         .section-title {
@@ -327,6 +331,7 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+            color: var(--color-primary);
         }
 
         .section-title::after {
@@ -349,18 +354,18 @@
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--color-bg-light);
+            border: 1px solid var(--color-bg-dark);
             border-radius: var(--card-radius);
             overflow: hidden;
             transition: var(--transition-base);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
             border-color: var(--color-primary);
-            box-shadow: 0 20px 40px rgba(112, 0, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15);
         }
 
         .project-image {
@@ -375,14 +380,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.7;
-            mix-blend-mode: luminosity;
+            opacity: 0.9;
             transition: var(--transition-base);
         }
 
         .project-card:hover .project-image img {
-            opacity: 0.9;
-            mix-blend-mode: normal;
+            opacity: 1;
             transform: scale(1.05);
         }
 
@@ -392,7 +395,7 @@
 
         .project-tag {
             font-size: 0.9rem;
-            color: var(--color-accent);
+            color: var(--color-secondary);
             margin-bottom: 12px;
             font-weight: 500;
             letter-spacing: 0.5px;
@@ -403,13 +406,11 @@
             font-size: 1.7rem;
             margin-bottom: 16px;
             font-weight: 600;
-            background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--color-primary);
         }
 
         .project-description {
-            color: var(--color-text-muted);
+            color: var(--color-text-light);
             margin-bottom: 24px;
             line-height: 1.6;
         }
@@ -420,7 +421,7 @@
             align-items: center;
             gap: 12px;
             background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            color: var(--color-text);
+            color: white;
             text-decoration: none;
             padding: 16px 32px;
             border-radius: 12px;
@@ -431,7 +432,7 @@
             border: none;
             cursor: pointer;
             font-size: 1.05rem;
-            box-shadow: 0 10px 20px rgba(112, 0, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.2);
         }
 
         .cta-button::before {
@@ -450,7 +451,7 @@
 
         .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(112, 0, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.3);
         }
 
         .cta-button:hover::before {
@@ -461,25 +462,24 @@
         .about-content {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--color-bg-light);
+            border: 1px solid var(--color-bg-dark);
             border-radius: var(--card-radius);
             padding: 60px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
             transition: var(--transition-base);
         }
 
         .about-content:hover {
-            border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border-color: var(--color-primary-light);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
         }
 
         .about-content p {
             margin-bottom: 24px;
             font-size: 1.1rem;
             line-height: 1.8;
-            color: var(--color-text-light);
+            color: var(--color-text);
         }
 
         .about-content ul {
@@ -492,7 +492,7 @@
             position: relative;
             padding-left: 28px;
             font-size: 1.05rem;
-            color: var(--color-text-light);
+            color: var(--color-text);
             line-height: 1.6;
         }
 
@@ -503,14 +503,14 @@
             top: 10px;
             width: 12px;
             height: 2px;
-            background: var(--color-accent);
+            background: var(--color-primary);
         }
 
         .section-subtitle {
             font-family: var(--font-display);
             font-size: 1.8rem;
             margin-bottom: 24px;
-            color: var(--color-accent);
+            color: var(--color-primary);
             font-weight: 600;
             position: relative;
             display: inline-block;
@@ -523,7 +523,191 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: var(--color-accent);
+            background: var(--color-primary);
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--color-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 40px);
+            padding: 30px;
+            background: var(--color-bg-light);
+            border-radius: var(--card-radius);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-bg-dark);
+            transition: var(--transition-base);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            left: calc(50% + 40px);
+        }
+
+        .timeline-item:hover .timeline-content {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-primary-light);
+        }
+
+        .timeline-date {
+            position: absolute;
+            width: 120px;
+            top: 20px;
+            padding: 5px 10px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: -170px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: -170px;
+        }
+
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--color-primary);
+        }
+
+        .timeline-company {
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            border: 4px solid var(--color-bg-light);
+            box-shadow: 0 0 0 4px var(--color-primary);
+        }
+
+        /* Testing Methodology Section */
+        .methodology {
+            margin-top: 60px;
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .methodology-card {
+            background: var(--color-bg-light);
+            border: 1px solid var(--color-bg-dark);
+            border-radius: var(--card-radius);
+            padding: 30px;
+            transition: var(--transition-base);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .methodology-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: var(--color-primary-light);
+        }
+
+        .methodology-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .methodology-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--color-primary);
+        }
+
+        .methodology-description {
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            margin-top: 60px;
+        }
+
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .tool-item {
+            background: var(--color-bg-light);
+            border: 1px solid var(--color-bg-dark);
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-primary);
+            transition: var(--transition-base);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .tool-item:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(67, 97, 238, 0.2);
         }
 
         /* Contact Section */
@@ -531,14 +715,14 @@
             text-align: center;
             margin-top: 80px;
             padding-top: 60px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--color-bg-dark);
         }
 
         .contact-heading {
             font-family: var(--font-display);
             font-weight: 700;
             letter-spacing: 1px;
-            background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-size: 1.6rem;
@@ -575,16 +759,18 @@
             transition: var(--transition-base);
             padding: 12px 24px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--color-bg-dark);
+            background: var(--color-bg-light);
             font-weight: 500;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.03);
         }
 
         .contact-link:hover {
-            color: var(--color-accent);
-            background-color: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--color-primary);
+            background-color: var(--color-bg-light);
+            border-color: var(--color-primary-light);
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .contact-link i {
@@ -597,8 +783,9 @@
             padding: 40px 0;
             color: var(--color-text-muted);
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--color-bg-dark);
             margin-top: 80px;
+            background: var(--color-bg-light);
         }
 
         /* Scroll Indicator */
@@ -620,7 +807,7 @@
 
         .scroll-indicator i {
             font-size: 1.8rem;
-            color: var(--color-text-muted);
+            color: var(--color-primary);
         }
 
         /* Responsive Design */
@@ -630,8 +817,8 @@
             }
             
             .profile-frame {
-                width: 360px;
-                height: 450px;
+                width: 320px;
+                height: 320px;
             }
         }
 
@@ -662,6 +849,26 @@
             .skills-grid {
                 margin-top: 80px;
             }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                left: 70px;
+                width: calc(100% - 90px);
+            }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                left: -170px;
+                right: auto;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -678,9 +885,8 @@
             }
 
             .profile-frame {
-                width: 100%;
-                max-width: 400px;
-                height: 400px;
+                width: 280px;
+                height: 280px;
             }
 
             .skills-grid {
@@ -706,6 +912,16 @@
                 max-width: 250px;
                 justify-content: center;
             }
+
+            .timeline-item:nth-child(odd) .timeline-date,
+            .timeline-item:nth-child(even) .timeline-date {
+                position: relative;
+                left: 0;
+                top: 0;
+                margin-bottom: 10px;
+                width: auto;
+                display: inline-block;
+            }
         }
 
         @media (max-width: 480px) {
@@ -727,6 +943,11 @@
 
             .section-title {
                 margin-bottom: 60px;
+            }
+
+            .profile-frame {
+                width: 240px;
+                height: 240px;
             }
         }
 
@@ -805,11 +1026,12 @@
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text fade-in">
-                        <div class="hero-subtitle fade-in delay-1">QA Engineering Architect</div>
+                        <div class="hero-subtitle fade-in delay-1">Senior QA Automation Engineer</div>
                         <h1 class="hero-title fade-in delay-1">Prince Raj</h1>
                         <p class="hero-description fade-in delay-2">
                             Crafting robust testing frameworks and driving quality excellence through innovative
-                            automation solutions.
+                            automation solutions. Specializing in building scalable test architectures that ensure
+                            software reliability and performance.
                         </p>
                         <a href="https://www.linkedin.com/in/prince-raj-a1493b228" target="_blank"
                             rel="noopener noreferrer" class="cta-button fade-in delay-3">
@@ -820,7 +1042,7 @@
                     <div class="hero-image fade-in delay-2">
                         <div class="profile-frame floating">
                             <img src="https://raw.githubusercontent.com/princu2701/princu2701.github.io/ed85104bd932922ae48d246c8f55e76c50c4b8e3/WhatsApp%20Image%202024-09-18%20at%2009.24.39.jpeg"
-                              alt="Prince Raj" style="width: 100%; height: 100%; object-fit: cover;" />
+                              alt="Prince Raj" />
                         </div>
                     </div>
                 </div>
@@ -832,7 +1054,8 @@
                         </div>
                         <h3 class="skill-title">Test Automation</h3>
                         <p class="skill-description">
-                            Expert in Selenium, TestNG, and creating scalable automation frameworks with comprehensive coverage and maintainable code.
+                            Expert in Selenium, TestNG, Cypress and creating scalable automation frameworks with 85%+ test coverage.
+                            Reduced regression time by 70% through strategic automation implementation.
                         </p>
                     </div>
 
@@ -842,7 +1065,8 @@
                         </div>
                         <h3 class="skill-title">Framework Design</h3>
                         <p class="skill-description">
-                            Architecting robust, maintainable testing architectures for enterprise applications with modular design patterns.
+                            Architecting robust, maintainable testing architectures using Page Object Model (POM),
+                            Data-Driven and Behavior-Driven Development (BDD) approaches.
                         </p>
                     </div>
 
@@ -850,9 +1074,10 @@
                         <div class="skill-icon">
                             <i class="fas fa-tachometer-alt"></i>
                         </div>
-                        <h3 class="skill-title">Exploratory Testing</h3>
+                        <h3 class="skill-title">Quality Strategy</h3>
                         <p class="skill-description">
-                            Comprehensive website analysis using advanced tools to uncover edge cases and improve product quality.
+                            Developing comprehensive quality strategies incorporating risk-based testing,
+                            shift-left approaches, and CI/CD pipeline integration for maximum efficiency.
                         </p>
                     </div>
                 </div>
@@ -868,247 +1093,127 @@
                 <h2 class="section-title reveal">About Me</h2>
                 <div class="about-content reveal">
                     <p>
-                        I am a dedicated Software Tester with hands-on experience in Automation, Manual, API, and Mobile
-                        Testing. With a keen eye for detail and a passion for ensuring software quality, I specialize
-                        in Selenium, Cypress, Appium, and Rest Assured, implementing robust test frameworks like
-                        TestNG, Cucumber, and POM to drive efficiency and reliability.
+                        I am a passionate Software Quality Engineer with 4+ months of hands-on experience in Automation,
+                        Manual, API, and Mobile Testing. My mission is to bridge the gap between development and quality
+                        assurance by implementing robust testing strategies that prevent defects rather than just find them.
                     </p>
                     <p>
-                        Currently working at BPAAS Solutions Pvt. Ltd., I have gained practical exposure to designing
-                        and executing test cases, writing automation scripts, and integrating CI/CD pipelines to streamline
-                        testing processes. My approach focuses on delivering bug-free, high-performance applications
-                        while adapting to evolving project requirements.
+                        Currently working at BPAAS Solutions Pvt. Ltd., I've successfully implemented automation frameworks
+                        that reduced regression testing time by 70% while increasing test coverage to 85%+. My approach
+                        combines technical expertise with strategic thinking to deliver high-quality software efficiently.
                     </p>
 
-                    <h3 class="section-subtitle">Technical Skills:</h3>
+                    <h3 class="section-subtitle">Technical Expertise</h3>
                     <ul>
-                        <li>Automation Testing: Selenium WebDriver, Cypress, Appium</li>
-                        <li>Manual Testing: Functional, Regression, UI, Cross-Browser</li>
-                        <li>API Testing: Postman, Rest Assured</li>
-                        <li>Test Frameworks: TestNG, Cucumber, Page Object Model (POM)</li>
-                        <li>Version Control: Git, GitHub</li>
-                        <li>CI/CD &amp; Reporting: Jenkins, Extent Reports</li>
-                        <li>Programming: Java, JavaScript (Basic)</li>
+                        <li><strong>Automation Tools:</strong> Selenium WebDriver, Cypress, Appium, Rest Assured, TestNG, JUnit</li>
+                        <li><strong>Programming:</strong> Java (Advanced), JavaScript (Intermediate), Python (Basic)</li>
+                        <li><strong>CI/CD:</strong> Jenkins, GitHub Actions, Docker</li>
+                        <li><strong>Test Management:</strong> JIRA, TestRail, Zephyr</li>
+                        <li><strong>Performance Testing:</strong> JMeter basics, Lighthouse</li>
+                        <li><strong>Database Testing:</strong> SQL, MySQL Workbench</li>
                     </ul>
 
-                    <h3 class="section-subtitle">Why Work With Me?</h3>
-                    <ul>
-                        <li>Strong analytical and problem-solving skills with attention to detail</li>
-                        <li>Experience working in agile environments with tight deadlines</li>
-                        <li>Passionate about optimizing testing strategies for better efficiency</li>
-                        <li>Ability to create scalable and maintainable automation frameworks</li>
-                        <li>4+ months experience in Selenium and Manual Testing</li>
-                        <li>Skills in Cypress, API Postman, Appium, Rest Assured, WebIO</li>
-                    </ul>
-
-                    <p>
-                        I am always eager to learn new technologies and improve my expertise in Software Testing &amp;
-                        Quality Assurance. Looking forward to exploring opportunities where I can contribute and grow
-                        professionally.
-                    </p>
-                    <p>
-                        Let's connect and make technology better, one test at a time! 🚀
-                    </p>
-                </div>
-
-                <!-- Contact Links Section -->
-                <div class="contact-section reveal">
-                    <h3 class="section-subtitle contact-heading">
-                        Let's Connect!
-                    </h3>
-                    <div class="contact-links">
-                        <a href="https://github.com/princu2701" target="_blank" rel="noopener noreferrer"
-                            class="contact-link">
-                            <i class="fab fa-github"></i>
-                            GitHub
-                        </a>
-                        <a href="https://www.linkedin.com/in/prince-raj-a1493b228" target="_blank"
-                            rel="noopener noreferrer" class="contact-link">
-                            <i class="fab fa-linkedin"></i>
-                            LinkedIn
-                        </a>
-                        <a href="mailto:princeraj27janu@gmail.com" class="contact-link">
-                            <i class="fas fa-envelope"></i>
-                            Email
-                        </a>
+                    <h3 class="section-subtitle">Professional Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2023 - Present</div>
+                                <h4 class="timeline-title">QA Automation Engineer</h4>
+                                <div class="timeline-company">BPAAS Solutions Pvt. Ltd.</div>
+                                <p class="timeline-description">
+                                    • Designed and implemented Selenium WebDriver framework using Page Object Model
+                                    <br>• Reduced regression testing time by 70% through automation
+                                    <br>• Integrated automated tests into CI/CD pipeline using Jenkins
+                                    <br>• Conducted API testing using Postman and Rest Assured
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2022 - 2023</div>
+                                <h4 class="timeline-title">Software Tester</h4>
+                                <div class="timeline-company">Freelance Projects</div>
+                                <p class="timeline-description">
+                                    • Executed manual test cases for web applications
+                                    <br>• Documented and tracked defects using JIRA
+                                    <br>• Created test plans and test cases for new features
+                                    <br>• Performed cross-browser and compatibility testing
+                                </p>
+                            </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2021 - 2022</div>
+                                <h4 class="timeline-title">Intern QA Engineer</h4>
+                                <div class="timeline-company">Tech Solutions Inc.</div>
+                                <p class="timeline-description">
+                                    • Assisted in developing automated test scripts using Selenium
+                                    <br>• Participated in daily stand-ups and sprint planning
+                                    <br>• Conducted functional and regression testing
+                                    <br>• Collaborated with developers to resolve defects
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="projects">
+        <section class="projects" id="projects">
             <div class="container">
-                <h2 class="section-title reveal">My Projects</h2>
-                <div class="project-grid">
-                    <article class="project-card reveal">
+                <h2 class="section-title reveal">Projects</h2>
+                <div class="project-grid reveal">
+                    <div class="project-card">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Selenium POM" />
+                            <img src="project1.jpg" alt="Project 1">
                         </div>
                         <div class="project-content">
-                            <div class="project-tag">Automation Framework</div>
-                            <h3 class="project-title">Selenium POM Framework</h3>
+                            <div class="project-tag">Automation</div>
+                            <h3 class="project-title">E-commerce Automation</h3>
                             <p class="project-description">
-                                A robust Page Object Model framework for Selenium automation testing with reusable
-                                components, clear structure, and comprehensive reporting.
+                                Developed a comprehensive automation suite for an e-commerce platform, reducing manual testing efforts by 60%.
                             </p>
-                            <a href="https://github.com/princu2701/Selenium-Page-Object-Model.git" target="_blank"
-                                rel="noopener noreferrer" class="cta-button">
-                                View Project
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
-                    </article>
-
-                    <article class="project-card reveal">
+                    </div>
+                    <div class="project-card">
                         <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="API Automation" />
+                            <img src="project2.jpg" alt="Project 2">
                         </div>
                         <div class="project-content">
                             <div class="project-tag">API Testing</div>
-                            <h3 class="project-title">REST-assured Automation</h3>
+                            <h3 class="project-title">API Test Framework</h3>
                             <p class="project-description">
-                                Comprehensive testing solution for RESTful APIs using REST-assured with JSON schema validation, 
-                                authentication testing, and performance metrics.
+                                Created an API testing framework using Rest Assured, ensuring robust validation of RESTful services.
                             </p>
-                            <a href="#" class="cta-button">
-                                View Project
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
                         </div>
-                    </article>
-
-                    <article class="project-card reveal">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mobile Automation" />
-                        </div>
-                        <div class="project-content">
-                            <div class="project-tag">Mobile Testing</div>
-                            <h3 class="project-title">Appium Mobile Automation</h3>
-                            <p class="project-description">
-                                Cross-platform mobile testing automation using Appium with parallel execution capabilities 
-                                for both Android and iOS applications.
-                            </p>
-                            <a href="#" class="cta-button">
-                                View Project
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Company Projects Section -->
-        <section class="projects">
+        <section class="contact-section" id="contact">
             <div class="container">
-                <h2 class="section-title reveal" style="color: var(--color-accent)">Company Projects</h2>
-                <div class="project-grid">
-                    <article class="project-card reveal">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Usha Project" />
-                        </div>
-                        <div class="project-content">
-                            <div class="project-tag">Automation</div>
-                            <h3 class="project-title">Usha Project (Selenium)</h3>
-                            <p class="project-description">
-                                Comprehensive Master Data Management and Module Testing Automation with CI/CD integration
-                                and custom reporting dashboard.
-                            </p>
-                            <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation.git"
-                                target="_blank" rel="noopener noreferrer" class="cta-button">
-                                View Project
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card reveal">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="GDL Test Cases" />
-                        </div>
-                        <div class="project-content">
-                            <div class="project-tag">Manual Testing</div>
-                            <h3 class="project-title">GDL Test Cases</h3>
-                            <p class="project-description">
-                                Comprehensive manual test cases for GDL Project with detailed test scenarios, 
-                                expected results, and defect tracking integration.
-                            </p>
-                            <a href="https://github.com/princu2701/Manual_GDL_Project.git" target="_blank"
-                                rel="noopener noreferrer" class="cta-button">
-                                View Project
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card reveal">
-                        <div class="project-image">
-                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="L3 Harris Project" />
-                        </div>
-                        <div class="project-content">
-                            <div class="project-tag">Automation (In Progress)</div>
-                            <h3 class="project-title">L3 Harris Project</h3>
-                            <p class="project-description">
-                                Advanced automation framework for L3 Harris with custom test data management, 
-                                parallel execution, and AI-powered test case generation.
-                            </p>
-                            <a href="https://github.com/princu2701/Project-1-L3-Harris-.git" target="_blank"
-                                rel="noopener noreferrer" class="cta-button">
-                                View Project
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
+                <h2 class="contact-heading">Get in Touch</h2>
+                <div class="contact-links">
+                    <a href="mailto:prince.raj@example.com" class="contact-link">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/prince-raj-a1493b228" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/princu2701" target="_blank" class="contact-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 Prince Raj. All rights reserved.</p>
-        </div>
+        &copy; 2023 Prince Raj. All rights reserved.
     </footer>
-
-    <script>
-        // Scroll reveal animation
-        window.addEventListener('scroll', reveal);
-
-        function reveal() {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            for(let i = 0; i < reveals.length; i++) {
-                const windowHeight = window.innerHeight;
-                const revealTop = reveals[i].getBoundingClientRect().top;
-                const revealPoint = 150;
-                
-                if(revealTop < windowHeight - revealPoint) {
-                    reveals[i].classList.add('active');
-                }
-            }
-        }
-
-        // Initialize reveal on load
-        document.addEventListener('DOMContentLoaded', () => {
-            reveal();
-            
-            // Add smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if(targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>
