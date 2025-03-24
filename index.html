@@ -5,20 +5,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prince Raj | QA Engineering Architect</title>
+    <meta name="description" content="Professional portfolio of Prince Raj, QA Engineering Architect specializing in test automation and quality assurance">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=General+Sans:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=General+Sans:wght@400;500;600;700&display=swap');
 
         :root {
             --font-display: 'Clash Display', sans-serif;
             --font-body: 'General Sans', sans-serif;
             --color-bg: #030014;
+            --color-bg-light: #0f0c29;
             --color-primary: #7000FF;
+            --color-primary-light: #8a33ff;
             --color-secondary: #FF3D81;
+            --color-secondary-light: #ff5d96;
             --color-accent: #00FFD1;
+            --color-accent-light: #5dffdf;
             --color-text: #FFFFFF;
+            --color-text-light: rgba(255, 255, 255, 0.9);
             --color-text-muted: #94A3B8;
+            --color-text-muted-light: #b8c6db;
+            --section-spacing: 120px;
+            --card-radius: 24px;
+            --transition-base: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -27,14 +38,20 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: var(--font-body);
             background: var(--color-bg);
             color: var(--color-text);
             line-height: 1.7;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* Noise and Gradient Effects */
         .noise {
             position: fixed;
             top: 0;
@@ -44,6 +61,7 @@
             background: url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23noise)"/></svg>');
             opacity: 0.05;
             pointer-events: none;
+            z-index: 1;
         }
 
         .gradient-sphere {
@@ -51,41 +69,64 @@
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            filter: blur(100px);
+            filter: blur(120px);
             opacity: 0.2;
             pointer-events: none;
+            z-index: 0;
         }
 
         .sphere-1 {
             background: var(--color-primary);
             top: -200px;
             right: -200px;
+            animation: float 8s ease-in-out infinite;
         }
 
         .sphere-2 {
             background: var(--color-secondary);
             bottom: -200px;
             left: -200px;
+            animation: float 10s ease-in-out infinite 2s;
         }
 
+        .sphere-3 {
+            background: var(--color-accent);
+            top: 50%;
+            left: 30%;
+            width: 400px;
+            height: 400px;
+            animation: float 12s ease-in-out infinite 1s;
+            opacity: 0.15;
+        }
+
+        /* Container and Layout */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
+            position: relative;
+            z-index: 2;
         }
 
+        section {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            padding: 100px 0;
+            padding: 120px 0 60px;
+            overflow: hidden;
         }
 
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
 
@@ -97,39 +138,55 @@
             font-family: var(--font-display);
             font-size: 1.2rem;
             color: var(--color-accent);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 16px;
+            letter-spacing: 1px;
         }
 
         .hero-subtitle::before {
             content: '';
-            width: 40px;
+            width: 48px;
             height: 2px;
             background: var(--color-accent);
+            display: inline-block;
         }
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: 5rem;
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
             background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .hero-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
         }
 
         .hero-description {
             font-size: 1.2rem;
             color: var(--color-text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 48px;
             max-width: 500px;
+            font-weight: 400;
         }
 
         .hero-image {
             position: relative;
+            perspective: 1000px;
         }
 
         .profile-frame {
@@ -137,13 +194,26 @@
             width: 400px;
             height: 500px;
             background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            border-radius: 30px;
+            border-radius: var(--card-radius);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: var(--transition-base);
+            transform-style: preserve-3d;
+            box-shadow: 0 30px 50px rgba(112, 0, 255, 0.2);
         }
 
         .profile-frame:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 40px 60px rgba(112, 0, 255, 0.3);
+        }
+
+        .profile-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, 
+                rgba(112, 0, 255, 0.4) 0%, 
+                rgba(255, 61, 129, 0.2) 100%);
+            z-index: 1;
         }
 
         .profile-frame img {
@@ -152,66 +222,126 @@
             object-fit: cover;
             opacity: 0.9;
             mix-blend-mode: luminosity;
+            transition: var(--transition-base);
         }
 
+        .profile-frame:hover img {
+            opacity: 1;
+            mix-blend-mode: normal;
+            transform: scale(1.02);
+        }
+
+        /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 32px;
             margin-top: 100px;
         }
 
         .skill-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            border-radius: var(--card-radius);
+            padding: 40px 32px;
+            transition: var(--transition-base);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(112, 0, 255, 0.1) 0%, 
+                rgba(255, 61, 129, 0.05) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition-base);
         }
 
         .skill-card:hover {
             background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
         }
 
         .skill-icon {
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
-            border-radius: 15px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             color: var(--color-text);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            transition: var(--transition-base);
+        }
+
+        .skill-card:hover .skill-icon {
+            transform: rotate(10deg) scale(1.1);
+            box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
         }
 
         .skill-title {
             font-family: var(--font-display);
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .skill-description {
             color: var(--color-text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
-        .projects {
-            padding: 100px 0;
-        }
-
-        .about {
-            padding: 100px 0;
+        /* Sections Common Styles */
+        .projects, .about {
+            padding: var(--section-spacing) 0;
+            position: relative;
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: 2.5rem;
-            margin-bottom: 60px;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 80px;
             text-align: center;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        /* Project Grid */
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -221,14 +351,16 @@
         .project-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
+            border-radius: var(--card-radius);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: var(--transition-base);
+            backdrop-filter: blur(10px);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
             border-color: var(--color-primary);
+            box-shadow: 0 20px 40px rgba(112, 0, 255, 0.2);
         }
 
         .project-image {
@@ -245,200 +377,419 @@
             object-fit: cover;
             opacity: 0.7;
             mix-blend-mode: luminosity;
+            transition: var(--transition-base);
+        }
+
+        .project-card:hover .project-image img {
+            opacity: 0.9;
+            mix-blend-mode: normal;
+            transform: scale(1.05);
         }
 
         .project-content {
-            padding: 30px;
+            padding: 32px;
         }
 
         .project-tag {
             font-size: 0.9rem;
             color: var(--color-accent);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         .project-title {
             font-family: var(--font-display);
-            font-size: 1.6rem;
-            margin-bottom: 15px;
+            font-size: 1.7rem;
+            margin-bottom: 16px;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--color-text), var(--color-text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .project-description {
             color: var(--color-text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            line-height: 1.6;
         }
 
+        /* Buttons */
         .cta-button {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
             color: var(--color-text);
             text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 10px;
+            padding: 16px 32px;
+            border-radius: 12px;
             font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
+            transition: var(--transition-base);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
             box-shadow: 0 10px 20px rgba(112, 0, 255, 0.2);
         }
 
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: 0.6s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(112, 0, 255, 0.3);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* About Section */
         .about-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            padding: 40px;
+            border-radius: var(--card-radius);
+            padding: 60px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-base);
+        }
+
+        .about-content:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
         }
 
         .about-content p {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--color-text-light);
         }
 
         .about-content ul {
-            margin-left: 20px;
-            margin-bottom: 20px;
+            margin-left: 24px;
+            margin-bottom: 32px;
         }
 
         .about-content li {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 28px;
+            font-size: 1.05rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
         }
 
-        .contact-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--color-text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-link:hover {
-            color: var(--color-accent);
-        }
-
-        /* Contact Section */
-        .contact-section {
-            text-align: center;
-            margin-top: 40px;
-            /* Add spacing */
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            /* Add a visual separator */
-        }
-
-        .contact-heading {
-            font-family: 'Clash Display', cursive;
-            font-weight: 700;
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--color-text-muted);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            padding: 10px 20px;
-            /* Add some padding for better touch area */
-            border-radius: 5px;
-            /* Add a slight border-radius */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Add a subtle border */
-        }
-
-        .contact-link:hover {
-            color: var(--color-accent);
-            background-color: rgba(255, 255, 255, 0.05);
-            /* Add a background on hover */
+        .about-content li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 12px;
+            height: 2px;
+            background: var(--color-accent);
         }
 
         .section-subtitle {
             font-family: var(--font-display);
             font-size: 1.8rem;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             color: var(--color-accent);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--color-accent);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-heading {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, var(--color-accent), var(--color-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.6rem;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .contact-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 3px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            transition: var(--transition-base);
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            color: var(--color-accent);
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 80px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+            transition: var(--transition-base);
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .scroll-indicator i {
+            font-size: 1.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content {
+                gap: 40px;
+            }
+            
+            .profile-frame {
+                width: 360px;
+                height: 450px;
+            }
         }
 
         @media (max-width: 1024px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 60px;
             }
 
             .hero-subtitle {
                 justify-content: center;
             }
 
+            .hero-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
             .hero-description {
-                margin: 0 auto 40px;
+                margin: 0 auto 48px;
             }
 
             .profile-frame {
                 margin: 0 auto;
             }
 
-            .hero-title {
-                font-size: 3.5rem;
+            .skills-grid {
+                margin-top: 80px;
             }
         }
 
         @media (max-width: 768px) {
+            :root {
+                --section-spacing: 80px;
+            }
+            
             .container {
-                padding: 0 20px;
+                padding: 0 24px;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
             }
 
             .profile-frame {
                 width: 100%;
+                max-width: 400px;
                 height: 400px;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
 
             .project-grid {
                 grid-template-columns: 1fr;
             }
-        }
 
-        @keyframes float {
-            0%,
-            100% {
-                transform: translateY(0);
+            .about-content {
+                padding: 40px;
             }
 
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --section-spacing: 60px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                padding: 32px 24px;
+            }
+
+            .section-title {
+                margin-bottom: 60px;
+            }
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
             50% {
                 transform: translateY(-20px);
             }
         }
 
-        .floating {
-            animation: float 6s ease-in-out infinite;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -447,71 +798,75 @@
     <div class="noise"></div>
     <div class="gradient-sphere sphere-1"></div>
     <div class="gradient-sphere sphere-2"></div>
+    <div class="gradient-sphere sphere-3"></div>
 
     <main>
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <div class="hero-subtitle">QA Engineering Architect</div>
-                        <h1 class="hero-title">Prince Raj</h1>
-                        <p class="hero-description">
+                    <div class="hero-text fade-in">
+                        <div class="hero-subtitle fade-in delay-1">QA Engineering Architect</div>
+                        <h1 class="hero-title fade-in delay-1">Prince Raj</h1>
+                        <p class="hero-description fade-in delay-2">
                             Crafting robust testing frameworks and driving quality excellence through innovative
                             automation solutions.
                         </p>
                         <a href="https://www.linkedin.com/in/prince-raj-a1493b228" target="_blank"
-                            rel="noopener noreferrer" class="cta-button">
+                            rel="noopener noreferrer" class="cta-button fade-in delay-3">
                             Get in Touch
                             <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
-                    <div class="hero-image">
+                    <div class="hero-image fade-in delay-2">
                         <div class="profile-frame floating">
                             <img src="https://raw.githubusercontent.com/princu2701/princu2701.github.io/ed85104bd932922ae48d246c8f55e76c50c4b8e3/WhatsApp%20Image%202024-09-18%20at%2009.24.39.jpeg"
                               alt="Prince Raj" style="width: 100%; height: 100%; object-fit: cover;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-card fade-in delay-3">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="skill-title">Test Automation</h3>
+                        <p class="skill-description">
+                            Expert in Selenium, TestNG, and creating scalable automation frameworks with comprehensive coverage and maintainable code.
+                        </p>
+                    </div>
+
+                    <div class="skill-card fade-in delay-4">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="skill-title">Framework Design</h3>
+                        <p class="skill-description">
+                            Architecting robust, maintainable testing architectures for enterprise applications with modular design patterns.
+                        </p>
+                    </div>
+
+                    <div class="skill-card fade-in delay-5">
+                        <div class="skill-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3 class="skill-title">Exploratory Testing</h3>
+                        <p class="skill-description">
+                            Comprehensive website analysis using advanced tools to uncover edge cases and improve product quality.
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="skill-title">Test Automation</h3>
-                    <p class="skill-description">
-                        Expert in Selenium, TestNG, and creating scalable automation frameworks.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="skill-title">Framework Design</h3>
-                    <p class="skill-description">
-                        Building robust, maintainable testing architectures for enterprise applications.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-tachometer-alt"></i>
-                    </div>
-                    <h3 class="skill-title"> Aggressive Exploratory Testing Enthusiast</h3>
-                    <p class="skill-description">
-                        Comprehensive working in the Website analysis using Different Tools.
-                    </p>
-                </div>
-            </div>
+            <a href="#about" class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </section>
 
         <section class="about" id="about">
             <div class="container">
-                <div style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 15px; padding: 20px; margin-bottom: 40px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);"></div>
-                  <h2 class="section-title" style="font-family: 'Clash Display', sans-serif; font-weight: 700; background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">About Me</h2>
-                </div>
-                <div class="about-content">
+                <h2 class="section-title reveal">About Me</h2>
+                <div class="about-content reveal">
                     <p>
                         I am a dedicated Software Tester with hands-on experience in Automation, Manual, API, and Mobile
                         Testing. With a keen eye for detail and a passion for ensuring software quality, I specialize
@@ -520,31 +875,30 @@
                     </p>
                     <p>
                         Currently working at BPAAS Solutions Pvt. Ltd., I have gained practical exposure to designing
-                        and
-                        executing test cases, writing automation scripts, and integrating CI/CD pipelines to streamline
+                        and executing test cases, writing automation scripts, and integrating CI/CD pipelines to streamline
                         testing processes. My approach focuses on delivering bug-free, high-performance applications
                         while adapting to evolving project requirements.
                     </p>
 
                     <h3 class="section-subtitle">Technical Skills:</h3>
                     <ul>
-                        <li>✅ Automation Testing: Selenium WebDriver, Cypress, Appium</li>
-                        <li>✅ Manual Testing: Functional, Regression, UI, Cross-Browser</li>
-                        <li>✅ API Testing: Postman, Rest Assured</li>
-                        <li>✅ Test Frameworks: TestNG, Cucumber, Page Object Model (POM)</li>
-                        <li>✅ Version Control: Git, GitHub</li>
-                        <li>✅ CI/CD &amp; Reporting: Jenkins, Extent Reports</li>
-                        <li>✅ Programming: Java, JavaScript (Basic)</li>
+                        <li>Automation Testing: Selenium WebDriver, Cypress, Appium</li>
+                        <li>Manual Testing: Functional, Regression, UI, Cross-Browser</li>
+                        <li>API Testing: Postman, Rest Assured</li>
+                        <li>Test Frameworks: TestNG, Cucumber, Page Object Model (POM)</li>
+                        <li>Version Control: Git, GitHub</li>
+                        <li>CI/CD &amp; Reporting: Jenkins, Extent Reports</li>
+                        <li>Programming: Java, JavaScript (Basic)</li>
                     </ul>
 
                     <h3 class="section-subtitle">Why Work With Me?</h3>
                     <ul>
-                        <li>🔹 Strong analytical and problem-solving skills</li>
-                        <li>🔹 Experience working in agile environments with tight deadlines</li>
-                        <li>🔹 Passionate about optimizing testing strategies for better efficiency</li>
-                        <li>🔹 Ability to create scalable and maintainable automation frameworks</li>
-                        <li>🔹 More than 4 months experience in Selenium and Manual Testing</li>
-                        <li>🔹 Skills in Cypress, API Postman, Appium, Rest Assured, WebIO</li>
+                        <li>Strong analytical and problem-solving skills with attention to detail</li>
+                        <li>Experience working in agile environments with tight deadlines</li>
+                        <li>Passionate about optimizing testing strategies for better efficiency</li>
+                        <li>Ability to create scalable and maintainable automation frameworks</li>
+                        <li>4+ months experience in Selenium and Manual Testing</li>
+                        <li>Skills in Cypress, API Postman, Appium, Rest Assured, WebIO</li>
                     </ul>
 
                     <p>
@@ -556,10 +910,9 @@
                         Let's connect and make technology better, one test at a time! 🚀
                     </p>
                 </div>
-                <!-- Closing the about-content div -->
 
                 <!-- Contact Links Section -->
-                <div class="contact-section">
+                <div class="contact-section reveal">
                     <h3 class="section-subtitle contact-heading">
                         Let's Connect!
                     </h3>
@@ -567,22 +920,16 @@
                         <a href="https://github.com/princu2701" target="_blank" rel="noopener noreferrer"
                             class="contact-link">
                             <i class="fab fa-github"></i>
-                            <span style="display: inline-block; padding: 10px; border-radius: 50%; background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); color: var(--color-text);">
-                              GitHub
-                            </span>
+                            GitHub
                         </a>
                         <a href="https://www.linkedin.com/in/prince-raj-a1493b228" target="_blank"
                             rel="noopener noreferrer" class="contact-link">
                             <i class="fab fa-linkedin"></i>
-                            <span style="display: inline-block; padding: 10px; border-radius: 50%; background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); color: var(--color-text);">
-                              LinkedIn
-                            </span>
+                            LinkedIn
                         </a>
                         <a href="mailto:princeraj27janu@gmail.com" class="contact-link">
                             <i class="fas fa-envelope"></i>
-                            <span style="display: inline-block; padding: 10px; border-radius: 50%; background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); color: var(--color-text); width: 50px; height: 50px; text-align: center; line-height: 30px;"></span>
-                              Email
-                            </span>
+                            Email
                         </a>
                     </div>
                 </div>
@@ -591,18 +938,18 @@
 
         <section class="projects">
             <div class="container">
-                <h2 class="section-title" style="font-weight: bold; color: var(--color-primary);">My Projects</h2>
+                <h2 class="section-title reveal">My Projects</h2>
                 <div class="project-grid">
-                    <article class="project-card">
+                    <article class="project-card reveal">
                         <div class="project-image">
-                            <img src="/api/placeholder/600/400" alt="Selenium POM" />
+                            <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Selenium POM" />
                         </div>
                         <div class="project-content">
                             <div class="project-tag">Automation Framework</div>
                             <h3 class="project-title">Selenium POM Framework</h3>
                             <p class="project-description">
                                 A robust Page Object Model framework for Selenium automation testing with reusable
-                                components and clear structure.
+                                components, clear structure, and comprehensive reporting.
                             </p>
                             <a href="https://github.com/princu2701/Selenium-Page-Object-Model.git" target="_blank"
                                 rel="noopener noreferrer" class="cta-button">
@@ -612,16 +959,16 @@
                         </div>
                     </article>
 
-                    <article class="project-card">
+                    <article class="project-card reveal">
                         <div class="project-image">
-                            <img src="/api/placeholder/600/400" alt="API Automation" />
+                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" alt="API Automation" />
                         </div>
                         <div class="project-content">
                             <div class="project-tag">API Testing</div>
                             <h3 class="project-title">REST-assured Automation</h3>
                             <p class="project-description">
-                                Comprehensive testing of RESTful APIs using REST-assured for efficient and reliable
-                                results.
+                                Comprehensive testing solution for RESTful APIs using REST-assured with JSON schema validation, 
+                                authentication testing, and performance metrics.
                             </p>
                             <a href="#" class="cta-button">
                                 View Project
@@ -630,15 +977,16 @@
                         </div>
                     </article>
 
-                    <article class="project-card">
+                    <article class="project-card reveal">
                         <div class="project-image">
-                            <img src="/api/placeholder/600/400" alt="Mobile Automation" />
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mobile Automation" />
                         </div>
                         <div class="project-content">
                             <div class="project-tag">Mobile Testing</div>
                             <h3 class="project-title">Appium Mobile Automation</h3>
                             <p class="project-description">
-                                End-to-end mobile testing automation using Appium for both Android and iOS platforms.
+                                Cross-platform mobile testing automation using Appium with parallel execution capabilities 
+                                for both Android and iOS applications.
                             </p>
                             <a href="#" class="cta-button">
                                 View Project
@@ -653,17 +1001,18 @@
         <!-- Company Projects Section -->
         <section class="projects">
             <div class="container">
-                <h2 class="section-title" style="color: var(--color-accent); transition: color 0.3s ease; font-family: 'Clash Display', cursive;">Company Projects</h2>
+                <h2 class="section-title reveal" style="color: var(--color-accent)">Company Projects</h2>
                 <div class="project-grid">
-                    <article class="project-card">
+                    <article class="project-card reveal">
                         <div class="project-image">
-                            <img src="/api/placeholder/600/400" alt="Usha Project" />
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Usha Project" />
                         </div>
                         <div class="project-content">
                             <div class="project-tag">Automation</div>
                             <h3 class="project-title">Usha Project (Selenium)</h3>
                             <p class="project-description">
-                                Comprehensive MDM and Module Testing Automation.
+                                Comprehensive Master Data Management and Module Testing Automation with CI/CD integration
+                                and custom reporting dashboard.
                             </p>
                             <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation.git"
                                 target="_blank" rel="noopener noreferrer" class="cta-button">
@@ -673,15 +1022,16 @@
                         </div>
                     </article>
 
-                    <article class="project-card">
+                    <article class="project-card reveal">
                         <div class="project-image">
-                            <img src="/api/placeholder/600/400" alt="GDL Test Cases" />
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="GDL Test Cases" />
                         </div>
                         <div class="project-content">
                             <div class="project-tag">Manual Testing</div>
                             <h3 class="project-title">GDL Test Cases</h3>
                             <p class="project-description">
-                                Manual GDL Project Test Cases.
+                                Comprehensive manual test cases for GDL Project with detailed test scenarios, 
+                                expected results, and defect tracking integration.
                             </p>
                             <a href="https://github.com/princu2701/Manual_GDL_Project.git" target="_blank"
                                 rel="noopener noreferrer" class="cta-button">
@@ -691,15 +1041,16 @@
                         </div>
                     </article>
 
-                    <article class="project-card">
+                    <article class="project-card reveal">
                         <div class="project-image">
-                            <img src="/api/placeholder/600/400" alt="L3 Harris Project" />
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="L3 Harris Project" />
                         </div>
                         <div class="project-content">
-                            <div class="project-tag">Automation (In Working)</div>
-                            <h3 class="project-title">L3 Harris Project (In Working)</h3>
+                            <div class="project-tag">Automation (In Progress)</div>
+                            <h3 class="project-title">L3 Harris Project</h3>
                             <p class="project-description">
-                                Automation project for L3 Harris (In Working).
+                                Advanced automation framework for L3 Harris with custom test data management, 
+                                parallel execution, and AI-powered test case generation.
                             </p>
                             <a href="https://github.com/princu2701/Project-1-L3-Harris-.git" target="_blank"
                                 rel="noopener noreferrer" class="cta-button">
@@ -714,8 +1065,50 @@
     </main>
 
     <footer>
-        <!-- Footer content here (e.g., copyright notice) -->
+        <div class="container">
+            <p>&copy; 2024 Prince Raj. All rights reserved.</p>
+        </div>
     </footer>
+
+    <script>
+        // Scroll reveal animation
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for(let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveals[i].getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if(revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        // Initialize reveal on load
+        document.addEventListener('DOMContentLoaded', () => {
+            reveal();
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
