@@ -99,6 +99,18 @@
             opacity: 0;
         }
 
+        .mobile-enter-btn {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
@@ -440,6 +452,26 @@
         }
 
         /* Projects Section */
+        .projects-category {
+            margin-bottom: 4rem;
+        }
+
+        .projects-category h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .projects-category h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 2px;
+            background: var(--accent);
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -567,18 +599,18 @@
             color: var(--accent);
         }
 
-        /* Contact Section */
-        .contact {
+        /* Connect Section */
+        .connect-section {
             text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
             padding: 4rem 2rem;
-            position: relative;
+            background-color: rgba(10, 25, 47, 0.5);
             border-radius: 8px;
+            margin-top: 4rem;
+            position: relative;
             overflow: hidden;
         }
 
-        .contact::before {
+        .connect-section::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -596,13 +628,8 @@
             z-index: -1;
         }
 
-        @keyframes hologram {
-            0% { transform: rotate(30deg) translateX(0); }
-            100% { transform: rotate(30deg) translateX(-50%); }
-        }
-
-        .contact-title {
-            color: var(--light);
+        .connect-title {
+            color: var(--accent);
             font-size: 2rem;
             margin-bottom: 1rem;
             opacity: 0;
@@ -610,49 +637,54 @@
             transition: all 0.5s ease-out;
         }
 
-        .contact.visible .contact-title {
+        .connect-section.visible .connect-title {
             opacity: 1;
             transform: scale(1);
         }
 
-        .contact-description {
-            color: var(--gray);
-            margin-bottom: 2rem;
+        .connect-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .connect-link {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s;
             opacity: 0;
             transform: translateY(20px);
-            transition: all 0.5s ease-out 0.2s;
         }
 
-        .contact.visible .contact-description {
-            opacity: 1;
-            transform: translateY(0);
+        .connect-link:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
         }
 
-        .contact .cta-button {
-            display: inline-block;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.5s ease-out 0.4s;
+        .connect-section.visible .connect-link {
+            animation: fadeInUp 0.5s ease-out forwards;
         }
 
-        .contact.visible .cta-button {
-            opacity: 1;
-            transform: scale(1);
+        .connect-link:nth-child(1) { animation-delay: 0.2s; }
+        .connect-link:nth-child(2) { animation-delay: 0.4s; }
+        .connect-link:nth-child(3) { animation-delay: 0.6s; }
+        .connect-link:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes hologram {
+            0% { transform: rotate(30deg) translateX(0); }
+            100% { transform: rotate(30deg) translateX(-50%); }
         }
 
-        .contact .cta-button:hover {
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            70% {
-                box-shadow: 0 0 0 15px rgba(100, 255, 218, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(100, 255, 218, 0);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -707,6 +739,19 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Show mobile enter button */
+            .mobile-enter-btn {
+                display: inline-block;
+                opacity: 0;
+                animation: slideUp 0.5s ease-out forwards;
+                animation-delay: 1.5s;
+            }
+
+            /* Adjust terminal for mobile */
+            .terminal-header, .terminal-body {
+                width: 90vw;
+            }
         }
     </style>
 </head>
@@ -726,6 +771,7 @@
             <div class="terminal-line">> Establishing Secure Connection...</div>
             <div class="terminal-line">> Welcome to QA Console<span class="terminal-cursor"></span></div>
             <div class="terminal-line" id="enter-prompt">> Press [Enter] to continue...</div>
+            <button class="mobile-enter-btn" id="mobileEnterBtn">Enter Portfolio</button>
         </div>
     </div>
 
@@ -741,7 +787,7 @@
                 <a href="#about">About</a>
                 <a href="#experience">Experience</a>
                 <a href="#work">Work</a>
-                <a href="#contact">Contact</a>
+                <a href="#connect">Connect</a>
                 <a href="https://github.com/princu2701/princu2701.github.io/raw/master/Prince_Raj_Resume.pdf" class="resume-btn">Resume</a>
             </div>
         </nav>
@@ -846,81 +892,143 @@
             </div>
         </section>
         
-        <!-- Projects Section -->
+        <!-- Updated Projects Section -->
         <section class="section" id="work">
-            <div class="section-title">
-                <h2>Projects</h2>
-                <div class="line"></div>
+            <!-- My Projects Section -->
+            <div class="projects-category">
+                <div class="section-title">
+                    <h2>My Projects</h2>
+                    <div class="line"></div>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="folder-icon"><i class="fas fa-folder"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/princu2701/Selenium-Page-Object-Model.git"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Selenium POM Framework</h3>
+                        <p class="project-description">
+                            Robust Page Object Model framework for Selenium with reusable components and comprehensive reporting.
+                        </p>
+                        <div class="project-tech">
+                            <span>Selenium</span>
+                            <span>Java</span>
+                            <span>TestNG</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="folder-icon"><i class="fas fa-folder"></i></div>
+                            <div class="project-links">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Mobile App Automation</h3>
+                        <p class="project-description">
+                            Automated testing framework for mobile applications using Appium with parallel execution capabilities.
+                        </p>
+                        <div class="project-tech">
+                            <span>Appium</span>
+                            <span>Java</span>
+                            <span>CI/CD</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="folder-icon"><i class="fas fa-folder"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/princu2701/Manual_GDL_Project.git"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">GDL Test Cases</h3>
+                        <p class="project-description">
+                            Comprehensive manual test cases for GDL Project with detailed test scenarios.
+                        </p>
+                        <div class="project-tech">
+                            <span>Manual Testing</span>
+                            <span>Test Cases</span>
+                            <span>JIRA</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="folder-icon"><i class="fas fa-folder"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/princu2701/Selenium-Page-Object-Model.git"><i class="fab fa-github"></i></a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Selenium POM Framework</h3>
-                    <p class="project-description">
-                        Robust Page Object Model framework for Selenium with reusable components and comprehensive reporting.
-                    </p>
-                    <div class="project-tech">
-                        <span>Selenium</span>
-                        <span>Java</span>
-                        <span>TestNG</span>
-                    </div>
+
+            <!-- Real-Time Projects Section -->
+            <div class="projects-category">
+                <div class="section-title">
+                    <h2>Real-Time Projects</h2>
+                    <div class="line"></div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="folder-icon"><i class="fas fa-folder"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation.git"><i class="fab fa-github"></i></a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="folder-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="project-links">
+                                <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation.git"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Usha Project</h3>
+                        <p class="project-description">
+                            Master Data Management and Module Testing Automation with CI/CD integration.
+                        </p>
+                        <div class="project-tech">
+                            <span>Selenium</span>
+                            <span>Java</span>
+                            <span>Jenkins</span>
                         </div>
                     </div>
-                    <h3 class="project-title">Usha Project</h3>
-                    <p class="project-description">
-                        Master Data Management and Module Testing Automation with CI/CD integration.
-                    </p>
-                    <div class="project-tech">
-                        <span>Selenium</span>
-                        <span>Java</span>
-                        <span>Jenkins</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="folder-icon"><i class="fas fa-folder"></i></div>
-                        <div class="project-links">
-                            <a href="https://github.com/princu2701/Manual_GDL_Project.git"><i class="fab fa-github"></i></a>
-                            <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="folder-icon"><i class="fas fa-briefcase"></i></div>
+                            <div class="project-links">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <h3 class="project-title">GDL Test Cases</h3>
-                    <p class="project-description">
-                        Comprehensive manual test cases for GDL Project with detailed test scenarios.
-                    </p>
-                    <div class="project-tech">
-                        <span>Manual Testing</span>
-                        <span>Test Cases</span>
-                        <span>JIRA</span>
+                        <h3 class="project-title">E-commerce Platform Testing</h3>
+                        <p class="project-description">
+                            Comprehensive test automation for BPAAS e-commerce platform covering UI, API, and performance testing.
+                        </p>
+                        <div class="project-tech">
+                            <span>Cypress</span>
+                            <span>JavaScript</span>
+                            <span>Jenkins</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Contact Section -->
-        <section class="section" id="contact">
-            <div class="contact">
-                <p class="hero-subtitle">Need a QA Expert?</p>
-                <h2 class="contact-title">Get In Touch</h2>
-                <p class="contact-description">
-                    Whether you need automated testing, manual QA, or performance testing, I'd love to discuss how I can help.
+        <!-- Connect Section -->
+        <section class="section" id="connect">
+            <div class="connect-section">
+                <h2 class="connect-title">Let's Connect</h2>
+                <p class="hero-description">
+                    Feel free to reach out for collaborations or just a friendly hello
                 </p>
-                <button class="cta-button">Contact Me</button>
+                <div class="connect-links">
+                    <a href="https://github.com/princu2701" class="connect-link" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/prince-raj-a1493b228" class="connect-link" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:princeraj27janu@gmail.com" class="connect-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/princu2701/princu2701.github.io/raw/master/Prince_Raj_Resume.pdf" class="connect-link">
+                        <i class="fas fa-file-download"></i>
+                    </a>
+                </div>
             </div>
         </section>
         
@@ -939,6 +1047,10 @@
             const portfolioContent = document.getElementById('portfolio-content');
             const terminalLines = document.querySelectorAll('.terminal-line');
             const enterPrompt = document.getElementById('enter-prompt');
+            const mobileEnterBtn = document.getElementById('mobileEnterBtn');
+            
+            // Check if mobile device
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
             // Animate terminal lines
             terminalLines.forEach((line, index) => {
@@ -951,31 +1063,43 @@
                         setTimeout(() => {
                             enterPrompt.style.opacity = '1';
                             enterPrompt.style.transform = 'translateY(0)';
+                            if (isMobile) {
+                                mobileEnterBtn.style.opacity = '1';
+                                mobileEnterBtn.style.transform = 'translateY(0)';
+                            }
                         }, 500);
                     }
                 }, index * 800);
             });
 
+            // Handle enter (keyboard or button)
+            function enterPortfolio() {
+                // Start exit animation
+                loader.classList.add('animate-out');
+                
+                // Show portfolio content
+                setTimeout(() => {
+                    portfolioContent.classList.add('visible');
+                    
+                    // Initialize all animations
+                    initPortfolioAnimations();
+                }, 500);
+                
+                // Remove loader after animation completes
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 1000);
+            }
+
             // Listen for Enter key press
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !loader.classList.contains('hidden')) {
-                    // Start exit animation
-                    loader.classList.add('animate-out');
-                    
-                    // Show portfolio content
-                    setTimeout(() => {
-                        portfolioContent.classList.add('visible');
-                        
-                        // Initialize all animations
-                        initPortfolioAnimations();
-                    }, 500);
-                    
-                    // Remove loader after animation completes
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 1000);
+                    enterPortfolio();
                 }
             });
+
+            // Listen for mobile button click
+            mobileEnterBtn.addEventListener('click', enterPortfolio);
             
             function initPortfolioAnimations() {
                 // Initialize Matrix Rain
@@ -1002,12 +1126,12 @@
                 });
                 
                 // Initialize scroll animations
-                const sections = document.querySelectorAll('.section, .contact, .hero');
+                const sections = document.querySelectorAll('.section, .connect-section, .hero');
                 const sectionTitles = document.querySelectorAll('.section-title');
                 const aboutTexts = document.querySelectorAll('.about-text, .about-image');
                 const skillsLists = document.querySelectorAll('.skills-list');
                 const projectCards = document.querySelectorAll('.project-card');
-                const contactElements = document.querySelector('.contact');
+                const connectSection = document.querySelector('.connect-section');
                 
                 const observerOptions = {
                     threshold: 0.1,
@@ -1026,7 +1150,7 @@
                                 entry.target.classList.add('visible');
                             } else if (entry.target.classList.contains('project-card')) {
                                 entry.target.classList.add('visible');
-                            } else if (entry.target.classList.contains('contact')) {
+                            } else if (entry.target.classList.contains('connect-section')) {
                                 entry.target.classList.add('visible');
                             }
                         }
@@ -1053,8 +1177,8 @@
                     observer.observe(card);
                 });
                 
-                if (contactElements) {
-                    observer.observe(contactElements);
+                if (connectSection) {
+                    observer.observe(connectSection);
                 }
             }
             
