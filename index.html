@@ -3,112 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Raj | QA Automation Engineer</title>
+    <title>PRINCE RAJ | QA ENGINEER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2962ff;
-            --dark: #0a192f;
-            --light: #ccd6f6;
-            --accent: #64ffda;
-            --gray: #8892b0;
-            --neon-glow: 0 0 10px rgba(100, 255, 218, 0.8);
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff2a6d;
+            --neon-purple: #d300c5;
+            --matrix-green: #00ff41;
+            --dark-bg: #0d0208;
+            --darker-bg: #0a0a12;
+            --text-primary: #ccd6f6;
+            --text-secondary: #8892b0;
+            --glow: 0 0 10px currentColor;
         }
-        
+
+        /* Cyberpunk Base Styles */
+        @font-face {
+            font-family: 'Cyber';
+            src: url('https://assets.codepen.io/605876/Blender-Pro-Bold.woff2') format('woff2');
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Fira Code';
+            src: url('https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/woff2/FiraCode-Light.woff2') format('woff2');
+            font-display: swap;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'SF Mono', 'Fira Code', monospace;
-        }
-        
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Terminal Loader */
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            font-family: 'Fira Code', monospace;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 42, 109, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(13, 242, 252, 0.15) 0%, transparent 25%);
+        }
+
+        /* Cyberpunk Scanlines Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(13, 2, 8, 0.85) 50%, 
+                transparent 50%),
+                linear-gradient(90deg, 
+                    rgba(255, 0, 0, 0.06), 
+                    rgba(0, 255, 0, 0.02), 
+                    rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
+
+        /* Holographic Terminal Loader */
         #loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--dark);
-            z-index: 9999;
+            background: var(--dark-bg);
+            z-index: 10000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: var(--accent);
-            transition: all 0.5s ease-out;
+            color: var(--matrix-green);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .hologram-container {
+            width: 80vw;
+            max-width: 800px;
+            height: 60vh;
+            perspective: 1000px;
+        }
+
+        .hologram {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: floatHologram 8s ease-in-out infinite;
+        }
+
+        .hologram::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 45%, rgba(0, 255, 65, 0.3) 50%, transparent 55%);
+            background-size: 300% 300%;
+            animation: hologramGradient 6s ease infinite;
+            border-radius: 8px;
+            z-index: 2;
         }
 
         .terminal-header {
-            width: 600px;
-            background: #050f1d;
-            padding: 8px 16px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px 20px;
             border-radius: 8px 8px 0 0;
             display: flex;
-            gap: 8px;
+            gap: 12px;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--neon-blue);
+            position: relative;
+            z-index: 3;
         }
 
         .terminal-dot {
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
+            box-shadow: var(--glow);
         }
 
-        .terminal-dot:nth-child(1) { background: #ff5f56; }
-        .terminal-dot:nth-child(2) { background: #ffbd2e; }
-        .terminal-dot:nth-child(3) { background: #27c93f; }
+        .terminal-dot:nth-child(1) { background: var(--neon-pink); }
+        .terminal-dot:nth-child(2) { background: var(--neon-blue); }
+        .terminal-dot:nth-child(3) { background: var(--matrix-green); }
 
         .terminal-body {
-            width: 600px;
-            height: 300px;
-            background: rgba(5, 15, 29, 0.8);
-            padding: 20px;
+            width: 100%;
+            height: calc(100% - 48px);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
             border-radius: 0 0 8px 8px;
             overflow: hidden;
             position: relative;
+            backdrop-filter: blur(3px);
+            border: 1px solid var(--neon-blue);
+            border-top: none;
+            box-shadow: 
+                0 0 15px rgba(0, 242, 252, 0.3),
+                0 0 30px rgba(0, 242, 252, 0.1);
         }
 
         .terminal-line {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
             opacity: 0;
             transform: translateY(20px);
-            white-space: nowrap;
+            font-size: 1.1rem;
+            text-shadow: 0 0 5px var(--matrix-green);
+            position: relative;
+        }
+
+        .terminal-line::before {
+            content: '> ';
+            color: var(--neon-blue);
         }
 
         .terminal-cursor {
             display: inline-block;
-            width: 10px;
-            height: 20px;
-            background: var(--accent);
-            margin-left: 5px;
-            animation: blink 1s infinite;
+            width: 12px;
+            height: 24px;
+            background: var(--matrix-green);
+            margin-left: 8px;
+            animation: blink 1s infinite, pulse 2s infinite;
             vertical-align: middle;
-        }
-
-        #enter-prompt {
-            color: var(--accent);
-            font-weight: bold;
-            animation: pulse 2s infinite;
-            opacity: 0;
+            box-shadow: 0 0 10px var(--matrix-green);
         }
 
         .mobile-enter-btn {
             display: none;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: var(--accent);
-            color: var(--dark);
-            border: none;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
             border-radius: 4px;
-            font-weight: bold;
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.2rem;
             cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 10px var(--neon-blue),
+                inset 0 0 5px var(--neon-blue);
+        }
+
+        .mobile-enter-btn:hover {
+            background: rgba(0, 242, 252, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 20px var(--neon-blue),
+                inset 0 0 10px var(--neon-blue);
+        }
+
+        .mobile-enter-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 242, 252, 0.3) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: hologramGradient 3s linear infinite;
+        }
+
+        /* Cyberpunk Animations */
+        @keyframes floatHologram {
+            0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); }
+            50% { transform: translateY(-20px) rotateX(3deg) rotateY(5deg); }
+        }
+
+        @keyframes hologramGradient {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
         @keyframes blink {
@@ -117,8 +240,8 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { box-shadow: 0 0 10px var(--matrix-green); }
+            50% { box-shadow: 0 0 20px var(--matrix-green); }
         }
 
         /* Main Content */
@@ -131,19 +254,7 @@
             opacity: 1;
         }
 
-        /* Matrix Rain Background */
-        .matrix-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.03;
-            pointer-events: none;
-        }
-
-        /* Navigation */
+        /* Cyberpunk Navigation */
         nav {
             display: flex;
             justify-content: space-between;
@@ -151,144 +262,218 @@
             padding: 2rem 5rem;
             position: fixed;
             width: 100%;
-            background-color: rgba(10, 25, 47, 0.9);
+            background: rgba(13, 2, 8, 0.8);
             z-index: 100;
             transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
             transform: translateY(0);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 242, 252, 0.2);
         }
 
         .logo {
-            color: var(--accent);
+            color: var(--neon-blue);
+            font-family: 'Cyber', sans-serif;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue);
+            letter-spacing: 2px;
             position: relative;
-            text-shadow: var(--neon-glow);
+        }
+
+        .logo::after {
+            content: '_';
+            animation: cursorBlink 1s infinite;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .nav-links a {
-            color: var(--light);
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 1rem;
+            font-family: 'Cyber', sans-serif;
+            font-size: 1.1rem;
             position: relative;
             padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease-out;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links .resume-btn {
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s;
         }
 
-        .nav-links .resume-btn:hover {
-            background-color: rgba(100, 255, 218, 0.1);
-            transform: translateY(-3px);
+        .nav-links a:hover {
+            color: var(--neon-pink);
+            text-shadow: 0 0 10px var(--neon-pink);
         }
 
-        /* Hero Section */
+        .nav-links a::before {
+            content: '[';
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            transition: all 0.3s;
+            color: var(--neon-blue);
+        }
+
+        .nav-links a::after {
+            content: ']';
+            position: absolute;
+            right: -10px;
+            opacity: 0;
+            transition: all 0.3s;
+            color: var(--neon-blue);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a:hover::after {
+            opacity: 1;
+        }
+
+        .resume-btn {
+            background: transparent;
+            color: var(--neon-purple);
+            border: 2px solid var(--neon-purple);
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-family: 'Cyber', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 
+                0 0 10px var(--neon-purple),
+                inset 0 0 5px var(--neon-purple);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-btn:hover {
+            background: rgba(211, 0, 197, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 0 20px var(--neon-purple),
+                inset 0 0 10px var(--neon-purple);
+        }
+
+        .resume-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(211, 0, 197, 0.3) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: hologramGradient 3s linear infinite;
+        }
+
+        /* Cyberpunk Hero Section */
         .hero {
             height: 100vh;
             padding: 0 5rem;
             display: flex;
             align-items: center;
             position: relative;
+            overflow: hidden;
         }
 
-        #particles-js {
+        .hero::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at center, var(--neon-blue), transparent 70%),
+                radial-gradient(circle at 30% 70%, var(--neon-pink), transparent 70%),
+                radial-gradient(circle at 70% 30%, var(--neon-purple), transparent 70%);
+            opacity: 0.1;
+            animation: rotateBackground 30s linear infinite;
             z-index: -1;
         }
 
         .hero-content {
             max-width: 800px;
+            position: relative;
         }
 
         .hero-subtitle {
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            color: var(--neon-blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
             opacity: 0;
             animation: fadeIn 1s ease-out forwards;
             animation-delay: 0.5s;
+            font-family: 'Cyber', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--light);
+            margin-bottom: 1.5rem;
+            color: transparent;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
             opacity: 0;
             animation: slideUp 0.5s ease-out forwards;
             animation-delay: 0.7s;
+            font-family: 'Cyber', sans-serif;
+            line-height: 1.1;
+            text-shadow: 
+                0 0 10px rgba(0, 242, 252, 0.5),
+                0 0 20px rgba(0, 242, 252, 0.3);
         }
 
         .hero-title:nth-of-type(2) {
             animation-delay: 0.9s;
             position: relative;
+            background: linear-gradient(90deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
         }
 
         .hero-title:nth-of-type(2)::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -10px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: var(--accent);
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             animation: underlineExpand 1s ease-out forwards;
             animation-delay: 1.5s;
         }
 
-        @keyframes underlineExpand {
-            to { width: 100%; }
-        }
-
         .hero-description {
             font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
             max-width: 600px;
             opacity: 0;
             animation: slideUp 0.5s ease-out forwards;
             animation-delay: 1.1s;
+            line-height: 1.7;
         }
 
         .cta-button {
-            background-color: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.3s;
@@ -297,48 +482,64 @@
             animation-delay: 1.3s;
             position: relative;
             overflow: hidden;
+            font-family: 'Cyber', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 
+                0 0 10px var(--neon-blue),
+                inset 0 0 5px var(--neon-blue);
+        }
+
+        .cta-button:hover {
+            background: rgba(0, 242, 252, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 0 20px var(--neon-blue),
+                inset 0 0 10px var(--neon-blue);
         }
 
         .cta-button::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
-            transition: all 0.5s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 242, 252, 0.3) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: hologramGradient 3s linear infinite;
         }
 
-        .cta-button:hover {
-            background-color: rgba(100, 255, 218, 0.1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        /* About Section */
+        /* Cyberpunk Section Styles */
         .section {
-            padding: 6rem 5rem;
+            padding: 8rem 5rem;
             position: relative;
+            border-bottom: 1px solid rgba(0, 242, 252, 0.1);
         }
 
         .section-title {
             display: flex;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 5rem;
+            position: relative;
         }
 
         .section-title h2 {
-            font-size: 2rem;
-            color: var(--light);
-            margin-right: 1rem;
+            font-size: 2.5rem;
+            color: var(--neon-blue);
+            margin-right: 2rem;
             opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.5s ease-out;
+            transform: translateX(-30px);
+            transition: all 0.8s ease-out;
+            font-family: 'Cyber', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .section-title.visible h2 {
@@ -347,31 +548,61 @@
         }
 
         .section-title .line {
-            height: 1px;
-            background-color: var(--gray);
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), transparent);
             flex-grow: 1;
-            opacity: 0.3;
+            opacity: 0.5;
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.5s ease-out;
+            transition: transform 1s ease-out;
         }
 
         .section-title.visible .line {
             transform: scaleX(1);
         }
 
+        /* Cyberpunk About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 3fr 2fr;
-            gap: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            position: relative;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--neon-pink), transparent 70%);
+            filter: blur(50px);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .about-content::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--neon-blue), transparent 70%);
+            filter: blur(50px);
+            opacity: 0.1;
+            z-index: -1;
         }
 
         .about-text p {
-            margin-bottom: 1rem;
-            color: var(--gray);
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease-out;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .about-text.visible p {
@@ -382,18 +613,19 @@
         .skills-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .skills-list li {
             list-style: none;
-            color: var(--gray);
+            color: var(--text-primary);
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 2rem;
             opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease-out;
+            transform: translateX(-20px);
+            transition: all 0.5s ease-out;
+            font-size: 1rem;
         }
 
         .skills-list.visible li {
@@ -402,18 +634,26 @@
         }
 
         .skills-list li::before {
-            content: "▹";
-            color: var(--accent);
+            content: '▹';
+            color: var(--neon-blue);
             position: absolute;
             left: 0;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px var(--neon-blue);
         }
 
         .about-image {
             position: relative;
-            max-width: 300px;
+            max-width: 400px;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease-out 0.4s;
+            transform: translateY(30px);
+            transition: all 1s ease-out 0.4s;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 20px rgba(0, 242, 252, 0.3),
+                0 0 40px rgba(0, 242, 252, 0.1);
+            border: 1px solid var(--neon-blue);
         }
 
         .about-image.visible {
@@ -423,43 +663,52 @@
 
         .about-image img {
             width: 100%;
-            border-radius: 4px;
-            filter: grayscale(100%) contrast(1);
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2);
             transition: all 0.5s;
         }
 
         .about-image:hover img {
-            filter: none;
-            transform: scale(1.03);
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
         }
 
-        .about-image::after {
+        .about-image::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--accent);
-            border-radius: 4px;
-            top: 20px;
-            left: 20px;
-            z-index: -1;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 242, 252, 0.1) 0%,
+                rgba(255, 42, 109, 0.05) 100%
+            );
+            z-index: 1;
             transition: all 0.5s;
         }
 
-        .about-image:hover::after {
-            top: 15px;
-            left: 15px;
+        .about-image:hover::before {
+            background: linear-gradient(
+                135deg,
+                rgba(0, 242, 252, 0.2) 0%,
+                rgba(255, 42, 109, 0.1) 100%
+            );
         }
 
-        /* Projects Section */
+        /* Cyberpunk Projects Section */
         .projects-category {
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
         }
 
         .projects-category h2 {
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
+            font-size: 2rem;
+            margin-bottom: 3rem;
             position: relative;
+            color: var(--neon-pink);
+            font-family: 'Cyber', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-pink);
         }
 
         .projects-category h2::after {
@@ -467,28 +716,37 @@
             position: absolute;
             bottom: -10px;
             left: 0;
-            width: 70px;
-            height: 2px;
-            background: var(--accent);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), transparent);
+            transition: all 0.5s;
+        }
+
+        .projects-category:hover h2::after {
+            width: 150px;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
             perspective: 1000px;
         }
 
         .project-card {
-            background-color: #112240;
-            border-radius: 4px;
-            padding: 2rem;
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            background: rgba(10, 10, 20, 0.7);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
             transform-style: preserve-3d;
-            box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
             position: relative;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
+            border: 1px solid rgba(0, 242, 252, 0.2);
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                inset 0 0 10px rgba(0, 242, 252, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .project-card.visible {
@@ -497,8 +755,11 @@
         }
 
         .project-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
+            transform: translateY(-10px) rotateX(3deg) rotateY(3deg);
+            box-shadow: 
+                0 15px 30px rgba(0, 242, 252, 0.3),
+                inset 0 0 15px rgba(0, 242, 252, 0.2);
+            border-color: var(--neon-blue);
         }
 
         .project-card::before {
@@ -508,65 +769,94 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, transparent 0%, var(--accent) 100%);
+            background: linear-gradient(
+                135deg, 
+                transparent 0%, 
+                rgba(0, 242, 252, 0.1) 50%, 
+                transparent 100%
+            );
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
             z-index: -1;
         }
 
         .project-card:hover::before {
-            opacity: 0.1;
+            opacity: 1;
         }
 
         .project-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: center;
         }
 
         .folder-icon {
-            font-size: 2.5rem;
-            color: var(--accent);
-            transition: all 0.3s;
+            font-size: 3rem;
+            color: var(--neon-blue);
+            transition: all 0.4s;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .project-card:hover .folder-icon {
-            transform: scale(1.1) rotate(10deg);
+            transform: scale(1.2) rotate(10deg);
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink);
         }
 
         .project-links a {
-            color: var(--light);
-            margin-left: 1rem;
-            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-left: 1.5rem;
+            font-size: 1.5rem;
             transition: all 0.3s;
             display: inline-block;
-        }
-
-        .project-links a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        .project-title {
-            color: var(--light);
-            margin-bottom: 1rem;
-            transition: color 0.3s;
             position: relative;
         }
 
-        .project-title::after {
+        .project-links a:hover {
+            color: var(--neon-blue);
+            transform: translateY(-5px);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .project-links a::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 1px;
-            background: var(--accent);
+            height: 2px;
+            background: var(--neon-blue);
             transition: width 0.3s ease-out;
         }
 
+        .project-links a:hover::after {
+            width: 100%;
+        }
+
+        .project-title {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+            position: relative;
+            font-family: 'Cyber', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            transition: width 0.5s ease-out;
+        }
+
         .project-card:hover .project-title {
-            color: var(--accent);
+            color: var(--neon-blue);
         }
 
         .project-card:hover .project-title::after {
@@ -574,13 +864,14 @@
         }
 
         .project-description {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
             transition: color 0.3s;
+            line-height: 1.7;
         }
 
         .project-card:hover .project-description {
-            color: var(--light);
+            color: var(--text-primary);
         }
 
         .project-tech {
@@ -590,24 +881,37 @@
         }
 
         .project-tech span {
-            color: var(--gray);
-            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             transition: all 0.3s;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            background: rgba(0, 242, 252, 0.1);
+            border: 1px solid rgba(0, 242, 252, 0.2);
         }
 
         .project-card:hover .project-tech span {
-            color: var(--accent);
+            color: var(--neon-blue);
+            background: rgba(0, 242, 252, 0.2);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 5px var(--neon-blue);
         }
 
-        /* Connect Section */
+        /* Cyberpunk Connect Section */
         .connect-section {
             text-align: center;
-            padding: 4rem 2rem;
-            background-color: rgba(10, 25, 47, 0.5);
-            border-radius: 8px;
-            margin-top: 4rem;
+            padding: 6rem 2rem;
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
+            margin: 0 auto;
+            max-width: 800px;
+            background: rgba(10, 10, 20, 0.7);
+            border: 1px solid rgba(0, 242, 252, 0.2);
+            box-shadow: 
+                0 0 30px rgba(0, 242, 252, 0.2),
+                inset 0 0 20px rgba(0, 242, 252, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .connect-section::before {
@@ -619,22 +923,26 @@
             height: 200%;
             background: linear-gradient(
                 to bottom right,
-                rgba(100, 255, 218, 0.1),
-                rgba(100, 255, 218, 0),
-                rgba(100, 255, 218, 0.1)
+                rgba(0, 242, 252, 0.1),
+                rgba(255, 42, 109, 0.05),
+                rgba(211, 0, 197, 0.1)
             );
             transform: rotate(30deg);
-            animation: hologram 6s linear infinite;
+            animation: hologramGradient 8s linear infinite;
             z-index: -1;
         }
 
         .connect-title {
-            color: var(--accent);
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            color: var(--neon-purple);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
             opacity: 0;
             transform: scale(0.9);
-            transition: all 0.5s ease-out;
+            transition: all 0.8s ease-out;
+            font-family: 'Cyber', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px var(--neon-purple);
         }
 
         .connect-section.visible .connect-title {
@@ -642,102 +950,221 @@
             transform: scale(1);
         }
 
+        .connect-description {
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out 0.2s;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .connect-section.visible .connect-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .connect-links {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
             flex-wrap: wrap;
         }
 
         .connect-link {
-            color: var(--light);
-            font-size: 1.5rem;
-            transition: all 0.3s;
+            color: var(--text-primary);
+            font-size: 2rem;
+            transition: all 0.4s;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(0, 242, 252, 0.1);
+            border: 1px solid rgba(0, 242, 252, 0.2);
+            box-shadow: 
+                0 0 10px rgba(0, 242, 252, 0.1),
+                inset 0 0 5px rgba(0, 242, 252, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         .connect-link:hover {
-            color: var(--accent);
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.1);
+            color: var(--neon-blue);
+            background: rgba(0, 242, 252, 0.2);
+            border-color: var(--neon-blue);
+            box-shadow: 
+                0 0 20px var(--neon-blue),
+                inset 0 0 10px rgba(0, 242, 252, 0.3);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .connect-link::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 242, 252, 0.2) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: hologramGradient 5s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .connect-link:hover::before {
+            opacity: 1;
         }
 
         .connect-section.visible .connect-link {
-            animation: fadeInUp 0.5s ease-out forwards;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
 
-        .connect-link:nth-child(1) { animation-delay: 0.2s; }
-        .connect-link:nth-child(2) { animation-delay: 0.4s; }
-        .connect-link:nth-child(3) { animation-delay: 0.6s; }
-        .connect-link:nth-child(4) { animation-delay: 0.8s; }
+        .connect-link:nth-child(1) { 
+            animation-delay: 0.2s; 
+            color: var(--neon-blue);
+        }
+        .connect-link:nth-child(2) { 
+            animation-delay: 0.4s; 
+            color: var(--neon-pink);
+        }
+        .connect-link:nth-child(3) { 
+            animation-delay: 0.6s; 
+            color: var(--neon-purple);
+        }
+        .connect-link:nth-child(4) { 
+            animation-delay: 0.8s; 
+            color: var(--matrix-green);
+        }
 
-        @keyframes hologram {
-            0% { transform: rotate(30deg) translateX(0); }
-            100% { transform: rotate(30deg) translateX(-50%); }
+        /* Cyberpunk Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            border-top: 1px solid rgba(0, 242, 252, 0.1);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(0, 242, 252, 0.05),
+                transparent
+            );
+            z-index: -1;
+        }
+
+        footer p {
+            position: relative;
+        }
+
+        footer p::before,
+        footer p::after {
+            content: '//';
+            color: var(--neon-blue);
+            margin: 0 1rem;
+            opacity: 0.5;
+        }
+
+        /* Cyberpunk Animations */
+        @keyframes rotateBackground {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes underlineExpand {
+            to { width: 100%; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray);
-            font-size: 0.8rem;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
             }
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            nav {
-                padding: 1.5rem;
-            }
-            
-            .hero, .section {
-                padding: 6rem 1.5rem;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
+        @media (max-width: 1024px) {
             .about-content {
                 grid-template-columns: 1fr;
             }
             
             .about-image {
                 margin: 0 auto;
+                order: -1;
+                max-width: 300px;
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem;
+            }
+            
+            .hero, .section {
+                padding: 6rem 2rem;
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .connect-links {
+                gap: 1.5rem;
+            }
+            
+            .connect-link {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
             }
 
             /* Show mobile enter button */
@@ -748,91 +1175,113 @@
                 animation-delay: 1.5s;
             }
 
-            /* Adjust terminal for mobile */
-            .terminal-header, .terminal-body {
+            /* Adjust hologram size */
+            .hologram-container {
                 width: 90vw;
+                height: 50vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .resume-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .connect-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Terminal Loader -->
+    <!-- Cyberpunk Terminal Loader -->
     <div id="loader">
-        <div class="terminal-header">
-            <div class="terminal-dot"></div>
-            <div class="terminal-dot"></div>
-            <div class="terminal-dot"></div>
-        </div>
-        <div class="terminal-body" id="terminal-body">
-            <div class="terminal-line">> Initializing QA Testing Suite...</div>
-            <div class="terminal-line">> Loading Test Cases...</div>
-            <div class="terminal-line">> Analyzing Bug Reports...</div>
-            <div class="terminal-line">> Verifying Test Coverage...</div>
-            <div class="terminal-line">> Establishing Secure Connection...</div>
-            <div class="terminal-line">> Welcome to QA Console<span class="terminal-cursor"></span></div>
-            <div class="terminal-line" id="enter-prompt">> Press [Enter] to continue...</div>
-            <button class="mobile-enter-btn" id="mobileEnterBtn">Enter Portfolio</button>
+        <div class="hologram-container">
+            <div class="hologram">
+                <div class="terminal-header">
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                    <div class="terminal-dot"></div>
+                </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="terminal-line">INITIALIZING QA_TESTING_SUITE.EXE</div>
+                    <div class="terminal-line">LOADING TEST_CASES...</div>
+                    <div class="terminal-line">ANALYZING BUG_REPORTS...</div>
+                    <div class="terminal-line">VERIFYING TEST_COVERAGE...</div>
+                    <div class="terminal-line">ESTABLISHING SECURE_CONNECTION...</div>
+                    <div class="terminal-line">WELCOME TO QA_CONSOLE<span class="terminal-cursor"></span></div>
+                    <div class="terminal-line" id="enter-prompt">PRESS_[ENTER]_TO_CONTINUE...</div>
+                    <button class="mobile-enter-btn" id="mobileEnterBtn">ACCESS PORTFOLIO</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Matrix Rain Background -->
-    <canvas class="matrix-rain" id="matrixRain"></canvas>
-
-    <!-- Portfolio Content -->
+    <!-- Cyberpunk Portfolio Content -->
     <div id="portfolio-content">
-        <!-- Navigation -->
+        <!-- Cyberpunk Navigation -->
         <nav>
-            <div class="logo">Prince Raj</div>
+            <div class="logo">PRINCE_RAJ</div>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#work">Work</a>
-                <a href="#connect">Connect</a>
-                <a href="https://github.com/princu2701/princu2701.github.io/raw/master/Prince_Raj_Resume.pdf" class="resume-btn">Resume</a>
+                <a href="#about">ABOUT</a>
+                <a href="#experience">EXPERIENCE</a>
+                <a href="#work">WORK</a>
+                <a href="#connect">CONNECT</a>
+                <a href="https://github.com/princu2701/princu2701.github.io/raw/master/Prince_Raj_Resume.pdf" class="resume-btn">RESUME</a>
             </div>
         </nav>
         
-        <!-- Hero Section -->
+        <!-- Cyberpunk Hero Section -->
         <section class="hero">
-            <div id="particles-js"></div>
             <div class="hero-content">
-                <p class="hero-subtitle">Hi, I'm</p>
-                <h1 class="hero-title">Prince Raj.</h1>
-                <h2 class="hero-title" style="color: var(--gray);">I break things to make them better.</h2>
+                <p class="hero-subtitle">QA_AUTOMATION_ENGINEER</p>
+                <h1 class="hero-title">PRINCE_RAJ</h1>
+                <h2 class="hero-title">I_BREAK_THINGS_TO_MAKE_THEM_BETTER</h2>
                 <p class="hero-description">
-                    QA Automation Engineer with 6+ months experience in test automation frameworks and quality assurance. 
-                    Currently ensuring flawless software at <span style="color: var(--accent);">BPAAS Solutions</span>.
+                    Specializing in building cybernetic test frameworks that evolve with your systems.
+                    Currently hardening digital infrastructure at <span style="color: var(--neon-blue);">BPAAS_SOLUTIONS</span>.
                 </p>
-                <button class="cta-button">Get In Touch</button>
+                <button class="cta-button">ENGAGE_PROTOCOL</button>
             </div>
         </section>
         
-        <!-- About Section -->
+        <!-- Cyberpunk About Section -->
         <section class="section" id="about">
             <div class="section-title">
-                <h2>About Me</h2>
+                <h2>SYSTEM_SCAN</h2>
                 <div class="line"></div>
             </div>
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        Passionate Software Quality Engineer with hands-on experience in Automation, Manual, API, and Mobile Testing. 
-                        My mission is to bridge the gap between development and quality assurance.
+                        Cybernetic quality engineer with 6+ months experience in automation, manual, API, and mobile testing protocols.
+                        Mission: to bridge the gap between development and quality assurance through advanced testing methodologies.
                     </p>
                     <p>
-                        At BPAAS Solutions, I've implemented automation frameworks that reduced regression testing time by 70% 
-                        while increasing test coverage to 85%+.
+                        At BPAAS SOLUTIONS, deployed automation frameworks that reduced regression testing time by 70% while increasing test coverage to 85%+.
+                        Implemented CI/CD pipeline integration for continuous quality assurance.
                     </p>
                     <p>
-                        Technical Expertise:
+                        <span style="color: var(--neon-blue);">>> TECHNICAL_SPECS:</span>
                     </p>
                     <ul class="skills-list">
-                        <li>Automation: Selenium, Cypress, Appium</li>
-                        <li>Programming: Java, JavaScript</li>
+                        <li>AUTOMATION: Selenium, Cypress, Appium</li>
+                        <li>PROGRAMMING: Java, JavaScript</li>
                         <li>CI/CD: Jenkins, GitHub Actions</li>
-                        <li>Test Management: JIRA, TestRail</li>
-                        <li>API Testing: Postman, Rest Assured</li>
-                        <li>Database Testing: SQL, MySQL</li>
+                        <li>TEST_MANAGEMENT: JIRA, TestRail</li>
+                        <li>API_TESTING: Postman, Rest Assured</li>
+                        <li>DATABASE_TESTING: SQL, MySQL</li>
                     </ul>
                 </div>
                 <div class="about-image">
@@ -841,10 +1290,10 @@
             </div>
         </section>
         
-        <!-- Experience Section -->
+        <!-- Cyberpunk Experience Section -->
         <section class="section" id="experience">
             <div class="section-title">
-                <h2>Experience</h2>
+                <h2>MISSION_LOG</h2>
                 <div class="line"></div>
             </div>
             <div class="projects-grid">
@@ -855,17 +1304,17 @@
                             <a href="#"><i class="fas fa-link"></i></a>
                         </div>
                     </div>
-                    <h3 class="project-title">QA Automation Engineer</h3>
+                    <h3 class="project-title">QA_AUTOMATION_ENGINEER</h3>
                     <p class="project-description">
-                        BPAAS Solutions Pvt. Ltd. (2024 - Present)
+                        BPAAS SOLUTIONS (2024 - PRESENT)
                         <br>• Designed Selenium WebDriver framework using POM
                         <br>• Reduced regression time by 70%
                         <br>• Integrated tests into CI/CD pipeline
                     </p>
                     <div class="project-tech">
-                        <span>Selenium</span>
-                        <span>Java</span>
-                        <span>Jenkins</span>
+                        <span>SELENIUM</span>
+                        <span>JAVA</span>
+                        <span>JENKINS</span>
                     </div>
                 </div>
                 
@@ -876,28 +1325,28 @@
                             <a href="#"><i class="fas fa-link"></i></a>
                         </div>
                     </div>
-                    <h3 class="project-title">Software Tester</h3>
+                    <h3 class="project-title">SOFTWARE_TESTER</h3>
                     <p class="project-description">
-                        Freelance Projects (2022 - 2023)
+                        FREELANCE_PROJECTS (2022 - 2023)
                         <br>• Executed manual test cases
                         <br>• Documented defects in JIRA
                         <br>• Created test plans
                     </p>
                     <div class="project-tech">
-                        <span>Manual Testing</span>
+                        <span>MANUAL_TESTING</span>
                         <span>JIRA</span>
-                        <span>Test Cases</span>
+                        <span>TEST_CASES</span>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Updated Projects Section -->
+        <!-- Cyberpunk Projects Section -->
         <section class="section" id="work">
             <!-- My Projects Section -->
             <div class="projects-category">
                 <div class="section-title">
-                    <h2>My Projects</h2>
+                    <h2>PERSONAL_PROJECTS</h2>
                     <div class="line"></div>
                 </div>
                 <div class="projects-grid">
@@ -909,14 +1358,15 @@
                                 <a href="#"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
-                        <h3 class="project-title">Selenium POM Framework</h3>
+                        <h3 class="project-title">SELENIUM_POM_FRAMEWORK</h3>
                         <p class="project-description">
-                            Robust Page Object Model framework for Selenium with reusable components and comprehensive reporting.
+                            A cybernetic Page Object Model framework for Selenium automation testing with modular components,
+                            adaptive reporting, and self-healing test capabilities.
                         </p>
                         <div class="project-tech">
-                            <span>Selenium</span>
-                            <span>Java</span>
-                            <span>TestNG</span>
+                            <span>SELENIUM</span>
+                            <span>JAVA</span>
+                            <span>TESTNG</span>
                         </div>
                     </div>
                     
@@ -928,13 +1378,14 @@
                                 <a href="#"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
-                        <h3 class="project-title">Mobile App Automation</h3>
+                        <h3 class="project-title">MOBILE_APP_AUTOMATION</h3>
                         <p class="project-description">
-                            Automated testing framework for mobile applications using Appium with parallel execution capabilities.
+                            Neural network-assisted mobile testing automation using Appium with parallel execution
+                            across multiple device matrices and real-time performance monitoring.
                         </p>
                         <div class="project-tech">
-                            <span>Appium</span>
-                            <span>Java</span>
+                            <span>APPIUM</span>
+                            <span>JAVA</span>
                             <span>CI/CD</span>
                         </div>
                     </div>
@@ -947,13 +1398,14 @@
                                 <a href="#"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
-                        <h3 class="project-title">GDL Test Cases</h3>
+                        <h3 class="project-title">GDL_TEST_CASES</h3>
                         <p class="project-description">
-                            Comprehensive manual test cases for GDL Project with detailed test scenarios.
+                            Comprehensive manual test cases for GDL Project with adaptive test scenarios
+                            that evolve based on defect patterns and user behavior analytics.
                         </p>
                         <div class="project-tech">
-                            <span>Manual Testing</span>
-                            <span>Test Cases</span>
+                            <span>MANUAL_TESTING</span>
+                            <span>TEST_CASES</span>
                             <span>JIRA</span>
                         </div>
                     </div>
@@ -963,7 +1415,7 @@
             <!-- Real-Time Projects Section -->
             <div class="projects-category">
                 <div class="section-title">
-                    <h2>Real-Time Projects</h2>
+                    <h2>REAL-TIME_PROJECTS</h2>
                     <div class="line"></div>
                 </div>
                 <div class="projects-grid">
@@ -975,14 +1427,15 @@
                                 <a href="#"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
-                        <h3 class="project-title">Usha Project</h3>
+                        <h3 class="project-title">USHA_PROJECT</h3>
                         <p class="project-description">
-                            Master Data Management and Module Testing Automation with CI/CD integration.
+                            Master Data Management and Module Testing Automation with CI/CD integration
+                            and predictive failure analysis using machine learning models.
                         </p>
                         <div class="project-tech">
-                            <span>Selenium</span>
-                            <span>Java</span>
-                            <span>Jenkins</span>
+                            <span>SELENIUM</span>
+                            <span>JAVA</span>
+                            <span>JENKINS</span>
                         </div>
                     </div>
                     
@@ -994,26 +1447,27 @@
                                 <a href="#"><i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
-                        <h3 class="project-title">E-commerce Platform Testing</h3>
+                        <h3 class="project-title">E-COMMERCE_PLATFORM</h3>
                         <p class="project-description">
-                            Comprehensive test automation for BPAAS e-commerce platform covering UI, API, and performance testing.
+                            Comprehensive test automation for BPAAS e-commerce platform covering UI, API,
+                            and performance testing with real-time anomaly detection.
                         </p>
                         <div class="project-tech">
-                            <span>Cypress</span>
-                            <span>JavaScript</span>
-                            <span>Jenkins</span>
+                            <span>CYPRESS</span>
+                            <span>JAVASCRIPT</span>
+                            <span>JENKINS</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Connect Section -->
+        <!-- Cyberpunk Connect Section -->
         <section class="section" id="connect">
             <div class="connect-section">
-                <h2 class="connect-title">Let's Connect</h2>
-                <p class="hero-description">
-                    Feel free to reach out for collaborations or just a friendly hello
+                <h2 class="connect-title">CONNECT_PROTOCOL</h2>
+                <p class="connect-description">
+                    Initiate communication sequence for collaboration opportunities or cybernetic quality assurance consultations
                 </p>
                 <div class="connect-links">
                     <a href="https://github.com/princu2701" class="connect-link" target="_blank">
@@ -1032,16 +1486,14 @@
             </div>
         </section>
         
-        <!-- Footer -->
+        <!-- Cyberpunk Footer -->
         <footer>
-            <p>Designed & Built by Prince Raj</p>
+            <p>DESIGNED_&_BUILT_BY_PRINCE_RAJ</p>
         </footer>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Terminal Loader Animation
+        // Cyberpunk Terminal Loader Animation
         document.addEventListener('DOMContentLoaded', function() {
             const loader = document.getElementById('loader');
             const portfolioContent = document.getElementById('portfolio-content');
@@ -1075,7 +1527,8 @@
             // Handle enter (keyboard or button)
             function enterPortfolio() {
                 // Start exit animation
-                loader.classList.add('animate-out');
+                loader.style.opacity = '0';
+                loader.style.transform = 'scale(1.5)';
                 
                 // Show portfolio content
                 setTimeout(() => {
@@ -1083,12 +1536,12 @@
                     
                     // Initialize all animations
                     initPortfolioAnimations();
-                }, 500);
+                }, 800);
                 
                 // Remove loader after animation completes
                 setTimeout(() => {
                     loader.style.display = 'none';
-                }, 1000);
+                }, 1200);
             }
 
             // Listen for Enter key press
@@ -1102,29 +1555,6 @@
             mobileEnterBtn.addEventListener('click', enterPortfolio);
             
             function initPortfolioAnimations() {
-                // Initialize Matrix Rain
-                initMatrixRain();
-                
-                // Initialize Particles.js
-                particlesJS('particles-js', {
-                    particles: {
-                        number: { value: 80, density: { enable: true, value_area: 800 } },
-                        color: { value: "#64ffda" },
-                        shape: { type: "circle" },
-                        opacity: { value: 0.5, random: true },
-                        size: { value: 3, random: true },
-                        line_linked: { enable: true, distance: 150, color: "#64ffda", opacity: 0.2, width: 1 },
-                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true, mode: "repulse" },
-                            onclick: { enable: true, mode: "push" }
-                        }
-                    }
-                });
-                
                 // Initialize scroll animations
                 const sections = document.querySelectorAll('.section, .connect-section, .hero');
                 const sectionTitles = document.querySelectorAll('.section-title');
@@ -1180,49 +1610,18 @@
                 if (connectSection) {
                     observer.observe(connectSection);
                 }
-            }
-            
-            function initMatrixRain() {
-                const canvas = document.getElementById('matrixRain');
-                const ctx = canvas.getContext('2d');
-                
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                
-                const binary = '01';
-                
-                const fontSize = 16;
-                const columns = canvas.width / fontSize;
-                
-                const rainDrops = [];
-                
-                for (let x = 0; x < columns; x++) {
-                    rainDrops[x] = 1;
-                }
-                
-                const draw = () => {
-                    ctx.fillStyle = 'rgba(10, 25, 47, 0.05)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Add cyberpunk hover effects to all links
+                document.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        const colors = ['var(--neon-blue)', 'var(--neon-pink)', 'var(--neon-purple)', 'var(--matrix-green)'];
+                        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                        link.style.textShadow = `0 0 10px ${randomColor}`;
+                    });
                     
-                    ctx.fillStyle = '#64ffda';
-                    ctx.font = fontSize + 'px monospace';
-                    
-                    for (let i = 0; i < rainDrops.length; i++) {
-                        const text = binary.charAt(Math.floor(Math.random() * binary.length));
-                        ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-                        
-                        if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                            rainDrops[i] = 0;
-                        }
-                        rainDrops[i]++;
-                    }
-                };
-                
-                setInterval(draw, 30);
-                
-                window.addEventListener('resize', () => {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
+                    link.addEventListener('mouseleave', () => {
+                        link.style.textShadow = 'none';
+                    });
                 });
             }
         });
