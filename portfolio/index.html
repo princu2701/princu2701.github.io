@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Raj - SDET Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Prince<span class="accent">Raj</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#github" class="nav-link">GitHub</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#goals" class="nav-link">Goals</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="matrix-bg">
+            <canvas id="matrixCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="greeting">Hello, I'm</span>
+                    <span class="name">Prince Raj</span>
+                </h1>
+                <div class="typing-container">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description">
+                    Passionate Software Test Engineer with 9+ months of experience crafting bulletproof applications 
+                    through intelligent automation, comprehensive testing strategies, and cutting-edge QA methodologies.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Hire Me
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="profile-status">
+                        <span class="status-dot"></span>
+                        Available for opportunities
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Transforming bugs into features, one test at a time</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a dedicated <strong>Software Test Engineer</strong> with 9+ months of hands-on experience in automated testing, 
+                        currently working as a Software Test Engineer Trainee at <strong>BPAAS Solutions Pvt. Ltd.</strong> in Gurgaon since October 2024.
+                    </p>
+                    <p>
+                        With a strong foundation in both manual and automated testing, I specialize in creating robust test automation frameworks 
+                        using modern tools like Selenium, Cypress, and comprehensive API testing strategies. My expertise spans across multiple 
+                        testing domains including web automation, mobile testing, and API validation.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">9+</div>
+                            <div class="stat-label">Months Experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Major Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">12+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="current-role-card">
+                        <h3>Current Role</h3>
+                        <div class="role-item">
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <strong>Software Test Engineer Trainee</strong>
+                                <span>BPAAS Solutions Pvt. Ltd.</span>
+                                <span class="location">Gurgaon • October 2024 - Present</span>
+                            </div>
+                        </div>
+                        <div class="role-highlights">
+                            <div class="highlight">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Automated Testing Frameworks</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-check-circle"></i>
+                                <span>API Testing & Validation</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-check-circle"></i>
+                                <span>CI/CD Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Arsenal</h2>
+                <p class="section-subtitle">Technologies I master to deliver quality software</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-robot"></i> Automation Testing
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fab fa-java"></i>
+                            <span>Selenium (Java)</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js-square"></i>
+                            <span>Cypress (JavaScript)</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Selenium Grid</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-vial"></i>
+                            <span>TestNG</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Appium</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-exchange-alt"></i> API Testing
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Postman</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-coffee"></i>
+                            <span>Rest Assured</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>API Automation</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>JSON/XML</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-cogs"></i> CI/CD & DevOps
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fab fa-jenkins"></i>
+                            <span>Jenkins</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Maven</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Allure Reporting</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-tools"></i> Development Tools
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-hand-paper"></i>
+                            <span>Manual Testing</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-bug"></i>
+                            <span>Bug Tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcasing my testing expertise through real-world applications</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">RealTime Enterprise Level Selenium Project</h3>
+                        <a href="https://github.com/princu2701/RealTime_Selenium_Project" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="project-description">
+                        Comprehensive real-time Selenium automation framework built with Java, featuring robust test scenarios, 
+                        page object model implementation, and detailed reporting capabilities for web application testing.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Selenium</span>
+                        <span class="tech-tag">TestNG</span>
+                        <span class="tech-tag">Maven</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Usha Comprehensive Vendor Module Testing</h3>
+                        <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="project-description">
+                        Advanced Master Data Management (MDM) testing automation suite with comprehensive module testing 
+                        capabilities, data validation, and integration testing for enterprise-level applications.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">Selenium</span>
+                        <span class="tech-tag">MDM Testing</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Appium Cross-App Tests</h3>
+                        <a href="https://github.com/princu2701/Appium-Cross-App-Tests" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="project-description">
+                        Cross-platform mobile testing framework using Appium for both Android and iOS applications, 
+                        featuring device farm integration and parallel execution capabilities.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Appium</span>
+                        <span class="tech-tag">Mobile Testing</span>
+                        <span class="tech-tag">Cross-Platform</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Cypress POM Framework</h3>
+                        <a href="https://github.com/princu2701/CYPRESS_POM" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="project-description">
+                        Modern Page Object Model implementation using Cypress for end-to-end testing, featuring clean 
+                        architecture, reusable components, and comprehensive test coverage.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Cypress</span>
+                        <span class="tech-tag">POM</span>
+                        <span class="tech-tag">E2E Testing</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Cypress API Data-Driven Model</h3>
+                        <a href="https://github.com/princu2701/CypressApi_DataDrivenModel" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="project-description">
+                        Data-driven API testing framework using Cypress with dynamic test data management, 
+                        comprehensive API validation, and automated report generation capabilities.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Cypress</span>
+                        <span class="tech-tag">API Testing</span>
+                        <span class="tech-tag">Data-Driven</span>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Project L3-Harris</h3>
+                        <a href="https://github.com/princu2701/Project-1-L3-Harris" class="project-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                    <p class="project-description">
+                        Enterprise-level testing project for L3-Harris systems, featuring comprehensive test automation, 
+                        security testing, and performance validation for mission-critical applications.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Enterprise Testing</span>
+                        <span class="tech-tag">Security Testing</span>
+                        <span class="tech-tag">Performance</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Stats Section -->
+    <section id="github" class="github-stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">GitHub Activity</h2>
+                <p class="section-subtitle">My coding journey in numbers</p>
+            </div>
+            <div class="github-grid">
+                <div class="github-card">
+                    <div class="github-content">
+                        <div class="github-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub Profile</h3>
+                        <p>Explore my repositories and contributions</p>
+                        <a href="https://github.com/princu2701" class="github-link" target="_blank">
+                            View Profile <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="github-card">
+                    <div class="github-content">
+                        <div class="github-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3>6+ Repositories</h3>
+                        <p>Active projects in test automation</p>
+                        <a href="https://github.com/princu2701?tab=repositories" class="github-link" target="_blank">
+                            View Repos <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="github-card">
+                    <div class="github-content">
+                        <div class="github-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Active Contributor</h3>
+                        <p>Regular commits and improvements</p>
+                        <a href="https://github.com/princu2701" class="github-link" target="_blank">
+                            View Activity <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <p class="section-subtitle">Validated expertise in quality assurance</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="cert-title">Masai Construct Week Project Certificate</h3>
+                    <p class="cert-description">Full-stack project development with integrated testing strategies and comprehensive QA implementation</p>
+                    <div class="cert-issuer">
+                        <i class="fas fa-university"></i>
+                        <span>Masai School</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="cert-title">Agile Manual & Automation Certificate</h3>
+                    <p class="cert-description">Comprehensive training in Agile testing methodologies, manual testing processes, and automation best practices</p>
+                    <div class="cert-issuer">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>TechCanvass</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="cert-title">Selenium WebDriver with Java Certificate</h3>
+                    <p class="cert-description">Advanced automation testing certification covering Selenium WebDriver implementation with Java programming</p>
+                    <div class="cert-issuer">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>TAU (Test Automation University)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Goals Section -->
+    <section id="goals" class="career-goals">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Career Roadmap</h2>
+                <p class="section-subtitle">My journey to becoming a Senior SDET</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Senior SDET Role</h3>
+                        <p>Advancing to senior-level responsibilities in test automation, team leadership, and architectural decision-making in quality assurance</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="65"></div>
+                        </div>
+                        <span class="progress-text">65% Complete</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>CI/CD Mastery</h3>
+                        <p>Deepening expertise in continuous integration and deployment pipelines, DevOps practices, and automated testing integration</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="50"></div>
+                        </div>
+                        <span class="progress-text">50% Complete</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>AWS Cloud Expertise</h3>
+                        <p>Learning cloud-based testing, infrastructure automation, and scalable testing solutions in AWS ecosystem</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="30"></div>
+                        </div>
+                        <span class="progress-text">30% Complete</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Advanced Infrastructure Knowledge</h3>
+                        <p>Mastering advanced infrastructure concepts, containerization, orchestration, and scalable testing architectures</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="35"></div>
+                        </div>
+                        <span class="progress-text">35% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to discuss your next testing challenge?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>I'm always open to discussing new opportunities, innovative projects, or just talking about the latest in test automation and quality assurance.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>princeraj27janu@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Gurgaon, India</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Software Test Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-links">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prince-raj-a1493b228" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/princu2701" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://github.com/princu2701/princu2701.github.io" class="social-link" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>Portfolio</span>
+                        </a>
+                        <a href="mailto:princeraj27janu@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Prince Raj. Crafted with <i class="fas fa-heart"></i> and lots of coffee.</p>
+                <p>Built with HTML, CSS, and JavaScript • Ready for GitHub Pages</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
