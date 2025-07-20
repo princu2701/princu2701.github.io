@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Raj - SDET Portfolio</title>
+    <title>Prince Raj – Elite SDET Portfolio | Dynamic Experience</title>
+    <meta name="description" content="Prince Raj – Senior SDET with expertise in Selenium, Cypress, API Testing & CI/CD. Dynamic portfolio with interactive project sections and advanced UX features.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,10 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Loading Screen -->
     <div class="loading-screen">
         <div class="loading-content">
             <div class="spinner"></div>
-            <p>Loading Portfolio...</p>
+            <p>Loading Elite Portfolio...</p>
         </div>
     </div>
 
@@ -68,6 +70,9 @@
                     <a href="#contact" class="btn btn-secondary">
                         <i class="fas fa-envelope"></i> Hire Me
                     </a>
+                    <a href="#" class="btn btn-tertiary" onclick="downloadResume()">
+                        <i class="fas fa-download"></i> Resume
+                    </a>
                 </div>
             </div>
             <div class="hero-image">
@@ -88,6 +93,20 @@
             <span></span>
         </div>
     </section>
+
+    <!-- SDET Bug Easter Egg -->
+    <div class="sdet-bug-easter-egg">
+        <svg width="48" height="19" viewBox="0 0 48 19">
+            <g>
+                <ellipse cx="24" cy="13" rx="10" ry="5" fill="#2e2e2e"/>
+                <circle cx="24" cy="10" r="5" fill="#00f5ff"/>
+                <circle cx="23" cy="9" r="1" fill="#fff"/>
+                <rect x="18" y="14" width="2" height="10" rx="0.5" fill="#00f5ff">
+                    <animateTransform attributeName="transform" begin="0s" dur="8s" type="translate" from="0 0" to="40 0" repeatCount="indefinite"/>
+                </rect>
+            </g>
+        </svg>
+    </div>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -157,11 +176,11 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section with Interactive Popups -->
     <section id="skills" class="skills">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Technical Arsenal</h2>
+                <h2 class="section-title glow-loop">Technical Arsenal</h2>
                 <p class="section-subtitle">Technologies I master to deliver quality software</p>
             </div>
             <div class="skills-grid">
@@ -170,13 +189,27 @@
                         <i class="fas fa-robot"></i> Automation Testing
                     </h3>
                     <div class="skill-items">
-                        <div class="skill-item">
+                        <div class="skill-item" data-skill="Selenium (Java)">
                             <i class="fab fa-java"></i>
                             <span>Selenium (Java)</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank">RealTime Selenium Project</a></li>
+                                    <li><a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" target="_blank">Usha Comprehensive MDM Testing</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="skill-item">
+                        <div class="skill-item" data-skill="Cypress (JavaScript)">
                             <i class="fab fa-js-square"></i>
                             <span>Cypress (JavaScript)</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/CYPRESS_POM" target="_blank">Cypress POM Framework</a></li>
+                                    <li><a href="https://github.com/princu2701/CypressApi_DataDrivenModel" target="_blank">Cypress API Data-Driven Model</a></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="skill-item">
                             <i class="fas fa-network-wired"></i>
@@ -186,9 +219,15 @@
                             <i class="fas fa-vial"></i>
                             <span>TestNG</span>
                         </div>
-                        <div class="skill-item">
+                        <div class="skill-item" data-skill="Appium">
                             <i class="fas fa-mobile-alt"></i>
                             <span>Appium</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/Appium-Cross-App-Tests" target="_blank">Appium Cross-App Tests</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -202,9 +241,15 @@
                             <i class="fas fa-paper-plane"></i>
                             <span>Postman</span>
                         </div>
-                        <div class="skill-item">
+                        <div class="skill-item" data-skill="Rest Assured">
                             <i class="fas fa-coffee"></i>
                             <span>Rest Assured</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank">RealTime Selenium Project</a></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="skill-item">
                             <i class="fas fa-code"></i>
@@ -268,130 +313,524 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Parallax Code Rain Strip -->
+    <section class="parallax-band"></section>
+
+    <!-- Enhanced Projects Section with Dynamic Features -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Showcasing my testing expertise through real-world applications</p>
+                <p class="section-subtitle">Interactive showcase of my testing expertise</p>
+                
+                <!-- Project Filter Tabs -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="selenium">Selenium</button>
+                    <button class="filter-btn" data-filter="cypress">Cypress</button>
+                    <button class="filter-btn" data-filter="api">API Testing</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
+                </div>
             </div>
+            
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">RealTime Enterprise Level Selenium Project</h3>
-                        <a href="https://github.com/princu2701/RealTime_Selenium_Project" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
+                <!-- Project 1: RealTime Selenium -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=338&fit=crop" alt="Selenium Testing Framework" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Enterprise Level</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('selenium-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('selenium-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <p class="project-description">
-                        Comprehensive real-time Selenium automation framework built with Java, featuring robust test scenarios, 
-                        page object model implementation, and detailed reporting capabilities for web application testing.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Selenium</span>
-                        <span class="tech-tag">TestNG</span>
-                        <span class="tech-tag">Maven</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Usha Comprehensive Vendor Module Testing</h3>
-                        <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <p class="project-description">
-                        Advanced Master Data Management (MDM) testing automation suite with comprehensive module testing 
-                        capabilities, data validation, and integration testing for enterprise-level applications.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">Selenium</span>
-                        <span class="tech-tag">MDM Testing</span>
-                        <span class="tech-tag">Automation</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Appium Cross-App Tests</h3>
-                        <a href="https://github.com/princu2701/Appium-Cross-App-Tests" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <p class="project-description">
-                        Cross-platform mobile testing framework using Appium for both Android and iOS applications, 
-                        featuring device farm integration and parallel execution capabilities.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Appium</span>
-                        <span class="tech-tag">Mobile Testing</span>
-                        <span class="tech-tag">Cross-Platform</span>
-                        <span class="tech-tag">Automation</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Cypress POM Framework</h3>
-                        <a href="https://github.com/princu2701/CYPRESS_POM" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <p class="project-description">
-                        Modern Page Object Model implementation using Cypress for end-to-end testing, featuring clean 
-                        architecture, reusable components, and comprehensive test coverage.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Cypress</span>
-                        <span class="tech-tag">POM</span>
-                        <span class="tech-tag">E2E Testing</span>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Cypress API Data-Driven Model</h3>
-                        <a href="https://github.com/princu2701/CypressApi_DataDrivenModel" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                    <p class="project-description">
-                        Data-driven API testing framework using Cypress with dynamic test data management, 
-                        comprehensive API validation, and automated report generation capabilities.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">Cypress</span>
-                        <span class="tech-tag">API Testing</span>
-                        <span class="tech-tag">Data-Driven</span>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">RealTime Enterprise Level Selenium Project</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Comprehensive real-time Selenium automation framework built with Java, featuring robust test scenarios, 
+                            page object model implementation, and detailed reporting capabilities for web application testing.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-java"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Selenium</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-vial"></i>
+                                    <span>TestNG</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Maven</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">Test Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">50+</span>
+                                <span class="metric-label">Test Cases</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3</span>
+                                <span class="metric-label">Environments</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3 class="project-title">Project L3-Harris</h3>
-                        <a href="https://github.com/princu2701/Project-1-L3-Harris" class="project-link" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
+
+                <!-- Project 2: Usha MDM Testing -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=338&fit=crop" alt="MDM Testing Automation" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-database"></i>
+                                    <span>MDM</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>Enterprise</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('mdm-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('mdm-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <p class="project-description">
-                        Enterprise-level testing project for L3-Harris systems, featuring comprehensive test automation, 
-                        security testing, and performance validation for mission-critical applications.
-                    </p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Enterprise Testing</span>
-                        <span class="tech-tag">Security Testing</span>
-                        <span class="tech-tag">Performance</span>
-                        <span class="tech-tag">Automation</span>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Usha Comprehensive Vendor Module Testing</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Advanced Master Data Management (MDM) testing automation suite with comprehensive module testing 
+                            capabilities, data validation, and integration testing for enterprise-level applications.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-html5"></i>
+                                    <span>HTML</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Selenium</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-database"></i>
+                                    <span>MDM</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">88%</span>
+                                <span class="metric-label">Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">35+</span>
+                                <span class="metric-label">Modules</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2</span>
+                                <span class="metric-label">Integrations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Appium Cross-App -->
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=338&fit=crop" alt="Mobile Testing Framework" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Mobile</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-sync"></i>
+                                    <span>Cross-Platform</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1.5 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/Appium-Cross-App-Tests" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('appium-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('appium-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Appium Cross-App Tests</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Cross-platform mobile testing framework using Appium for both Android and iOS applications, 
+                            featuring device farm integration and parallel execution capabilities.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Appium</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-vial"></i>
+                                    <span>Testing</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-sync"></i>
+                                    <span>Cross-Platform</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">92%</span>
+                                <span class="metric-label">Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">25+</span>
+                                <span class="metric-label">Test Cases</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4</span>
+                                <span class="metric-label">Devices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Cypress POM -->
+                <div class="project-card" data-category="cypress">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=600&h=338&fit=crop" alt="Cypress Testing Framework" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>POM</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/CYPRESS_POM" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('cypress-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('cypress-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Cypress POM Framework</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Modern Page Object Model implementation using Cypress for end-to-end testing, featuring clean 
+                            architecture, reusable components, and comprehensive test coverage.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-circle-nodes"></i>
+                                    <span>Cypress</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>POM</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-check-double"></i>
+                                    <span>E2E</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">98%</span>
+                                <span class="metric-label">Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">40+</span>
+                                <span class="metric-label">Components</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5</span>
+                                <span class="metric-label">Modules</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Cypress API Data-Driven -->
+                <div class="project-card" data-category="cypress api">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=338&fit=crop" alt="API Testing Automation" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>API</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-database"></i>
+                                    <span>Data-Driven</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1.5 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/CypressApi_DataDrivenModel" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('api-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('api-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Cypress API Data-Driven Model</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Data-driven API testing framework using Cypress with dynamic test data management, 
+                            comprehensive API validation, and automated report generation capabilities.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-circle-nodes"></i>
+                                    <span>Cypress</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>API</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-database"></i>
+                                    <span>Data-Driven</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">API Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">30+</span>
+                                <span class="metric-label">Endpoints</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">8</span>
+                                <span class="metric-label">Data Sets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: L3-Harris -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=338&fit=crop" alt="Enterprise Security Testing" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Security</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>Enterprise</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/Project-1-L3-Harris" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('l3harris-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('l3harris-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Project L3-Harris</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Enterprise-level testing project for L3-Harris systems, featuring comprehensive test automation, 
+                            security testing, and performance validation for mission-critical applications.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fas fa-building"></i>
+                                    <span>Enterprise</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Security</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Performance</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">99%</span>
+                                <span class="metric-label">Reliability</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">60+</span>
+                                <span class="metric-label">Test Suites</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">24/7</span>
+                                <span class="metric-label">Monitoring</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Details</h3>
+                <button class="modal-close" onclick="closeProjectModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content loaded here -->
+            </div>
+        </div>
+    </div>
 
     <!-- GitHub Stats Section -->
     <section id="github" class="github-stats">
@@ -440,6 +879,9 @@
             </div>
         </div>
     </section>
+
+    <!-- Parallax Code Rain Strip 2 -->
+    <section class="parallax-band"></section>
 
     <!-- Certifications Section -->
     <section id="certifications" class="certifications">
@@ -500,6 +942,7 @@
                     <div class="timeline-icon">
                         <i class="fas fa-user-graduate"></i>
                     </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Mentor junior SDETs to build leadership skills!</span>
                     <div class="timeline-content">
                         <h3>Senior SDET Role</h3>
                         <p>Advancing to senior-level responsibilities in test automation, team leadership, and architectural decision-making in quality assurance</p>
@@ -514,6 +957,7 @@
                     <div class="timeline-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Focus on Docker + K8s for scalable testing!</span>
                     <div class="timeline-content">
                         <h3>CI/CD Mastery</h3>
                         <p>Deepening expertise in continuous integration and deployment pipelines, DevOps practices, and automated testing integration</p>
@@ -528,6 +972,7 @@
                     <div class="timeline-icon">
                         <i class="fas fa-cloud"></i>
                     </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Start with AWS Lambda for serverless testing!</span>
                     <div class="timeline-content">
                         <h3>AWS Cloud Expertise</h3>
                         <p>Learning cloud-based testing, infrastructure automation, and scalable testing solutions in AWS ecosystem</p>
@@ -542,6 +987,7 @@
                     <div class="timeline-icon">
                         <i class="fas fa-server"></i>
                     </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Infrastructure as Code is key for modern SDETs!</span>
                     <div class="timeline-content">
                         <h3>Advanced Infrastructure Knowledge</h3>
                         <p>Mastering advanced infrastructure concepts, containerization, orchestration, and scalable testing architectures</p>
@@ -610,8 +1056,9 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 Prince Raj. Crafted with <i class="fas fa-heart"></i> and lots of coffee.</p>
-                <p>Built with HTML, CSS, and JavaScript • Ready for GitHub Pages</p>
+                <p>&copy; 2025 Prince Raj. Crafted with <i class="fas fa-heart"></i> and lots of coffee.</p>
+                <p>Built with HTML, CSS, and JavaScript • GitHub Pages Ready</p>
+                <small>Try the Konami Code: ↑↑↓↓←→←→BA for a surprise! 🎉</small>
             </div>
         </div>
     </footer>
