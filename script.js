@@ -1,923 +1,571 @@
-// DOM Elements
-const loadingScreen = document.querySelector('.loading-screen');
-const navbar = document.querySelector('.navbar');
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-const scrollToTopBtn = document.querySelector('.scroll-to-top');
+// ===== GLOBAL VARIABLES =====
+let matrixInterval;
+let konamiCode = [];
+const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
 
-// Global Variables
-let isFilteringProjects = false;
-let currentFilter = 'all';
+// ===== INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+});
 
-// Loading Screen
-window.addEventListener('load', () => {
+function initializeApp() {
+    // Initialize all components
+    initLoadingScreen();
+    initNavigation();
+    initMatrixBackground();
+    initTypingEffect();
+    initScrollEffects();
+    initProjectFilters();
+    initSkillPopups();
+    initProgressBars();
+    initScrollToTop();
+    initKonamiCode();
+    initEasterEgg();
+    
+    // Add resize listener for responsive adjustments
+    window.addEventListener('resize', handleResize);
+}
+
+// ===== LOADING SCREEN =====
+function initLoadingScreen() {
+    const loadingScreen = document.querySelector('.loading-screen');
+    
+    // Simulate loading time
     setTimeout(() => {
-        loadingScreen.classList.add('hide');
+        loadingScreen.classList.add('fade-out');
+        
+        // Remove from DOM after animation completes
         setTimeout(() => {
             loadingScreen.style.display = 'none';
         }, 500);
-    }, 1200);
-});
-
-// Typing Animation
-const typingTexts = [
-    "Software Test Engineer",
-    "SDET Specialist", 
-    "Automation QA Enthusiast",
-    "Quality Assurance Professional",
-    "Test Automation Expert",
-    "CI/CD Integration Specialist"
-];
-
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function typeText() {
-    const typingElement = document.getElementById('typingText');
-    if (!typingElement) return;
-    
-    const currentText = typingTexts[textIndex];
-    
-    if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-    }
-    
-    if (!isDeleting && charIndex === currentText.length) {
-        setTimeout(() => {
-            isDeleting = true;
-        }, 2000);
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % typingTexts.length;
-    }
-    
-    const typingSpeed = isDeleting ? 50 : 100;
-    setTimeout(typeText, typingSpeed);
+    }, 2000);
 }
 
-// Enhanced Project Filtering
-function initProjectFiltering() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
+// ===== NAVIGATION =====
+function initNavigation() {
+    const navbar = document.querySelector('.navbar');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
     
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (isFilteringProjects) return;
-            
-            const filter = button.getAttribute('data-filter');
-            if (filter === currentFilter) return;
-            
-            currentFilter = filter;
-            isFilteringProjects = true;
-            
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Animate projects out
-            projectCards.forEach((card, index) => {
-                card.style.transition = 'all 0.4s ease';
-                card.style.transform = 'translateY(30px) scale(0.9)';
-                card.style.opacity = '0';
-            });
-            
-            setTimeout(() => {
-                // Filter and animate projects in
-                projectCards.forEach((card, index) => {
-                    const categories = card.getAttribute('data-category') || '';
-                    const shouldShow = filter === 'all' || categories.includes(filter);
-                    
-                    if (shouldShow) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.transform = 'translateY(0) scale(1)';
-                            card.style.opacity = '1';
-                        }, index * 100);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                setTimeout(() => {
-                    isFilteringProjects = false;
-                }, 500);
-            }, 400);
-        });
-    });
-}
-
-// Project Demo Functions
-function openProjectDemo(demoType) {
-    const demoData = {
-        'selenium-demo': {
-            title: 'Selenium Framework Demo',
-            content: `
-                <div class="demo-console">
-                    <div class="console-header">
-                        <span class="console-title">Test Execution Console</span>
-                        <span class="console-status running">Running...</span>
-                    </div>
-                    <div class="console-output">
-                        <div class="console-line success">✓ WebDriver initialized successfully</div>
-                        <div class="console-line">→ Navigating to login page...</div>
-                        <div class="console-line success">✓ Login page loaded</div>
-                        <div class="console-line">→ Entering credentials...</div>
-                        <div class="console-line success">✓ Authentication successful</div>
-                        <div class="console-line">→ Running test suite...</div>
-                        <div class="console-line success">✓ All 15 test cases passed</div>
-                        <div class="console-line info">📊 Test Coverage: 95%</div>
-                    </div>
-                </div>
-            `
-        },
-        'cypress-demo': {
-            title: 'Cypress E2E Demo',
-            content: `
-                <div class="demo-console">
-                    <div class="console-header">
-                        <span class="console-title">Cypress Test Runner</span>
-                        <span class="console-status running">Active</span>
-                    </div>
-                    <div class="console-output">
-                        <div class="console-line">🚀 Starting Cypress...</div>
-                        <div class="console-line success">✓ POM structure validated</div>
-                        <div class="console-line">→ Executing user journey tests...</div>
-                        <div class="console-line success">✓ Homepage elements verified</div>
-                        <div class="console-line success">✓ Form submission working</div>
-                        <div class="console-line success">✓ API integration tests passed</div>
-                        <div class="console-line info">🎯 40 components tested successfully</div>
-                    </div>
-                </div>
-            `
-        },
-        'api-demo': {
-            title: 'API Testing Demo',
-            content: `
-                <div class="demo-console">
-                    <div class="console-header">
-                        <span class="console-title">API Test Execution</span>
-                        <span class="console-status running">Testing</span>
-                    </div>
-                    <div class="console-output">
-                        <div class="console-line">🔗 Connecting to API endpoints...</div>
-                        <div class="console-line success">✓ GET /api/users - 200 OK</div>
-                        <div class="console-line success">✓ POST /api/auth - 201 Created</div>
-                        <div class="console-line success">✓ PUT /api/profile - 200 OK</div>
-                        <div class="console-line success">✓ DELETE /api/session - 204 No Content</div>
-                        <div class="console-line info">📈 100% API coverage achieved</div>
-                        <div class="console-line info">⚡ Average response time: 145ms</div>
-                    </div>
-                </div>
-            `
+    // Scroll effect for navbar
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
-    };
-    
-    const demo = demoData[demoType];
-    if (demo) {
-        showProjectModal(demo.title, demo.content);
-    }
-}
-
-// Project Details Functions
-function openProjectDetails(projectType) {
-    const projectData = {
-        'selenium-project': {
-            title: 'RealTime Selenium Project - Technical Deep Dive',
-            content: `
-                <div class="project-details">
-                    <h4>🎯 Project Overview</h4>
-                    <p>Enterprise-grade Selenium automation framework built for scalable web application testing with comprehensive reporting and CI/CD integration.</p>
-                    
-                    <h4>🔧 Technical Architecture</h4>
-                    <ul>
-                        <li><strong>Framework:</strong> Page Object Model (POM) with Selenium WebDriver 4.x</li>
-                        <li><strong>Language:</strong> Java 11+ with Maven build management</li>
-                        <li><strong>Testing:</strong> TestNG for test execution and parallel testing</li>
-                        <li><strong>Reporting:</strong> Allure Reports with screenshots and videos</li>
-                        <li><strong>CI/CD:</strong> Jenkins pipeline with Docker containerization</li>
-                    </ul>
-                    
-                    <h4>📊 Key Achievements</h4>
-                    <div class="achievement-grid">
-                        <div class="achievement-item">
-                            <span class="achievement-value">95%</span>
-                            <span class="achievement-label">Test Coverage</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">75%</span>
-                            <span class="achievement-label">Time Reduction</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">50+</span>
-                            <span class="achievement-label">Test Scenarios</span>
-                        </div>
-                    </div>
-                    
-                    <h4>🚀 Implementation Highlights</h4>
-                    <ul>
-                        <li>Cross-browser testing (Chrome, Firefox, Safari, Edge)</li>
-                        <li>Parallel execution across multiple environments</li>
-                        <li>Data-driven testing with Excel/CSV integration</li>
-                        <li>Advanced wait strategies and element synchronization</li>
-                        <li>Screenshot capture on test failures</li>
-                        <li>Integration with JIRA for bug tracking</li>
-                    </ul>
-                </div>
-            `
-        },
-        'cypress-project': {
-            title: 'Cypress POM Framework - Modern E2E Testing',
-            content: `
-                <div class="project-details">
-                    <h4>🎯 Project Overview</h4>
-                    <p>Modern end-to-end testing framework using Cypress with clean Page Object Model architecture for maintainable and scalable test automation.</p>
-                    
-                    <h4>🔧 Technical Stack</h4>
-                    <ul>
-                        <li><strong>Framework:</strong> Cypress 12.x with TypeScript support</li>
-                        <li><strong>Architecture:</strong> Page Object Model with command chaining</li>
-                        <li><strong>Reporting:</strong> Mochawesome reports with screenshots</li>
-                        <li><strong>Integration:</strong> GitHub Actions for automated testing</li>
-                        <li><strong>Environment:</strong> Multi-environment configuration support</li>
-                    </ul>
-                    
-                    <h4>📈 Performance Metrics</h4>
-                    <div class="achievement-grid">
-                        <div class="achievement-item">
-                            <span class="achievement-value">98%</span>
-                            <span class="achievement-label">Test Reliability</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">40+</span>
-                            <span class="achievement-label">Components</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">5</span>
-                            <span class="achievement-label">Modules</span>
-                        </div>
-                    </div>
-                    
-                    <h4>✨ Key Features</h4>
-                    <ul>
-                        <li>Real-time browser testing with visual feedback</li>
-                        <li>Automatic waiting and retry mechanisms</li>
-                        <li>Network traffic interception and mocking</li>
-                        <li>Visual regression testing capabilities</li>
-                        <li>Custom commands for common operations</li>
-                        <li>Comprehensive test data management</li>
-                    </ul>
-                </div>
-            `
-        }
-    };
-    
-    const project = projectData[projectType];
-    if (project) {
-        showProjectModal(project.title, project.content);
-    }
-}
-
-// Modal Functions
-function showProjectModal(title, content) {
-    const modal = document.getElementById('project-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-    
-    modalTitle.textContent = title;
-    modalBody.innerHTML = content;
-    modal.style.display = 'block';
-    
-    // Add scroll lock
-    document.body.style.overflow = 'hidden';
-    
-    // Close on escape key
-    const handleEscape = (e) => {
-        if (e.key === 'Escape') {
-            closeProjectModal();
-            document.removeEventListener('keydown', handleEscape);
-        }
-    };
-    document.addEventListener('keydown', handleEscape);
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeProjectModal();
-        }
-    });
-}
-
-function closeProjectModal() {
-    const modal = document.getElementById('project-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-}
-
-// Mobile Navigation
-function toggleMobileMenu() {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-}
-
-// Smooth Scrolling
-function smoothScrollTo(targetId) {
-    const target = document.querySelector(targetId);
-    if (target) {
-        const offsetTop = target.offsetTop - 80;
-        window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-        });
-    }
-}
-
-// Navigation Links
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        smoothScrollTo(targetId);
         
-        // Close mobile menu
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
+        // Update active nav link based on scroll position
+        updateActiveNavLink();
     });
-});
-
-// Navbar Scroll Effect
-function handleNavbarScroll() {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
+    
+    // Mobile menu toggle
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
 }
 
-// Active Navigation Link
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section');
-    const scrollPos = window.scrollY + 100;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
     
     sections.forEach(section => {
-        const sectionTop = section.offsetTop;
+        const sectionTop = section.offsetTop - 100;
         const sectionHeight = section.clientHeight;
-        const sectionId = section.getAttribute('id');
         
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
         }
     });
 }
 
-// Scroll to Top Button
-function handleScrollToTop() {
-    if (window.scrollY > 500) {
-        scrollToTopBtn.classList.add('visible');
-    } else {
-        scrollToTopBtn.classList.remove('visible');
-    }
-}
-
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Enhanced Matrix Background Effect
-function createMatrixEffect() {
+// ===== MATRIX BACKGROUND =====
+function initMatrixBackground() {
     const canvas = document.getElementById('matrixCanvas');
-    if (!canvas) return;
-    
     const ctx = canvas.getContext('2d');
     
-    function resizeCanvas() {
+    // Set canvas size
+    function setCanvasSize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
     
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    setCanvasSize();
     
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>TEST_AUTOMATION_SDET_PRINCE_RAJ';
-    const lettersArray = letters.split('');
-    
+    // Matrix characters
+    const matrixChars = "01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+    const chars = matrixChars.split("");
     const fontSize = 14;
     const columns = canvas.width / fontSize;
-    
     const drops = [];
+    
+    // Initialize drops
     for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100;
+        drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
     }
     
-    let frameCount = 0;
-    
-    function drawMatrix() {
-        // Performance optimization: reduce opacity updates
-        if (frameCount % 2 === 0) {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
+    // Draw function
+    function draw() {
+        // Semi-transparent black to create trail effect
+        ctx.fillStyle = "rgba(10, 10, 15, 0.04)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.fillStyle = '#00f5ff';
+        ctx.fillStyle = "#00f5ff";
         ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
         
         for (let i = 0; i < drops.length; i++) {
-            const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
-            const x = i * fontSize;
-            const y = drops[i] * fontSize;
+            const text = chars[Math.floor(Math.random() * chars.length)];
+            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
             
-            // Add slight opacity variation
-            ctx.globalAlpha = 0.8 + Math.random() * 0.2;
-            ctx.fillText(text, x, y);
-            
-            if (y > canvas.height && Math.random() > 0.975) {
+            // Reset drop to top when it reaches bottom or randomly
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
+            
             drops[i]++;
         }
-        
-        ctx.globalAlpha = 1;
-        frameCount++;
     }
     
-    setInterval(drawMatrix, 50);
+    // Start animation
+    matrixInterval = setInterval(draw, 35);
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        setCanvasSize();
+        // Reinitialize drops array with new column count
+        drops.length = 0;
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+    });
 }
 
-// Enhanced Scroll-Rewind Reveal 2.0
-function createIntersectionObserver() {
+// ===== TYPING EFFECT =====
+function initTypingEffect() {
+    const typingText = document.getElementById('typingText');
+    const texts = [
+        "Senior Software Test Engineer",
+        "Automation Specialist",
+        "Quality Assurance Expert",
+        "SDET Professional"
+    ];
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    
+    function type() {
+        const currentText = texts[textIndex];
+        
+        if (isDeleting) {
+            // Deleting text
+            typingText.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            // Typing text
+            typingText.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+        }
+        
+        // Check if text is complete
+        if (!isDeleting && charIndex === currentText.length) {
+            // Pause at end of text
+            typingSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            // Move to next text
+            isDeleting = false;
+            textIndex = (textIndex + 1) % texts.length;
+            typingSpeed = 500;
+        }
+        
+        setTimeout(type, typingSpeed);
+    }
+    
+    // Start typing effect after a short delay
+    setTimeout(type, 1000);
+}
+
+// ===== SCROLL EFFECTS =====
+function initScrollEffects() {
+    // Initialize Intersection Observer for scroll animations
     const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
     };
     
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 
-                // Staggered animation delay
-                entry.target.style.transitionDelay = `${index * 100}ms`;
-                
-                // Animate progress bars
-                const progressBars = entry.target.querySelectorAll('.progress');
-                progressBars.forEach(bar => {
-                    const progress = bar.getAttribute('data-progress');
-                    if (progress) {
-                        setTimeout(() => {
-                            bar.style.width = progress + '%';
-                        }, 500);
-                    }
-                });
-            } else {
-                // Remove visible class when element scrolls out (scroll-rewind)
-                entry.target.classList.remove('visible');
-                
-                // Reset progress bars
-                const progressBars = entry.target.querySelectorAll('.progress');
-                progressBars.forEach(bar => {
-                    bar.style.width = '0%';
-                });
+                // Special handling for progress bars
+                if (entry.target.classList.contains('progress')) {
+                    const progress = entry.target.getAttribute('data-progress');
+                    setTimeout(() => {
+                        entry.target.style.width = `${progress}%`;
+                    }, 300);
+                }
             }
         });
     }, observerOptions);
     
-    // Observe all sections and animated elements
-    const animatedElements = document.querySelectorAll(
-        '.about-text, .current-role-card, .skill-category, .project-card, .github-card, .cert-card, .timeline-item, .contact-info, .contact-links'
-    );
-    
+    // Observe elements for scroll animations
+    const animatedElements = document.querySelectorAll('.project-card, .skill-category, .cert-card, .github-card, .stat, .progress');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 }
 
-// Enhanced Project Card Interactions
-function enhanceProjectCards() {
+// ===== PROJECT FILTERS =====
+function initProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
     
-    projectCards.forEach((card, index) => {
-        // Add progressive enhancement
-        card.style.transitionDelay = `${index * 150}ms`;
-        
-        // Enhanced hover effects
-        card.addEventListener('mouseenter', () => {
-            // 3D tilt effect
-            card.style.transform = 'translateY(-15px) scale(1.03) rotateX(5deg) rotateY(5deg)';
-            card.style.boxShadow = '0 25px 50px rgba(0, 245, 255, 0.2), 0 0 0 1px rgba(0, 245, 255, 0.1)';
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
             
-            // Enhance tech badges
-            const techBadges = card.querySelectorAll('.tech-badge');
-            techBadges.forEach((badge, i) => {
-                setTimeout(() => {
-                    badge.style.transform = 'translateY(-3px) scale(1.05)';
-                }, i * 50);
+            // Get filter value
+            const filterValue = button.getAttribute('data-filter');
+            
+            // Filter projects
+            projectCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                    card.style.display = 'block';
+                    // Trigger reflow for animation
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, 10);
+                } else {
+                    card.classList.remove('visible');
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
             });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.boxShadow = '';
-            
-            // Reset tech badges
-            const techBadges = card.querySelectorAll('.tech-badge');
-            techBadges.forEach(badge => {
-                badge.style.transform = '';
-            });
-        });
-        
-        // Add click ripple effect
-        card.addEventListener('click', (e) => {
-            const ripple = document.createElement('div');
-            const rect = card.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: radial-gradient(circle, rgba(0, 245, 255, 0.3) 0%, transparent 70%);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-            
-            card.style.position = 'relative';
-            card.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
         });
     });
 }
 
-// Resume Download Function
-function downloadResume() {
-    showNotification('🔥 Resume will be available soon! Building an impressive one for you!');
+// ===== SKILL POPUPS =====
+function initSkillPopups() {
+    const skillItems = document.querySelectorAll('.skill-item[data-skill]');
+    
+    skillItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            // Position the popup
+            const popup = item.querySelector('.skill-projects-popup');
+            const rect = item.getBoundingClientRect();
+            
+            // Check if popup would go off screen
+            if (rect.left + popup.offsetWidth > window.innerWidth) {
+                popup.style.left = 'auto';
+                popup.style.right = '0';
+            } else {
+                popup.style.left = '0';
+                popup.style.right = 'auto';
+            }
+        });
+    });
 }
 
-// Enhanced Notification System
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(45deg, #00f5ff, #ff6b6b);
-        color: #000;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        z-index: 10001;
-        font-weight: 600;
-        animation: slideInRight 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
-        max-width: 300px;
-        word-wrap: break-word;
+// ===== PROGRESS BARS =====
+function initProgressBars() {
+    // Progress bars are animated via Intersection Observer in initScrollEffects
+    // This function is kept for future enhancements
+}
+
+// ===== SCROLL TO TOP =====
+function initScrollToTop() {
+    const scrollButton = document.querySelector('.scroll-to-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollButton.classList.add('visible');
+        } else {
+            scrollButton.classList.remove('visible');
+        }
+    });
+    
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ===== KONAMI CODE EASTER EGG =====
+function initKonamiCode() {
+    document.addEventListener('keydown', (e) => {
+        konamiCode.push(e.code);
+        
+        // Keep only the last 10 keys
+        if (konamiCode.length > 10) {
+            konamiCode.shift();
+        }
+        
+        // Check if sequence matches
+        if (konamiCode.length === konamiSequence.length) {
+            let match = true;
+            for (let i = 0; i < konamiSequence.length; i++) {
+                if (konamiCode[i] !== konamiSequence[i]) {
+                    match = false;
+                    break;
+                }
+            }
+            
+            if (match) {
+                activateKonamiEffect();
+                konamiCode = []; // Reset
+            }
+        }
+    });
+}
+
+function activateKonamiEffect() {
+    // Create celebration effect
+    const colors = ['#00f5ff', '#ff2d75', '#9d4edd', '#00ff9d', '#ffbd00'];
+    const body = document.body;
+    
+    // Add celebration class to body
+    body.classList.add('konami-celebration');
+    
+    // Create floating elements
+    for (let i = 0; i < 50; i++) {
+        createFloatingElement(colors);
+    }
+    
+    // Play celebration sound (optional)
+    // playCelebrationSound();
+    
+    // Remove celebration class after animation
+    setTimeout(() => {
+        body.classList.remove('konami-celebration');
+    }, 5000);
+    
+    // Show notification
+    showNotification('🎉 Konami Code Activated! SDET Powers Unleashed! 🎉');
+}
+
+function createFloatingElement(colors) {
+    const element = document.createElement('div');
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const size = Math.random() * 20 + 10;
+    
+    element.style.position = 'fixed';
+    element.style.width = `${size}px`;
+    element.style.height = `${size}px`;
+    element.style.backgroundColor = color;
+    element.style.borderRadius = '50%';
+    element.style.top = `${Math.random() * 100}vh`;
+    element.style.left = `${Math.random() * 100}vw`;
+    element.style.pointerEvents = 'none';
+    element.style.zIndex = '9999';
+    element.style.animation = `float-up ${Math.random() * 3 + 2}s ease-in forwards`;
+    
+    document.body.appendChild(element);
+    
+    // Remove element after animation
+    setTimeout(() => {
+        element.remove();
+    }, 5000);
+}
+
+// ===== SDET BUG EASTER EGG =====
+function initEasterEgg() {
+    const sdetBug = document.querySelector('.sdet-bug-easter-egg');
+    
+    sdetBug.addEventListener('click', () => {
+        // Create bug trail effect
+        createBugTrail();
+        
+        // Show notification
+        showNotification('🐛 Bug squashed! You found the SDET Easter Egg! 🐛');
+    });
+}
+
+function createBugTrail() {
+    const bug = document.querySelector('.sdet-bug-easter-egg');
+    const trailCount = 10;
+    
+    for (let i = 0; i < trailCount; i++) {
+        setTimeout(() => {
+            const trail = bug.cloneNode(true);
+            trail.style.position = 'fixed';
+            trail.style.opacity = '0.5';
+            trail.style.animation = `fade-out 1s ease-in forwards`;
+            document.body.appendChild(trail);
+            
+            // Remove trail after animation
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        }, i * 100);
+    }
+}
+
+// ===== PROJECT MODAL FUNCTIONS =====
+function openProjectDetails(projectId) {
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    
+    // Set modal content based on projectId
+    // This is a simplified version - you would expand this with actual project data
+    modalTitle.textContent = 'Project Details';
+    modalBody.innerHTML = `
+        <div class="project-details">
+            <h4>Detailed information about ${projectId}</h4>
+            <p>This would contain comprehensive details about the project, technologies used, challenges faced, and outcomes achieved.</p>
+            <div class="detail-section">
+                <h5>Key Features</h5>
+                <ul>
+                    <li>Feature 1</li>
+                    <li>Feature 2</li>
+                    <li>Feature 3</li>
+                </ul>
+            </div>
+            <div class="detail-section">
+                <h5>Technologies</h5>
+                <div class="tech-tags">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Selenium</span>
+                    <span class="tech-tag">TestNG</span>
+                </div>
+            </div>
+        </div>
     `;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function openProjectDemo(demoId) {
+    // This would open a project demo - implementation depends on your demo content
+    showNotification(`🚀 Launching ${demoId} demo...`);
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('project-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// ===== UTILITY FUNCTIONS =====
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
     notification.textContent = message;
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.right = '20px';
+    notification.style.backgroundColor = 'var(--primary)';
+    notification.style.color = 'var(--dark)';
+    notification.style.padding = '1rem 1.5rem';
+    notification.style.borderRadius = 'var(--border-radius)';
+    notification.style.boxShadow = 'var(--shadow)';
+    notification.style.zIndex = '10000';
+    notification.style.fontWeight = '600';
+    notification.style.transform = 'translateX(100%)';
+    notification.style.transition = 'transform 0.3s ease';
+    
     document.body.appendChild(notification);
     
+    // Animate in
     setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease forwards';
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // Remove after delay
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
             notification.remove();
         }, 300);
     }, 3000);
 }
 
-// Enhanced Skill Item Interactions
-function enhanceSkillItems() {
-    const skillItems = document.querySelectorAll('.skill-item');
-    
-    skillItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'translateY(-5px) scale(1.1)';
-            
-            // Add glow effect to icon
-            const icon = item.querySelector('i');
-            if (icon) {
-                icon.style.filter = 'drop-shadow(0 0 8px #00f5ff)';
-            }
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'translateY(0) scale(1)';
-            
-            // Remove glow effect
-            const icon = item.querySelector('i');
-            if (icon) {
-                icon.style.filter = 'none';
-            }
-        });
-    });
+function handleResize() {
+    // Handle any resize-specific logic
+    // Matrix background is already handled in its own function
 }
 
-// Performance Optimization
-function optimizePerformance() {
-    // Reduce animations on slower devices
-    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-        document.documentElement.style.setProperty('--animation-speed', '0.3s');
-        
-        // Disable heavy animations
-        const heavyAnimations = document.querySelectorAll('.skill-category, .project-card');
-        heavyAnimations.forEach(element => {
-            element.style.animation = 'none';
-        });
-    }
+// ===== RESUME DOWNLOAD =====
+function downloadResume(event) {
+    // Optional: Add analytics or tracking here
+    console.log('Resume download initiated');
     
-    // Pause matrix animation when not visible
-    let matrixPaused = false;
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden && !matrixPaused) {
-            matrixPaused = true;
-        } else if (!document.hidden && matrixPaused) {
-            matrixPaused = false;
-        }
-    });
+    // The actual download is handled by the HTML link
+    // This function is kept for any additional functionality
 }
 
-// Touch Gestures for Mobile
-function initTouchGestures() {
-    let startY = 0;
-    let currentY = 0;
-    
-    document.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
-    });
-    
-    document.addEventListener('touchmove', (e) => {
-        currentY = e.touches[0].clientY;
-        const diff = startY - currentY;
-        
-        // Add subtle parallax effect on mobile scroll
-        if (Math.abs(diff) > 10) {
-            const parallaxElements = document.querySelectorAll('.parallax-band');
-            parallaxElements.forEach(element => {
-                element.style.transform = `translateY(${diff * 0.1}px)`;
-            });
-        }
-    });
+// ===== CSS ANIMATIONS FOR KONAMI EFFECT =====
+// Add CSS for Konami celebration
+const konamiStyles = `
+@keyframes float-up {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
-// Konami Code Confetti Easter Egg
-(() => {
-    const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
-    let idx = 0;
-    
-    window.addEventListener('keydown', e => {
-        if (e.code === seq[idx]) { 
-            idx++; 
-            if (idx === seq.length) { 
-                boom(); 
-                idx = 0; 
-            } 
-        } else { 
-            idx = 0; 
-        }
-    });
-    
-    function boom() {
-        import('https://cdn.skypack.dev/canvas-confetti').then(mod => {
-            const confetti = mod.default;
-            confetti({
-                spread: 90,
-                particleCount: 150,
-                origin: { y: 0.6 }
-            });
-            showNotification('🎉 Konami Code activated! You found the SDET secret!');
-        });
+@keyframes fade-out {
+    0% {
+        opacity: 0.5;
     }
-})();
-
-// Scroll Event Handler
-function handleScroll() {
-    handleNavbarScroll();
-    updateActiveNavLink();
-    handleScrollToTop();
+    100% {
+        opacity: 0;
+    }
 }
 
-// Initialize Everything
-function init() {
-    // Start typing animation
-    setTimeout(typeText, 500);
-    
-    // Create matrix effect
-    createMatrixEffect();
-    
-    // Set up intersection observer
-    createIntersectionObserver();
-    
-    // Initialize project filtering
-    initProjectFiltering();
-    
-    // Enhance skill items
-    enhanceSkillItems();
-    
-    // Enhance project cards
-    enhanceProjectCards();
-    
-    // Initialize touch gestures
-    initTouchGestures();
-    
-    // Optimize performance
-    optimizePerformance();
-    
-    // Add event listeners
-    hamburger?.addEventListener('click', toggleMobileMenu);
-    window.addEventListener('scroll', handleScroll);
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            navMenu?.classList.remove('active');
-            hamburger?.classList.remove('active');
-        }
-    });
-    
-    // Add staggered animation delays for better UX
-    const skillCategories = document.querySelectorAll('.skill-category');
-    skillCategories.forEach((category, index) => {
-        category.style.transitionDelay = `${index * 150}ms`;
-    });
-    
-    const certCards = document.querySelectorAll('.cert-card');
-    certCards.forEach((card, index) => {
-        card.style.transitionDelay = `${index * 120}ms`;
-    });
-    
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 200}ms`;
-    });
-    
-    // Welcome message
-    setTimeout(() => {
-        showNotification('🚀 Welcome to Prince Raj\'s Elite SDET Portfolio! Explore the interactive features!');
-    }, 2000);
+.konami-celebration {
+    animation: color-pulse 0.5s ease-in-out 3;
 }
 
-// Start when DOM is ready
-document.addEventListener('DOMContentLoaded', init);
-
-// Additional smooth scroll for any remaining links
-document.addEventListener('click', (e) => {
-    if (e.target.matches('a[href^="#"]')) {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href');
-        smoothScrollTo(targetId);
+@keyframes color-pulse {
+    0% {
+        filter: hue-rotate(0deg);
     }
-});
-
-// Add CSS animations for notifications and effects
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
+    50% {
+        filter: hue-rotate(180deg);
     }
-    
-    @keyframes slideOutRight {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
+    100% {
+        filter: hue-rotate(360deg);
     }
-    
-    @keyframes ripple {
-        to { transform: scale(2); opacity: 0; }
-    }
-    
-    .demo-console {
-        background: #000;
-        border-radius: 8px;
-        padding: 1rem;
-        font-family: 'JetBrains Mono', monospace;
-        margin: 1rem 0;
-    }
-    
-    .console-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #333;
-    }
-    
-    .console-title {
-        color: #00f5ff;
-        font-weight: 600;
-    }
-    
-    .console-status {
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    
-    .console-status.running {
-        background: rgba(0, 255, 0, 0.2);
-        color: #00ff00;
-    }
-    
-    .console-output {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .console-line {
-        color: #e2e8f0;
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    
-    .console-line.success {
-        color: #00ff00;
-    }
-    
-    .console-line.info {
-        color: #00f5ff;
-    }
-    
-    .project-details h4 {
-        color: #00f5ff;
-        margin: 1.5rem 0 1rem 0;
-        font-size: 1.2rem;
-    }
-    
-    .project-details ul {
-        margin: 1rem 0;
-        padding-left: 1.5rem;
-    }
-    
-    .project-details li {
-        margin-bottom: 0.5rem;
-        line-height: 1.6;
-    }
-    
-    .achievement-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 1rem;
-        margin: 1rem 0;
-    }
-    
-    .achievement-item {
-        text-align: center;
-        padding: 1rem;
-        background: rgba(0, 245, 255, 0.1);
-        border-radius: 8px;
-        border: 1px solid rgba(0, 245, 255, 0.2);
-    }
-    
-    .achievement-value {
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #00f5ff;
-        margin-bottom: 0.5rem;
-    }
-    
-    .achievement-label {
-        font-size: 0.9rem;
-        color: #94a3b8;
-    }
+}
 `;
-document.head.appendChild(style);
 
-// Make functions globally accessible
-window.downloadResume = downloadResume;
-window.openProjectDemo = openProjectDemo;
-window.openProjectDetails = openProjectDetails;
-window.closeProjectModal = closeProjectModal;
-
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            if (perfData && perfData.loadEventEnd > 3000) {
-                console.log('⚡ Portfolio loaded in', perfData.loadEventEnd, 'ms');
-            }
-        }, 1000);
-    });
-}
+// Inject Konami styles into the document
+const styleSheet = document.createElement('style');
+styleSheet.textContent = konamiStyles;
+document.head.appendChild(styleSheet);

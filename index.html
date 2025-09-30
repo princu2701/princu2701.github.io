@@ -72,6 +72,7 @@
                     </a>
 
                   <a href="https://github.com/princu2701/Prince_Raj_Resume/blob/master/Prince_Raj_Resume.pdf" 
+               <a href="https://raw.githubusercontent.com/princu2701/Prince_Raj_Resume/master/Prince_Raj_Resume.pdf" 
    class="btn btn-tertiary" 
    onclick="downloadResume(event)" 
    target="_blank">
@@ -80,21 +81,24 @@
 
 <script>
 function downloadResume(event) {
-    // Don't block default navigation (so it still opens in new tab)
-    const fileUrl = "https://raw.githubusercontent.com/princu2701/princu2701.github.io/master/Prince_Raj_Resume.pdf";
+    // Prevent any default weird behaviors (optional)
+    event.preventDefault();
 
-    // Open in new tab explicitly
+    const fileUrl = "https://raw.githubusercontent.com/princu2701/Prince_Raj_Resume/master/Prince_Raj_Resume.pdf";
+
+    // Open in new tab
     window.open(fileUrl, "_blank");
 
-    // Trigger download separately
+    // Trigger download
     const link = document.createElement("a");
     link.href = fileUrl;
-    link.download = "Prince_Raj_Resume.pdf"; 
+    link.download = "Prince_Raj_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 }
 </script>
+
 
                 </div>
             </div>
@@ -164,7 +168,7 @@ function downloadResume(event) {
                         </div>
                         <div class="stat">
                             <div class="stat-number">6+</div>
-                            <div class="stat-label">Technologies</div>
+                            <div class="stat-label">Technologies Learnt</div>
                         </div>
                     </div>
                 </div>
@@ -463,7 +467,7 @@ function downloadResume(event) {
                                 </div>
                                 <div class="stat-item">
                                     <i class="fas fa-clock"></i>
-                                    <span>Dec 2024</span>
+                                    <span>Jul 2025</span>
                                 </div>
                             </div>
                             <div class="project-quick-actions">
