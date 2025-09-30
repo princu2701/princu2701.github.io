@@ -1,923 +1,1237 @@
-// DOM Elements
-const loadingScreen = document.querySelector('.loading-screen');
-const navbar = document.querySelector('.navbar');
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-const scrollToTopBtn = document.querySelector('.scroll-to-top');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Raj – Elite SDET Portfolio | Dynamic Experience</title>
+    <meta name="description" content="Prince Raj – Senior SDET with expertise in Selenium, Cypress, API Testing & CI/CD. Dynamic portfolio with interactive project sections and advanced UX features.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Loading Elite Portfolio...</p>
+        </div>
+    </div>
 
-// Global Variables
-let isFilteringProjects = false;
-let currentFilter = 'all';
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Prince<span class="accent">Raj</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#github" class="nav-link">GitHub</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#goals" class="nav-link">Goals</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-// Loading Screen
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        loadingScreen.classList.add('hide');
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    }, 1200);
-});
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="matrix-bg">
+            <canvas id="matrixCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="greeting">Hello, I'm</span>
+                    <span class="name">Prince Raj</span>
+                </h1>
+                <div class="typing-container">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description">
+                    Passionate Software Test Engineer with 1+ Year of experience crafting bulletproof applications 
+                    through intelligent automation, comprehensive testing strategies, and cutting-edge QA methodologies.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-code"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Hire Me
+                    </a>
+<!--                     <a href="#" class="btn btn-tertiary" onclick="downloadResume()">
+                        <i class="fas fa-download"></i> Resume
+                    </a> -->
+                  <a href="/path/to/your/resume.pdf" class="btn btn-tertiary" onclick="downloadResume(event)" target="_blank">
+    <i class="fas fa-download"></i> Resume
+</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="profile-status">
+                        <span class="status-dot"></span>
+                        Available for opportunities
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </section>
 
-// Typing Animation
-const typingTexts = [
-    "Software Test Engineer",
-    "SDET Specialist", 
-    "Automation QA Enthusiast",
-    "Quality Assurance Professional",
-    "Test Automation Expert",
-    "CI/CD Integration Specialist"
-];
+    <!-- SDET Bug Easter Egg -->
+    <div class="sdet-bug-easter-egg">
+        <svg width="48" height="19" viewBox="0 0 48 19">
+            <g>
+                <ellipse cx="24" cy="13" rx="10" ry="5" fill="#2e2e2e"/>
+                <circle cx="24" cy="10" r="5" fill="#00f5ff"/>
+                <circle cx="23" cy="9" r="1" fill="#fff"/>
+                <rect x="18" y="14" width="2" height="10" rx="0.5" fill="#00f5ff">
+                    <animateTransform attributeName="transform" begin="0s" dur="8s" type="translate" from="0 0" to="40 0" repeatCount="indefinite"/>
+                </rect>
+            </g>
+        </svg>
+    </div>
 
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Transforming bugs into features, one test at a time</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a dedicated <strong>Software Test Engineer</strong> with 1+ Year of hands-on experience in automated testing, 
+                        currently working as a Software Test Engineer Trainee at <strong>BPAAS Solutions Pvt. Ltd.</strong> in Gurgaon since October 2024.
+                    </p>
+                    <p>
+                        With a strong foundation in both manual and automated testing, I specialize in creating robust test automation frameworks 
+                        using modern tools like Selenium, Cypress, and comprehensive API testing strategies. My expertise spans across multiple 
+                        testing domains including web automation, mobile testing, and API validation.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">1+</div>
+                            <div class="stat-label">Year Experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">8+</div>
+                            <div class="stat-label">Major Projects</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Certifications</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">12+</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="current-role-card">
+                        <h3>Current Role</h3>
+                        <div class="role-item">
+                            <i class="fas fa-building"></i>
+                            <div>
+                                <strong>Software Test Engineer Trainee</strong>
+                                <span>BPAAS Solutions Pvt. Ltd.</span>
+                                <span class="location">Gurgaon • October 2024 - Present</span>
+                            </div>
+                        </div>
+                        <div class="role-highlights">
+                            <div class="highlight">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Automated Testing Frameworks</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-check-circle"></i>
+                                <span>API Testing & Validation</span>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-check-circle"></i>
+                                <span>CI/CD Integration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-function typeText() {
-    const typingElement = document.getElementById('typingText');
-    if (!typingElement) return;
-    
-    const currentText = typingTexts[textIndex];
-    
-    if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-    }
-    
-    if (!isDeleting && charIndex === currentText.length) {
-        setTimeout(() => {
-            isDeleting = true;
-        }, 2000);
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % typingTexts.length;
-    }
-    
-    const typingSpeed = isDeleting ? 50 : 100;
-    setTimeout(typeText, typingSpeed);
-}
-
-// Enhanced Project Filtering
-function initProjectFiltering() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (isFilteringProjects) return;
-            
-            const filter = button.getAttribute('data-filter');
-            if (filter === currentFilter) return;
-            
-            currentFilter = filter;
-            isFilteringProjects = true;
-            
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Animate projects out
-            projectCards.forEach((card, index) => {
-                card.style.transition = 'all 0.4s ease';
-                card.style.transform = 'translateY(30px) scale(0.9)';
-                card.style.opacity = '0';
-            });
-            
-            setTimeout(() => {
-                // Filter and animate projects in
-                projectCards.forEach((card, index) => {
-                    const categories = card.getAttribute('data-category') || '';
-                    const shouldShow = filter === 'all' || categories.includes(filter);
-                    
-                    if (shouldShow) {
-                        card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.transform = 'translateY(0) scale(1)';
-                            card.style.opacity = '1';
-                        }, index * 100);
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+    <!-- Skills Section with Interactive Popups -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title glow-loop">Technical Arsenal</h2>
+                <p class="section-subtitle">Technologies I master to deliver quality software</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-robot"></i> Automation Testing
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-skill="Selenium (Java)">
+                            <i class="fab fa-java"></i>
+                            <span>Selenium (Java)</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank">RealTime Selenium Project</a></li>
+                                    <li><a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" target="_blank">Usha Comprehensive MDM Testing</a></li>
+                                    <li><a href="https://github.com/princu2701/UCO-Bank-NFA-End-to-End-Test-Automation-Suite" target="_blank">UCO Bank NFA Automation Suite</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill="Cypress (JavaScript)">
+                            <i class="fab fa-js-square"></i>
+                            <span>Cypress (JavaScript)</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/CYPRESS_POM" target="_blank">Cypress POM Framework</a></li>
+                                    <li><a href="https://github.com/princu2701/CypressApi_DataDrivenModel" target="_blank">Cypress API Data-Driven Model</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Selenium Grid</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-vial"></i>
+                            <span>TestNG</span>
+                        </div>
+                        <div class="skill-item" data-skill="Appium">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Appium</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/Appium-Cross-App-Tests" target="_blank">Appium Cross-App Tests</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
-                setTimeout(() => {
-                    isFilteringProjects = false;
-                }, 500);
-            }, 400);
-        });
-    });
-}
-
-// Project Demo Functions
-function openProjectDemo(demoType) {
-    const demoData = {
-        'selenium-demo': {
-            title: 'Selenium Framework Demo',
-            content: `
-                <div class="demo-console">
-                    <div class="console-header">
-                        <span class="console-title">Test Execution Console</span>
-                        <span class="console-status running">Running...</span>
-                    </div>
-                    <div class="console-output">
-                        <div class="console-line success">✓ WebDriver initialized successfully</div>
-                        <div class="console-line">→ Navigating to login page...</div>
-                        <div class="console-line success">✓ Login page loaded</div>
-                        <div class="console-line">→ Entering credentials...</div>
-                        <div class="console-line success">✓ Authentication successful</div>
-                        <div class="console-line">→ Running test suite...</div>
-                        <div class="console-line success">✓ All 15 test cases passed</div>
-                        <div class="console-line info">📊 Test Coverage: 95%</div>
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-exchange-alt"></i> API Testing
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Postman</span>
+                        </div>
+                        <div class="skill-item" data-skill="Rest Assured">
+                            <i class="fas fa-coffee"></i>
+                            <span>Rest Assured</span>
+                            <div class="skill-projects-popup">
+                                <h4>Related Projects</h4>
+                                <ul>
+                                    <li><a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank">RealTime Selenium Project</a></li>
+                                    <li><a href="https://github.com/princu2701/InvoiceFIleUploadApiTest" target="_blank">Indus Invoice Upload API Testing</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>API Automation</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>JSON/XML</span>
+                        </div>
                     </div>
                 </div>
-            `
-        },
-        'cypress-demo': {
-            title: 'Cypress E2E Demo',
-            content: `
-                <div class="demo-console">
-                    <div class="console-header">
-                        <span class="console-title">Cypress Test Runner</span>
-                        <span class="console-status running">Active</span>
-                    </div>
-                    <div class="console-output">
-                        <div class="console-line">🚀 Starting Cypress...</div>
-                        <div class="console-line success">✓ POM structure validated</div>
-                        <div class="console-line">→ Executing user journey tests...</div>
-                        <div class="console-line success">✓ Homepage elements verified</div>
-                        <div class="console-line success">✓ Form submission working</div>
-                        <div class="console-line success">✓ API integration tests passed</div>
-                        <div class="console-line info">🎯 40 components tested successfully</div>
-                    </div>
-                </div>
-            `
-        },
-        'api-demo': {
-            title: 'API Testing Demo',
-            content: `
-                <div class="demo-console">
-                    <div class="console-header">
-                        <span class="console-title">API Test Execution</span>
-                        <span class="console-status running">Testing</span>
-                    </div>
-                    <div class="console-output">
-                        <div class="console-line">🔗 Connecting to API endpoints...</div>
-                        <div class="console-line success">✓ GET /api/users - 200 OK</div>
-                        <div class="console-line success">✓ POST /api/auth - 201 Created</div>
-                        <div class="console-line success">✓ PUT /api/profile - 200 OK</div>
-                        <div class="console-line success">✓ DELETE /api/session - 204 No Content</div>
-                        <div class="console-line info">📈 100% API coverage achieved</div>
-                        <div class="console-line info">⚡ Average response time: 145ms</div>
-                    </div>
-                </div>
-            `
-        }
-    };
-    
-    const demo = demoData[demoType];
-    if (demo) {
-        showProjectModal(demo.title, demo.content);
-    }
-}
-
-// Project Details Functions
-function openProjectDetails(projectType) {
-    const projectData = {
-        'selenium-project': {
-            title: 'RealTime Selenium Project - Technical Deep Dive',
-            content: `
-                <div class="project-details">
-                    <h4>🎯 Project Overview</h4>
-                    <p>Enterprise-grade Selenium automation framework built for scalable web application testing with comprehensive reporting and CI/CD integration.</p>
-                    
-                    <h4>🔧 Technical Architecture</h4>
-                    <ul>
-                        <li><strong>Framework:</strong> Page Object Model (POM) with Selenium WebDriver 4.x</li>
-                        <li><strong>Language:</strong> Java 11+ with Maven build management</li>
-                        <li><strong>Testing:</strong> TestNG for test execution and parallel testing</li>
-                        <li><strong>Reporting:</strong> Allure Reports with screenshots and videos</li>
-                        <li><strong>CI/CD:</strong> Jenkins pipeline with Docker containerization</li>
-                    </ul>
-                    
-                    <h4>📊 Key Achievements</h4>
-                    <div class="achievement-grid">
-                        <div class="achievement-item">
-                            <span class="achievement-value">95%</span>
-                            <span class="achievement-label">Test Coverage</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">75%</span>
-                            <span class="achievement-label">Time Reduction</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">50+</span>
-                            <span class="achievement-label">Test Scenarios</span>
-                        </div>
-                    </div>
-                    
-                    <h4>🚀 Implementation Highlights</h4>
-                    <ul>
-                        <li>Cross-browser testing (Chrome, Firefox, Safari, Edge)</li>
-                        <li>Parallel execution across multiple environments</li>
-                        <li>Data-driven testing with Excel/CSV integration</li>
-                        <li>Advanced wait strategies and element synchronization</li>
-                        <li>Screenshot capture on test failures</li>
-                        <li>Integration with JIRA for bug tracking</li>
-                    </ul>
-                </div>
-            `
-        },
-        'cypress-project': {
-            title: 'Cypress POM Framework - Modern E2E Testing',
-            content: `
-                <div class="project-details">
-                    <h4>🎯 Project Overview</h4>
-                    <p>Modern end-to-end testing framework using Cypress with clean Page Object Model architecture for maintainable and scalable test automation.</p>
-                    
-                    <h4>🔧 Technical Stack</h4>
-                    <ul>
-                        <li><strong>Framework:</strong> Cypress 12.x with TypeScript support</li>
-                        <li><strong>Architecture:</strong> Page Object Model with command chaining</li>
-                        <li><strong>Reporting:</strong> Mochawesome reports with screenshots</li>
-                        <li><strong>Integration:</strong> GitHub Actions for automated testing</li>
-                        <li><strong>Environment:</strong> Multi-environment configuration support</li>
-                    </ul>
-                    
-                    <h4>📈 Performance Metrics</h4>
-                    <div class="achievement-grid">
-                        <div class="achievement-item">
-                            <span class="achievement-value">98%</span>
-                            <span class="achievement-label">Test Reliability</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">40+</span>
-                            <span class="achievement-label">Components</span>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-value">5</span>
-                            <span class="achievement-label">Modules</span>
-                        </div>
-                    </div>
-                    
-                    <h4>✨ Key Features</h4>
-                    <ul>
-                        <li>Real-time browser testing with visual feedback</li>
-                        <li>Automatic waiting and retry mechanisms</li>
-                        <li>Network traffic interception and mocking</li>
-                        <li>Visual regression testing capabilities</li>
-                        <li>Custom commands for common operations</li>
-                        <li>Comprehensive test data management</li>
-                    </ul>
-                </div>
-            `
-        }
-    };
-    
-    const project = projectData[projectType];
-    if (project) {
-        showProjectModal(project.title, project.content);
-    }
-}
-
-// Modal Functions
-function showProjectModal(title, content) {
-    const modal = document.getElementById('project-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-    
-    modalTitle.textContent = title;
-    modalBody.innerHTML = content;
-    modal.style.display = 'block';
-    
-    // Add scroll lock
-    document.body.style.overflow = 'hidden';
-    
-    // Close on escape key
-    const handleEscape = (e) => {
-        if (e.key === 'Escape') {
-            closeProjectModal();
-            document.removeEventListener('keydown', handleEscape);
-        }
-    };
-    document.addEventListener('keydown', handleEscape);
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeProjectModal();
-        }
-    });
-}
-
-function closeProjectModal() {
-    const modal = document.getElementById('project-modal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-}
-
-// Mobile Navigation
-function toggleMobileMenu() {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-}
-
-// Smooth Scrolling
-function smoothScrollTo(targetId) {
-    const target = document.querySelector(targetId);
-    if (target) {
-        const offsetTop = target.offsetTop - 80;
-        window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-        });
-    }
-}
-
-// Navigation Links
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        smoothScrollTo(targetId);
-        
-        // Close mobile menu
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
-
-// Navbar Scroll Effect
-function handleNavbarScroll() {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-}
-
-// Active Navigation Link
-function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const scrollPos = window.scrollY + 100;
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-}
-
-// Scroll to Top Button
-function handleScrollToTop() {
-    if (window.scrollY > 500) {
-        scrollToTopBtn.classList.add('visible');
-    } else {
-        scrollToTopBtn.classList.remove('visible');
-    }
-}
-
-scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// Enhanced Matrix Background Effect
-function createMatrixEffect() {
-    const canvas = document.getElementById('matrixCanvas');
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>TEST_AUTOMATION_SDET_PRINCE_RAJ';
-    const lettersArray = letters.split('');
-    
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    
-    const drops = [];
-    for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100;
-    }
-    
-    let frameCount = 0;
-    
-    function drawMatrix() {
-        // Performance optimization: reduce opacity updates
-        if (frameCount % 2 === 0) {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-        }
-        
-        ctx.fillStyle = '#00f5ff';
-        ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
-        
-        for (let i = 0; i < drops.length; i++) {
-            const text = lettersArray[Math.floor(Math.random() * lettersArray.length)];
-            const x = i * fontSize;
-            const y = drops[i] * fontSize;
-            
-            // Add slight opacity variation
-            ctx.globalAlpha = 0.8 + Math.random() * 0.2;
-            ctx.fillText(text, x, y);
-            
-            if (y > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-        
-        ctx.globalAlpha = 1;
-        frameCount++;
-    }
-    
-    setInterval(drawMatrix, 50);
-}
-
-// Enhanced Scroll-Rewind Reveal 2.0
-function createIntersectionObserver() {
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
                 
-                // Staggered animation delay
-                entry.target.style.transitionDelay = `${index * 100}ms`;
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-cogs"></i> CI/CD & DevOps
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fab fa-jenkins"></i>
+                            <span>Jenkins</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Maven</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Allure Reporting</span>
+                        </div>
+                    </div>
+                </div>
                 
-                // Animate progress bars
-                const progressBars = entry.target.querySelectorAll('.progress');
-                progressBars.forEach(bar => {
-                    const progress = bar.getAttribute('data-progress');
-                    if (progress) {
-                        setTimeout(() => {
-                            bar.style.width = progress + '%';
-                        }, 500);
-                    }
-                });
-            } else {
-                // Remove visible class when element scrolls out (scroll-rewind)
-                entry.target.classList.remove('visible');
+                <div class="skill-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-tools"></i> Development Tools
+                    </h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-hand-paper"></i>
+                            <span>Manual Testing</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-bug"></i>
+                            <span>Bug Tracking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Code Rain Strip -->
+    <section class="parallax-band"></section>
+
+    <!-- Enhanced Projects Section with Dynamic Features -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Interactive showcase of my testing expertise</p>
                 
-                // Reset progress bars
-                const progressBars = entry.target.querySelectorAll('.progress');
-                progressBars.forEach(bar => {
-                    bar.style.width = '0%';
-                });
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections and animated elements
-    const animatedElements = document.querySelectorAll(
-        '.about-text, .current-role-card, .skill-category, .project-card, .github-card, .cert-card, .timeline-item, .contact-info, .contact-links'
-    );
-    
-    animatedElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// Enhanced Project Card Interactions
-function enhanceProjectCards() {
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    projectCards.forEach((card, index) => {
-        // Add progressive enhancement
-        card.style.transitionDelay = `${index * 150}ms`;
-        
-        // Enhanced hover effects
-        card.addEventListener('mouseenter', () => {
-            // 3D tilt effect
-            card.style.transform = 'translateY(-15px) scale(1.03) rotateX(5deg) rotateY(5deg)';
-            card.style.boxShadow = '0 25px 50px rgba(0, 245, 255, 0.2), 0 0 0 1px rgba(0, 245, 255, 0.1)';
+                <!-- Project Filter Tabs -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="selenium">Selenium</button>
+                    <button class="filter-btn" data-filter="cypress">Cypress</button>
+                    <button class="filter-btn" data-filter="api">API Testing</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
+                </div>
+            </div>
             
-            // Enhance tech badges
-            const techBadges = card.querySelectorAll('.tech-badge');
-            techBadges.forEach((badge, i) => {
-                setTimeout(() => {
-                    badge.style.transform = 'translateY(-3px) scale(1.05)';
-                }, i * 50);
-            });
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-            card.style.boxShadow = '';
-            
-            // Reset tech badges
-            const techBadges = card.querySelectorAll('.tech-badge');
-            techBadges.forEach(badge => {
-                badge.style.transform = '';
-            });
-        });
-        
-        // Add click ripple effect
-        card.addEventListener('click', (e) => {
-            const ripple = document.createElement('div');
-            const rect = card.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: radial-gradient(circle, rgba(0, 245, 255, 0.3) 0%, transparent 70%);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s ease-out;
-                pointer-events: none;
-                z-index: 1;
-            `;
-            
-            card.style.position = 'relative';
-            card.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-}
+            <div class="projects-grid">
+                <!-- Project 1: UCO Bank NFA Automation -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=338&fit=crop" alt="UCO Bank NFA Automation Suite" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>Banking</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Dec 2024</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/UCO-Bank-NFA-End-to-End-Test-Automation-Suite" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('uco-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('uco-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">UCO Bank NFA End-to-End Test Automation Suite</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Complete test automation suite for UCO Bank's Non-Financial Approval System featuring hierarchical workflow testing, 
+                            role-based access control, Dockerized Selenium Grid, and comprehensive reporting with ExtentReports.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-java"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Selenium</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-vial"></i>
+                                    <span>TestNG</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fab fa-docker"></i>
+                                    <span>Docker</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">Test Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">50+</span>
+                                <span class="metric-label">Test Cases</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5</span>
+                                <span class="metric-label">User Roles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Resume Download Function
-function downloadResume() {
-    showNotification('🔥 Resume will be available soon! Building an impressive one for you!');
-}
+                <!-- Project 2: Indus Invoice API Testing -->
+                <div class="project-card" data-category="api">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=338&fit=crop" alt="Indus Invoice Upload API Testing" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>API</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>PDF Processing</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Dec 2024</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/InvoiceFIleUploadApiTest" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('indus-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('indus-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Indus Invoice Upload API Testing</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Enterprise API testing suite for Indus Electricity Board's invoice digitization system. 
+                            Validates PDF invoice processing, data extraction accuracy, and backend REST APIs using RestAssured and TestNG.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fas fa-coffee"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>RestAssured</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-vial"></i>
+                                    <span>TestNG</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Maven</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">API Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">30+</span>
+                                <span class="metric-label">Endpoints</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4</span>
+                                <span class="metric-label">Data Fields</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Enhanced Notification System
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(45deg, #00f5ff, #ff6b6b);
-        color: #000;
-        padding: 1rem 2rem;
-        border-radius: 8px;
-        z-index: 10001;
-        font-weight: 600;
-        animation: slideInRight 0.3s ease;
-        box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
-        max-width: 300px;
-        word-wrap: break-word;
-    `;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease forwards';
-        setTimeout(() => {
-            notification.remove();
-        }, 300);
-    }, 3000);
-}
+                <!-- Project 3: RealTime Selenium -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=338&fit=crop" alt="Selenium Testing Framework" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-star"></i>
+                                    <span>Enterprise Level</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('selenium-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('selenium-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">RealTime Enterprise Level Selenium Project</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Comprehensive real-time Selenium automation framework built with Java, featuring robust test scenarios, 
+                            page object model implementation, and detailed reporting capabilities for web application testing.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-java"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Selenium</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-vial"></i>
+                                    <span>TestNG</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Maven</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">Test Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">50+</span>
+                                <span class="metric-label">Test Cases</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">3</span>
+                                <span class="metric-label">Environments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Enhanced Skill Item Interactions
-function enhanceSkillItems() {
-    const skillItems = document.querySelectorAll('.skill-item');
-    
-    skillItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            item.style.transform = 'translateY(-5px) scale(1.1)';
-            
-            // Add glow effect to icon
-            const icon = item.querySelector('i');
-            if (icon) {
-                icon.style.filter = 'drop-shadow(0 0 8px #00f5ff)';
-            }
-        });
-        
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'translateY(0) scale(1)';
-            
-            // Remove glow effect
-            const icon = item.querySelector('i');
-            if (icon) {
-                icon.style.filter = 'none';
-            }
-        });
-    });
-}
+                <!-- Project 4: Usha MDM Testing -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=338&fit=crop" alt="MDM Testing Automation" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-database"></i>
+                                    <span>MDM</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>Enterprise</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('mdm-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('mdm-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Usha Comprehensive Vendor Module Testing</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Advanced Master Data Management (MDM) testing automation suite with comprehensive module testing 
+                            capabilities, data validation, and integration testing for enterprise-level applications.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-html5"></i>
+                                    <span>HTML</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Selenium</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-database"></i>
+                                    <span>MDM</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">88%</span>
+                                <span class="metric-label">Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">35+</span>
+                                <span class="metric-label">Modules</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">2</span>
+                                <span class="metric-label">Integrations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Performance Optimization
-function optimizePerformance() {
-    // Reduce animations on slower devices
-    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-        document.documentElement.style.setProperty('--animation-speed', '0.3s');
-        
-        // Disable heavy animations
-        const heavyAnimations = document.querySelectorAll('.skill-category, .project-card');
-        heavyAnimations.forEach(element => {
-            element.style.animation = 'none';
-        });
-    }
-    
-    // Pause matrix animation when not visible
-    let matrixPaused = false;
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden && !matrixPaused) {
-            matrixPaused = true;
-        } else if (!document.hidden && matrixPaused) {
-            matrixPaused = false;
-        }
-    });
-}
+                <!-- Project 5: Appium Cross-App -->
+                <div class="project-card" data-category="mobile">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=338&fit=crop" alt="Mobile Testing Framework" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Mobile</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-sync"></i>
+                                    <span>Cross-Platform</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1.5 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/Appium-Cross-App-Tests" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('appium-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('appium-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Appium Cross-App Tests</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Cross-platform mobile testing framework using Appium for both Android and iOS applications, 
+                            featuring device farm integration and parallel execution capabilities.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Appium</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-vial"></i>
+                                    <span>Testing</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-sync"></i>
+                                    <span>Cross-Platform</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">92%</span>
+                                <span class="metric-label">Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">25+</span>
+                                <span class="metric-label">Test Cases</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4</span>
+                                <span class="metric-label">Devices</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Touch Gestures for Mobile
-function initTouchGestures() {
-    let startY = 0;
-    let currentY = 0;
-    
-    document.addEventListener('touchstart', (e) => {
-        startY = e.touches[0].clientY;
-    });
-    
-    document.addEventListener('touchmove', (e) => {
-        currentY = e.touches[0].clientY;
-        const diff = startY - currentY;
-        
-        // Add subtle parallax effect on mobile scroll
-        if (Math.abs(diff) > 10) {
-            const parallaxElements = document.querySelectorAll('.parallax-band');
-            parallaxElements.forEach(element => {
-                element.style.transform = `translateY(${diff * 0.1}px)`;
-            });
-        }
-    });
-}
+                <!-- Project 6: Cypress POM -->
+                <div class="project-card" data-category="cypress">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=600&h=338&fit=crop" alt="Cypress Testing Framework" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>POM</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>2 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/CYPRESS_POM" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('cypress-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('cypress-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Cypress POM Framework</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Modern Page Object Model implementation using Cypress for end-to-end testing, featuring clean 
+                            architecture, reusable components, and comprehensive test coverage.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-circle-nodes"></i>
+                                    <span>Cypress</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-layer-group"></i>
+                                    <span>POM</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-check-double"></i>
+                                    <span>E2E</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">98%</span>
+                                <span class="metric-label">Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">40+</span>
+                                <span class="metric-label">Components</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5</span>
+                                <span class="metric-label">Modules</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Konami Code Confetti Easter Egg
-(() => {
-    const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','KeyB','KeyA'];
-    let idx = 0;
-    
-    window.addEventListener('keydown', e => {
-        if (e.code === seq[idx]) { 
-            idx++; 
-            if (idx === seq.length) { 
-                boom(); 
-                idx = 0; 
-            } 
-        } else { 
-            idx = 0; 
-        }
-    });
-    
-    function boom() {
-        import('https://cdn.skypack.dev/canvas-confetti').then(mod => {
-            const confetti = mod.default;
-            confetti({
-                spread: 90,
-                particleCount: 150,
-                origin: { y: 0.6 }
-            });
-            showNotification('🎉 Konami Code activated! You found the SDET secret!');
-        });
-    }
-})();
+                <!-- Project 7: Cypress API Data-Driven -->
+                <div class="project-card" data-category="cypress api">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=338&fit=crop" alt="API Testing Automation" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>API</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-database"></i>
+                                    <span>Data-Driven</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1.5 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/CypressApi_DataDrivenModel" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('api-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('api-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Cypress API Data-Driven Model</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Data-driven API testing framework using Cypress with dynamic test data management, 
+                            comprehensive API validation, and automated report generation capabilities.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-js-square"></i>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-circle-nodes"></i>
+                                    <span>Cypress</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>API</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-database"></i>
+                                    <span>Data-Driven</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">API Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">30+</span>
+                                <span class="metric-label">Endpoints</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">8</span>
+                                <span class="metric-label">Data Sets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-// Scroll Event Handler
-function handleScroll() {
-    handleNavbarScroll();
-    updateActiveNavLink();
-    handleScrollToTop();
-}
+                <!-- Project 8: L3-Harris -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=338&fit=crop" alt="Enterprise Security Testing" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Security</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>Enterprise</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>3 months</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/Project-1-L3-Harris" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('l3harris-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('l3harris-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Project L3-Harris</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Enterprise-level testing project for L3-Harris systems, featuring comprehensive test automation, 
+                            security testing, and performance validation for mission-critical applications.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fas fa-building"></i>
+                                    <span>Enterprise</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Security</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Performance</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Automation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">99%</span>
+                                <span class="metric-label">Reliability</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">60+</span>
+                                <span class="metric-label">Test Suites</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">24/7</span>
+                                <span class="metric-label">Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Initialize Everything
-function init() {
-    // Start typing animation
-    setTimeout(typeText, 500);
-    
-    // Create matrix effect
-    createMatrixEffect();
-    
-    // Set up intersection observer
-    createIntersectionObserver();
-    
-    // Initialize project filtering
-    initProjectFiltering();
-    
-    // Enhance skill items
-    enhanceSkillItems();
-    
-    // Enhance project cards
-    enhanceProjectCards();
-    
-    // Initialize touch gestures
-    initTouchGestures();
-    
-    // Optimize performance
-    optimizePerformance();
-    
-    // Add event listeners
-    hamburger?.addEventListener('click', toggleMobileMenu);
-    window.addEventListener('scroll', handleScroll);
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            navMenu?.classList.remove('active');
-            hamburger?.classList.remove('active');
-        }
-    });
-    
-    // Add staggered animation delays for better UX
-    const skillCategories = document.querySelectorAll('.skill-category');
-    skillCategories.forEach((category, index) => {
-        category.style.transitionDelay = `${index * 150}ms`;
-    });
-    
-    const certCards = document.querySelectorAll('.cert-card');
-    certCards.forEach((card, index) => {
-        card.style.transitionDelay = `${index * 120}ms`;
-    });
-    
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    timelineItems.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 200}ms`;
-    });
-    
-    // Welcome message
-    setTimeout(() => {
-        showNotification('🚀 Welcome to Prince Raj\'s Elite SDET Portfolio! Explore the interactive features!');
-    }, 2000);
-}
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Details</h3>
+                <button class="modal-close" onclick="closeProjectModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content loaded here -->
+            </div>
+        </div>
+    </div>
 
-// Start when DOM is ready
-document.addEventListener('DOMContentLoaded', init);
+    <!-- GitHub Stats Section -->
+    <section id="github" class="github-stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">GitHub Activity</h2>
+                <p class="section-subtitle">My coding journey in numbers</p>
+            </div>
+            <div class="github-grid">
+                <div class="github-card">
+                    <div class="github-content">
+                        <div class="github-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub Profile</h3>
+                        <p>Explore my repositories and contributions</p>
+                        <a href="https://github.com/princu2701" class="github-link" target="_blank">
+                            View Profile <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="github-card">
+                    <div class="github-content">
+                        <div class="github-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <h3>8+ Repositories</h3>
+                        <p>Active projects in test automation</p>
+                        <a href="https://github.com/princu2701?tab=repositories" class="github-link" target="_blank">
+                            View Repos <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="github-card">
+                    <div class="github-content">
+                        <div class="github-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Active Contributor</h3>
+                        <p>Regular commits and improvements</p>
+                        <a href="https://github.com/princu2701" class="github-link" target="_blank">
+                            View Activity <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Additional smooth scroll for any remaining links
-document.addEventListener('click', (e) => {
-    if (e.target.matches('a[href^="#"]')) {
-        e.preventDefault();
-        const targetId = e.target.getAttribute('href');
-        smoothScrollTo(targetId);
-    }
-});
+    <!-- Parallax Code Rain Strip 2 -->
+    <section class="parallax-band"></section>
 
-// Add CSS animations for notifications and effects
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    
-    @keyframes slideOutRight {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-    
-    @keyframes ripple {
-        to { transform: scale(2); opacity: 0; }
-    }
-    
-    .demo-console {
-        background: #000;
-        border-radius: 8px;
-        padding: 1rem;
-        font-family: 'JetBrains Mono', monospace;
-        margin: 1rem 0;
-    }
-    
-    .console-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #333;
-    }
-    
-    .console-title {
-        color: #00f5ff;
-        font-weight: 600;
-    }
-    
-    .console-status {
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
-    
-    .console-status.running {
-        background: rgba(0, 255, 0, 0.2);
-        color: #00ff00;
-    }
-    
-    .console-output {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .console-line {
-        color: #e2e8f0;
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    
-    .console-line.success {
-        color: #00ff00;
-    }
-    
-    .console-line.info {
-        color: #00f5ff;
-    }
-    
-    .project-details h4 {
-        color: #00f5ff;
-        margin: 1.5rem 0 1rem 0;
-        font-size: 1.2rem;
-    }
-    
-    .project-details ul {
-        margin: 1rem 0;
-        padding-left: 1.5rem;
-    }
-    
-    .project-details li {
-        margin-bottom: 0.5rem;
-        line-height: 1.6;
-    }
-    
-    .achievement-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 1rem;
-        margin: 1rem 0;
-    }
-    
-    .achievement-item {
-        text-align: center;
-        padding: 1rem;
-        background: rgba(0, 245, 255, 0.1);
-        border-radius: 8px;
-        border: 1px solid rgba(0, 245, 255, 0.2);
-    }
-    
-    .achievement-value {
-        display: block;
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #00f5ff;
-        margin-bottom: 0.5rem;
-    }
-    
-    .achievement-label {
-        font-size: 0.9rem;
-        color: #94a3b8;
-    }
-`;
-document.head.appendChild(style);
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certifications</h2>
+                <p class="section-subtitle">Validated expertise in quality assurance</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="cert-title">Masai Construct Week Project Certificate</h3>
+                    <p class="cert-description">Full-stack project development with integrated testing strategies and comprehensive QA implementation</p>
+                    <div class="cert-issuer">
+                        <i class="fas fa-university"></i>
+                        <span>Masai School</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="cert-title">Agile Manual & Automation Certificate</h3>
+                    <p class="cert-description">Comprehensive training in Agile testing methodologies, manual testing processes, and automation best practices</p>
+                    <div class="cert-issuer">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>TechCanvass</span>
+                    </div>
+                </div>
+                
+                <div class="cert-card">
+                    <div class="cert-badge">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="cert-title">Selenium WebDriver with Java Certificate</h3>
+                    <p class="cert-description">Advanced automation testing certification covering Selenium WebDriver implementation with Java programming</p>
+                    <div class="cert-issuer">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>TAU (Test Automation University)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Make functions globally accessible
-window.downloadResume = downloadResume;
-window.openProjectDemo = openProjectDemo;
-window.openProjectDetails = openProjectDetails;
-window.closeProjectModal = closeProjectModal;
+    <!-- Career Goals Section -->
+    <section id="goals" class="career-goals">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Career Roadmap</h2>
+                <p class="section-subtitle">My journey to becoming a Senior SDET</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Mentor junior SDETs to build leadership skills!</span>
+                    <div class="timeline-content">
+                        <h3>Senior SDET Role</h3>
+                        <p>Advancing to senior-level responsibilities in test automation, team leadership, and architectural decision-making in quality assurance</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="65"></div>
+                        </div>
+                        <span class="progress-text">65% Complete</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Focus on Docker + K8s for scalable testing!</span>
+                    <div class="timeline-content">
+                        <h3>CI/CD Mastery</h3>
+                        <p>Deepening expertise in continuous integration and deployment pipelines, DevOps practices, and automated testing integration</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="50"></div>
+                        </div>
+                        <span class="progress-text">50% Complete</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Start with AWS Lambda for serverless testing!</span>
+                    <div class="timeline-content">
+                        <h3>AWS Cloud Expertise</h3>
+                        <p>Learning cloud-based testing, infrastructure automation, and scalable testing solutions in AWS ecosystem</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="30"></div>
+                        </div>
+                        <span class="progress-text">30% Complete</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <span class="pro-tip-tooltip">Pro Tip: Infrastructure as Code is key for modern SDETs!</span>
+                    <div class="timeline-content">
+                        <h3>Advanced Infrastructure Knowledge</h3>
+                        <p>Mastering advanced infrastructure concepts, containerization, orchestration, and scalable testing architectures</p>
+                        <div class="progress-bar">
+                            <div class="progress" data-progress="35"></div>
+                        </div>
+                        <span class="progress-text">35% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.getEntriesByType('navigation')[0];
-            if (perfData && perfData.loadEventEnd > 3000) {
-                console.log('⚡ Portfolio loaded in', perfData.loadEventEnd, 'ms');
-            }
-        }, 1000);
-    });
-}
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to discuss your next testing challenge?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>I'm always open to discussing new opportunities, innovative projects, or just talking about the latest in test automation and quality assurance.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>princeraj27janu@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Gurgaon, India</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Software Test Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-links">
+                    <h3>Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/prince-raj-a1493b228" class="social-link" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/princu2701" class="social-link" target="_blank">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://github.com/princu2701/princu2701.github.io" class="social-link" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>Portfolio</span>
+                        </a>
+                        <a href="mailto:princeraj27janu@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Prince Raj. Crafted with <i class="fas fa-heart"></i> and lots of coffee.</p>
+                <p>Built with HTML, CSS, and JavaScript • GitHub Pages Ready</p>
+                <small>Try the Konami Code: ↑↑↓↓←→←→BA for a surprise! 🎉</small>
+            </div>
+        </div>
+    </footer>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
