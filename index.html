@@ -70,12 +70,34 @@
                     <a href="#contact" class="btn btn-secondary">
                         <i class="fas fa-envelope"></i> Hire Me
                     </a>
-                    <!-- <a href="#" class="btn btn-tertiary" onclick="downloadResume()">
+<!--                     <a href="#" class="btn btn-tertiary" onclick="downloadResume()">
                         <i class="fas fa-download"></i> Resume
                     </a> -->
-                    <a href="https://github.com/princu2701/princu2701.github.io/blob/master/Prince_Raj_Resume.pdf" class="btn btn-tertiary" onclick="downloadResume(event)" target="_blank">
-    <i class="fas fa-download"></i> Resume
+                  <a href="https://raw.githubusercontent.com/princu2701/princu2701.github.io/master/Prince_Raj_Resume.pdf" 
+   class="btn btn-tertiary" 
+   onclick="downloadResume(event)" 
+   target="_blank">
+   <i class="fas fa-download"></i> Resume
 </a>
+
+<script>
+function downloadResume(event) {
+    // Don't block default navigation (so it still opens in new tab)
+    const fileUrl = "https://raw.githubusercontent.com/princu2701/princu2701.github.io/master/Prince_Raj_Resume.pdf";
+
+    // Open in new tab explicitly
+    window.open(fileUrl, "_blank");
+
+    // Trigger download separately
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "Prince_Raj_Resume.pdf"; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+
                 </div>
             </div>
             <div class="hero-image">
@@ -135,7 +157,7 @@
                             <div class="stat-label">Year Experience</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number">6+</div>
+                            <div class="stat-number">8+</div>
                             <div class="stat-label">Major Projects</div>
                         </div>
                         <div class="stat">
@@ -200,6 +222,7 @@
                                 <ul>
                                     <li><a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank">RealTime Selenium Project</a></li>
                                     <li><a href="https://github.com/princu2701/Usha-Comprehensive-MDM-and-Module-Testing-Automation" target="_blank">Usha Comprehensive MDM Testing</a></li>
+                                    <li><a href="https://github.com/princu2701/UCO-Bank-NFA-End-to-End-Test-Automation-Suite" target="_blank">UCO Bank NFA Automation Suite</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -251,6 +274,7 @@
                                 <h4>Related Projects</h4>
                                 <ul>
                                     <li><a href="https://github.com/princu2701/RealTime_Selenium_Project" target="_blank">RealTime Selenium Project</a></li>
+                                    <li><a href="https://github.com/princu2701/InvoiceFIleUploadApiTest" target="_blank">Indus Invoice Upload API Testing</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -319,7 +343,7 @@
     <!-- Parallax Code Rain Strip -->
     <section class="parallax-band"></section>
 
-<!-- Enhanced Projects Section with Dynamic Features -->
+    <!-- Enhanced Projects Section with Dynamic Features -->
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
@@ -337,7 +361,167 @@
             </div>
             
             <div class="projects-grid">
-                <!-- Project 1: RealTime Selenium -->
+                <!-- Project 1: UCO Bank NFA Automation -->
+                <div class="project-card" data-category="selenium">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=338&fit=crop" alt="UCO Bank NFA Automation Suite" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-code"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>Banking</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Dec 2024</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/UCO-Bank-NFA-End-to-End-Test-Automation-Suite" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('uco-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('uco-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">UCO Bank NFA End-to-End Test Automation Suite</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Complete test automation suite for UCO Bank's Non-Financial Approval System featuring hierarchical workflow testing, 
+                            role-based access control, Dockerized Selenium Grid, and comprehensive reporting with ExtentReports.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fab fa-java"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Selenium</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-vial"></i>
+                                    <span>TestNG</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fab fa-docker"></i>
+                                    <span>Docker</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">95%</span>
+                                <span class="metric-label">Test Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">50+</span>
+                                <span class="metric-label">Test Cases</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5</span>
+                                <span class="metric-label">User Roles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Indus Invoice API Testing -->
+                <div class="project-card" data-category="api">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=338&fit=crop" alt="Indus Invoice Upload API Testing" loading="lazy">
+                        <div class="project-overlay">
+                            <div class="project-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>API</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>PDF Processing</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Dec 2024</span>
+                                </div>
+                            </div>
+                            <div class="project-quick-actions">
+                                <a href="https://github.com/princu2701/InvoiceFIleUploadApiTest" target="_blank" class="quick-action">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <button class="quick-action demo-btn" onclick="openProjectDemo('indus-demo')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="quick-action details-btn" onclick="openProjectDetails('indus-project')">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Indus Invoice Upload API Testing</h3>
+                            <div class="project-status">
+                                <span class="status-badge completed">Completed</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Enterprise API testing suite for Indus Electricity Board's invoice digitization system. 
+                            Validates PDF invoice processing, data extraction accuracy, and backend REST APIs using RestAssured and TestNG.
+                        </p>
+                        <div class="project-tech-stack">
+                            <div class="tech-orbit">
+                                <div class="tech-badge primary">
+                                    <i class="fas fa-coffee"></i>
+                                    <span>Java</span>
+                                </div>
+                                <div class="tech-badge secondary">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>RestAssured</span>
+                                </div>
+                                <div class="tech-badge accent">
+                                    <i class="fas fa-vial"></i>
+                                    <span>TestNG</span>
+                                </div>
+                                <div class="tech-badge neutral">
+                                    <i class="fas fa-cube"></i>
+                                    <span>Maven</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">API Coverage</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">30+</span>
+                                <span class="metric-label">Endpoints</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4</span>
+                                <span class="metric-label">Data Fields</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: RealTime Selenium -->
                 <div class="project-card" data-category="selenium">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=338&fit=crop" alt="Selenium Testing Framework" loading="lazy">
@@ -417,7 +601,7 @@
                     </div>
                 </div>
 
-                <!-- Project 2: Usha MDM Testing -->
+                <!-- Project 4: Usha MDM Testing -->
                 <div class="project-card" data-category="selenium">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=338&fit=crop" alt="MDM Testing Automation" loading="lazy">
@@ -497,7 +681,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3: Appium Cross-App -->
+                <!-- Project 5: Appium Cross-App -->
                 <div class="project-card" data-category="mobile">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=338&fit=crop" alt="Mobile Testing Framework" loading="lazy">
@@ -577,7 +761,7 @@
                     </div>
                 </div>
 
-                <!-- Project 4: Cypress POM -->
+                <!-- Project 6: Cypress POM -->
                 <div class="project-card" data-category="cypress">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=600&h=338&fit=crop" alt="Cypress Testing Framework" loading="lazy">
@@ -657,7 +841,7 @@
                     </div>
                 </div>
 
-                <!-- Project 5: Cypress API Data-Driven -->
+                <!-- Project 7: Cypress API Data-Driven -->
                 <div class="project-card" data-category="cypress api">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=338&fit=crop" alt="API Testing Automation" loading="lazy">
@@ -737,7 +921,7 @@
                     </div>
                 </div>
 
-                <!-- Project 6: L3-Harris -->
+                <!-- Project 8: L3-Harris -->
                 <div class="project-card" data-category="selenium">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=338&fit=crop" alt="Enterprise Security Testing" loading="lazy">
@@ -834,7 +1018,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- GitHub Stats Section -->
     <section id="github" class="github-stats">
         <div class="container">
@@ -860,7 +1044,7 @@
                         <div class="github-icon">
                             <i class="fas fa-code-branch"></i>
                         </div>
-                        <h3>6+ Repositories</h3>
+                        <h3>8+ Repositories</h3>
                         <p>Active projects in test automation</p>
                         <a href="https://github.com/princu2701?tab=repositories" class="github-link" target="_blank">
                             View Repos <i class="fas fa-external-link-alt"></i>
